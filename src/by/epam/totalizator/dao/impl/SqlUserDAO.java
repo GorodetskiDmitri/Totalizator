@@ -62,7 +62,8 @@ public class SqlUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean registerUser(String login, String password, Double balance, String name, String surname, String email, String address, String phone, String passport, Date dateOfBirth) throws DAOException {
+	public boolean registerUser(String login, String password, Double balance, String name, String surname, 
+			String email, String address, String phone, String passport, Date dateOfBirth) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int pass = password.hashCode();
