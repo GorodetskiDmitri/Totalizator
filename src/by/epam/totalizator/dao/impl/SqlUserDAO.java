@@ -19,8 +19,8 @@ public class SqlUserDAO implements UserDAO {
 	private static final String GET_USER = "SELECT * FROM users WHERE login=? AND password=? AND status='user'";
 	private static final String GET_LOGIN = "SELECT login FROM users WHERE login=?";
 	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, "
-											+ "email, address, phone, passport, date_of_birth, bet_allow) "
-											+ "VALUES('user',?,?,?,?,?,?,?,?,?,?,'0')";
+			+ "email, address, phone, passport, date_of_birth, bet_allow) "
+			+ "VALUES('user',?,?,?,?,?,?,?,?,?,?,'0')";
 	
 	@Override
 	public User getUser(String login, String password) throws DAOException {

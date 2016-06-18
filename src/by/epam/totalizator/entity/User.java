@@ -72,7 +72,6 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-
 	public String getSurname() {
 		return surname;
 	}
@@ -80,7 +79,6 @@ public class User implements Serializable {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
 
 	public String getEmail() {
 		return email;
@@ -101,7 +99,6 @@ public class User implements Serializable {
 	public String getPhone() {
 		return phone;
 	}
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;
