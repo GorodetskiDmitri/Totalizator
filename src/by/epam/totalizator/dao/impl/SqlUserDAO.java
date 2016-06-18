@@ -65,29 +65,29 @@ public class SqlUserDAO implements UserDAO {
 	public boolean registerUser(String login, String password, Double balance, String name, String surname, 
 			String email, String address, String phone, String passport, Date dateOfBirth) throws DAOException {
 		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		PreparedStatement prepareStatement = null;
 		int pass = password.hashCode();
 		try {
 			connection = connectionPool.takeConnection();			
-			preparedStatement = connection.prepareStatement(INSERT_USER);
-			preparedStatement.setString(1, login);
-			preparedStatement.setInt(2, pass);
-			preparedStatement.setDouble(3, balance);
-			preparedStatement.setString(4, name);
-			preparedStatement.setString(5, surname);
-			preparedStatement.setString(6, email);
-			preparedStatement.setString(7, address);
-			preparedStatement.setString(8, phone);
-			preparedStatement.setString(9, passport);
-			preparedStatement.setDate(10, (java.sql.Date) dateOfBirth);
-			preparedStatement.executeUpdate();
-			preparedStatement.close();
+			prepareStatement = connection.prepareStatement(INSERT_USER);
+			prepareStatement.setString(1, login);
+			prepareStatement.setInt(2, pass);
+			prepareStatement.setDouble(3, balance);
+			prepareStatement.setString(4, name);
+			prepareStatement.setString(5, surname);
+			prepareStatement.setString(6, email);
+			prepareStatement.setString(7, address);
+			prepareStatement.setString(8, phone);
+			prepareStatement.setString(9, passport);
+			prepareStatement.setDate(10, (java.sql.Date) dateOfBirth);
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, preparedStatement);
+			connectionPool.closeConnection(connection, prepareStatement);
 		}
 		return true;
 	}
