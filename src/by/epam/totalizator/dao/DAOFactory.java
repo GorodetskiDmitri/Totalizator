@@ -1,5 +1,5 @@
 package by.epam.totalizator.dao;
 
-public class DAOException {
+public class DAOFactory {
 
 }
