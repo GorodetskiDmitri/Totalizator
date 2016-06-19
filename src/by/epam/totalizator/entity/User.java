@@ -140,7 +140,18 @@ public class User implements Serializable {
 	     User other = (User) obj;
 	        
 	     if (id != other.id) return false;
+	     if (status != null ? !status.equals(other.status) : other.status != null) return false;
 	     if (login != null ? !login.equals(other.login) : other.login != null) return false;
+	     if (password != other.password) return false;
+	     if (balance != other.balance) return false;
+	     if (name != null ? !name.equals(other.name) : other.name != null) return false;
+	     if (surname != null ? !surname.equals(other.surname) : other.surname != null) return false;
+	     if (email != null ? !email.equals(other.email) : other.email != null) return false;
+	     if (address != null ? !address.equals(other.address) : other.address != null) return false;
+	     if (phone != null ? !phone.equals(other.phone) : other.phone != null) return false;
+	     if (passport != null ? !passport.equals(other.passport) : other.passport != null) return false;
+	     if (dateOfBirth != null ? !dateOfBirth.equals(other.dateOfBirth) : other.dateOfBirth != null) return false;
+	     if (betAllow != null ? !betAllow.equals(other.betAllow) : other.betAllow != null) return false;
 	     return true;
 	 }   
 	 
@@ -148,10 +159,18 @@ public class User implements Serializable {
 	 public int hashCode() {
 		 int result = 1;
 	     result = 31 * id;
+	     result = 31 * result + (status != null ? status.hashCode() : 0);
 	     result = 31 * result + (login != null ? login.hashCode() : 0);
 	     result = 31 * result + password;
+	     result = 31 * result + (int)balance;
 	     result = 31 * result + (name != null ? name.hashCode() : 0);
 	     result = 31 * result + (surname != null ? surname.hashCode() : 0);
+	     result = 31 * result + (email != null ? email.hashCode() : 0);
+	     result = 31 * result + (address != null ? address.hashCode() : 0);
+	     result = 31 * result + (phone != null ? phone.hashCode() : 0);
+	     result = 31 * result + (passport != null ? passport.hashCode() : 0);
+	     result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
+	     result = 31 * result + (betAllow != null ? betAllow.hashCode() : 0);
 	     return result;
 	 }
 
