@@ -14,6 +14,7 @@ public class SqlUserDAOTest {
 		SqlUserDAO userDAO = new SqlUserDAO();
 		
 		User userExpected = new User();
+		userExpected.setStatus("client");
 		userExpected.setLogin("login");
 		userExpected.setPassword("password".hashCode());
 		userExpected.setBalance(10.0);
@@ -24,6 +25,7 @@ public class SqlUserDAOTest {
 		userExpected.setPhone("phone");
 		userExpected.setPassport("passport");
 		userExpected.setDateOfBirth(java.sql.Date.valueOf("1990-02-14"));
+		userExpected.setBetAllow("0");
 		
 		userDAO.registerUser("login", "password", 10.0, "name", "surname", "email", 
 				"address", "phone", "passport", java.sql.Date.valueOf("1990-02-14"));
