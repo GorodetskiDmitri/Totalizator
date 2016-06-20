@@ -81,7 +81,6 @@ public final class ConnectionPool {
 	 * Directly creates a connection pool
 	 */
 	public void initPoolData() throws ConnectionPoolException {
-		Locale.setDefault(Locale.ENGLISH);
 		try {
 			Class.forName(driverName);
 			connectionQueue = new ArrayBlockingQueue<Connection>(poolSize);
