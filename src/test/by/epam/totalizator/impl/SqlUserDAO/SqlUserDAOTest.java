@@ -15,7 +15,7 @@ public class SqlUserDAOTest {
 		
 		User userExpected = new User();
 		userExpected.setLogin("login");
-		userExpected.setPassport("password");
+		userExpected.setPassword("password".hashCode());
 		userExpected.setBalance(10.0);
 		userExpected.setName("name");
 		userExpected.setSurname("surname");
