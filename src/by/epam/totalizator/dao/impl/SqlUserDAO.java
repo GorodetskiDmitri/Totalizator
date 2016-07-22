@@ -93,7 +93,7 @@ public class SqlUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean hasLogin(String login) throws DAOException {
+	public boolean isLoginFree(String login) throws DAOException {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null; 
 		ResultSet resultSet = null;
@@ -104,9 +104,9 @@ public class SqlUserDAO implements UserDAO {
 			prepareStatement.setString(1, login);
 			resultSet = prepareStatement.executeQuery();
 			if (resultSet.next()) {
-				return true;
+				return false;
 			}
-			return false;
+			return true;
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
 		} catch (ConnectionPoolException e) {

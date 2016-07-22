@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class User implements Serializable {
 
-	private static final long serialVersionUID = -6775190367037829650L;
+	private static final long serialVersionUID =  1L;
 
 	private int id;
 	private String status;
@@ -176,7 +176,7 @@ public class User implements Serializable {
 
 	 @Override
 	 public String toString() {
-		 return getClass().getName() + "@" + "id : " + id + 
+		 return getClass().getName() + "@" + "id : " + id + ", status : " + status +
 	    			", login : " + login + ", password : " + password +
 	    			", balance : " + balance + ", name : " + name +
 	    			", surname : " + surname + ", email : " + email +
