@@ -29,6 +29,7 @@ public class LoginCommand implements Command {
 					page = PageName.ADMIN_PAGE;
 				}
 			} else {
+				System.out.println("prokop".hashCode());
 				page = PageName.INDEX_PAGE;
 				request.setAttribute(RequestParameterName.ACCESS_DENIED, true);
 			}

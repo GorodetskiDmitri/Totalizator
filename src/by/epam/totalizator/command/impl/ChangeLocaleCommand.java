@@ -19,7 +19,7 @@ public class ChangeLocaleCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String locale = request.getParameter(RequestParameterName.LOCALE);
 		request.getSession().setAttribute("locale", locale);
-		Locale.setDefault(new Locale(locale, locale.toUpperCase()));
+		//Locale.setDefault(new Locale(locale, locale.toUpperCase()));
 		StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 		
 		if (currentCommand != null) {
