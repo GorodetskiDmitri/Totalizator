@@ -9,6 +9,9 @@ import by.epam.totalizator.service.exception.ServiceException;
 public final class UserService {
 	
 	public final static User checkLogin(String login, String password) throws ServiceException {
+		if (!Validation.validateLogin(login, password)) {
+			throw new ServiceException("Invalid login or password");
+		}
 		
 		DAOFactory factory = DAOFactory.getInstance();
 		UserDAO userDAO = factory.getUserDAO();

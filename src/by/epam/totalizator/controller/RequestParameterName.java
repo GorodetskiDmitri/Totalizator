@@ -4,6 +4,8 @@ public final class RequestParameterName {
 	
 	public static final String ACCESS_DENIED = "accessDenied";
 	public static final String ADMIN = "admin";
+	public static final String CHANGED_LANGUAGE = "changedLanguage";
+	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String LOCALE = "locale";
 	public static final String LOGIN = "login";
 	public static final String NAME = "name";
