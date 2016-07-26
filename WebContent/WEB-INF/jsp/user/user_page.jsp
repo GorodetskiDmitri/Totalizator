@@ -5,11 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<title>User page</title>
+<fmt:setLocale value="${sessionScope.locale}" />
+<fmt:setBundle basename="by.epam.totalizator.localization.user" var="loc" />
+<fmt:message bundle="${loc}" key="user.title" var="title" />
+<fmt:message bundle="${loc}" key="user.logout" var="logout" />
+<title>${title}</title>
 </head>
 <body>
+
 <h1>This is User page!</h1>
-<p>Bla. Bla. Bla</p>
+<p>Bla. Bla. Bla </p>
+<a href="Controller?command=logout">${logout}</a>
 </body>
 </html>
