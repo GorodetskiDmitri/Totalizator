@@ -14,6 +14,8 @@
 <body>
 
 <h1>This is User page!</h1>
+<c:out value="${sessionScope.client.login}" />
+
 <p>Bla. Bla. Bla </p>
 <a href="Controller?command=logout">${logout}</a>
 </body>
