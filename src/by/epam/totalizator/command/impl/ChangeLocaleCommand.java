@@ -20,7 +20,7 @@ public class ChangeLocaleCommand implements Command {
 		String locale = request.getParameter(RequestParameterName.LOCALE);
 		request.getSession().setAttribute("locale", locale);
 		//Locale.setDefault(new Locale(locale, locale.toUpperCase()));
-		StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
+		/*StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 		
 		if (currentCommand != null) {
 			try {
@@ -34,6 +34,7 @@ public class ChangeLocaleCommand implements Command {
 			User user = (User) request.getSession().getAttribute(RequestParameterName.USER);
 			String page = null;
 			if (user != null) {
+				System.out.println("в сессии есть юзер");
 				String status = user.getStatus();
 				if (status.equals(RequestParameterName.ADMIN)) {
 					page = PageName.ADMIN_PAGE;
@@ -44,13 +45,14 @@ public class ChangeLocaleCommand implements Command {
 			} else {
 				page = PageName.INDEX_PAGE;
 			}
-			
+			*/
+			String page = PageName.INDEX_PAGE;
 			try {
 				request.getRequestDispatcher(page).forward(request, response);
 			} catch (ServletException | IOException e) {
 				throw new CommandException("Could not forward to the page");
 			}
-		}
+		//}
 	}
 
 }

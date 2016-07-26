@@ -1,0 +1,245 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	color: #969A93;
+	font-weight: normal;
+	background-image: url(../img/bg2.png);
+	background-attachment: scroll;
+	background-color: #090a0e;
+	background-repeat: no-repeat;
+}
+img{
+	max-width: 100%;
+	height: auto;
+}
+header{
+	margin: 30px 0 40px;
+}
+.menu{
+	background: #fefefe;
+	border: 0;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .19);
+	padding: 2px 0;
+}
+.navbar-brand{
+	padding-right: 30px;
+}
+.navbar-brand img{
+	position: relative;
+	top: -40px;
+}
+.navbar-default .navbar-nav > li > a{
+	color: #8d8c8c;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+.navbar-default .navbar-nav > li.active-link > a{
+	border-bottom: 1px solid #d42819;
+	color: #8d8c8c;
+}
+.navbar-default .navbar-nav > li > a:hover{
+	color: #d42819;
+}
+.icons li a{
+	padding: 15px 5px;
+}
+.menu .container{
+	position: relative;
+}
+.globe{
+	font-size: 25px;
+	line-height: 50px;
+	position: absolute;
+	right: 20px;
+	cursor: pointer;
+	color: #000;
+	display: none;
+} 
+.slogan{
+	margin-bottom: 40px;
+}
+.slogan h1{
+	margin: 0;
+	text-shadow: 2px 2px 5px black;
+	text-align: center;
+	font-size: 33px;
+	color: #989797;
+}
+.slogan h1 span{
+	color: #d42819;
+}                                                                               
+.contacts h4{
+	color: #ffffff;
+}
+.contacts h5{
+	color: #E4CB5E;
+}
+.label-slyle div label{
+	color: #E4CB5E;
+}
+.card-row{
+	margin-bottom: 50px;
+}
+.card-row img{
+	box-shadow: 0 0 4px rgba(255, 255, 255, .5);
+	transition: all .3s;
+}
+.card-row a:hover img{
+	box-shadow: 0 0 15px rgba(212, 40, 25, .9);
+}
+.nav-pager{
+	text-align: center;
+}
+.pagination > li > a, .pagination > li >span{
+	color: #b5b3b3;
+}
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover, .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+	background: #fff;
+	border: 1px solid #ddd;
+	color: #d42819;
+}
+footer{
+	margin-bottom: 15px;
+}
+footer hr{
+	border-color: #b7b6b6;
+}
+.table-prop{
+	text-align: center;
+	font-size: 14px;
+	color: #4c4c4c;
+	background-color: #ececec;
+}
+.table-prop > tbody > tr > td > a {
+	text-decoration: none;
+	color: #4c4c4c;
+}
+.table-prop > tbody > tr > td > a:active,
+.table-prop > tbody > tr > td > a:visited
+{
+	color: #4c4c4c;
+	font-weight: normal;
+}
+.table-prop > tbody > tr > td > a:hover,
+.table-prop > tbody > tr > td > a:focus
+{
+	color: red;
+	font-weight: bold;
+}
+.table-head{
+	background-color: #d42819;
+	color: #000000;
+}
+.table-head th{
+	text-align: center;
+}
+.table-wrapper{
+	background-color: #090a0e;
+}
+.cap{
+	font-size: 16px;
+	font-weight: bold;
+	color: #d42819;
+	padding: 2px;
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+	
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	body{
+		background-image: none;
+		background-color: #090a0e;
+
+	}
+	.navbar-brand{
+		padding-right: 10px;
+	}
+	.icons{
+		display: none;
+		position: absolute;
+		right: 34px;
+		top: 40px;
+	}
+	.icons li{
+		float: none;
+	}
+	.icons li a{
+		padding: 5px;
+	}
+	.globe{
+		display: block;
+	}
+	.slogan{
+		margin-bottom: 80px;
+	}
+	.card-row{
+		text-align: center;
+	}
+	.card, .contacts{
+		margin-bottom: 50px;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 767px) {
+	.menu{
+		padding: 0;
+	}
+	.navbar-brand img{
+		top: -15px;
+		max-height: 50px;
+		max-width: 50px;
+	}
+	.navbar-nav > li > a{
+		transition: all .5s;
+	}
+	.navbar-default .navbar-nav > li.active-link > a{
+		border-bottom: 0;
+		color: #fff;
+		background: #d42819;
+	}
+	.navbar-default .navbar-nav:not(.icons) > li > a:hover{
+		border-bottom: 0;
+		color: #fff;
+		background: #d42819;
+	}
+	.icons{
+		display: block !important;
+		position: relative;
+		right: 0;
+		top: 0;
+	}
+	.icons li{
+		display: inline-block;
+	}
+	.globe{
+		display: none;
+	}
+	.card-row{
+		margin-bottom: 50px;
+	}
+	.card, .contacts{
+		margin-bottom: 50px;
+	}
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	header, 
+	.slogan {
+		margin-bottom: 30px;
+	}
+	.slogan h1{
+		font-size: 25px;
+	}
+}
+
+@media only screen and (min-width : 993px) {
+	.icons{
+		display: block !important;
+	}
+}

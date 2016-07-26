@@ -50,7 +50,7 @@ public class SqlUserDAO implements UserDAO {
 				user.setPassport(resultSet.getString(11));
 				user.setDateOfBirth(resultSet.getDate(12));
 				user.setBetAllow(resultSet.getString(13));
-			}
+			} 
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
 		} catch (ConnectionPoolException e) {
