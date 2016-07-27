@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="by.epam.totalizator.localization.login" var="loc" />
+	<fmt:setBundle basename="localization.login" var="loc" />
 	<fmt:message bundle="${loc}" key="login.title" var="title" />
 	<fmt:message bundle="${loc}" key="login.legend" var="legend" />
 	<fmt:message bundle="${loc}" key="login.language.en" var="en" />

@@ -6,14 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <fmt:setLocale value="${sessionScope.locale}" />
-<fmt:setBundle basename="by.epam.totalizator.localization.user" var="loc" />
+<fmt:setBundle basename="localization.user" var="loc" />
 <fmt:message bundle="${loc}" key="user.title" var="title" />
+<fmt:message bundle="${loc}" key="user.slogan" var="slogan" />
 <fmt:message bundle="${loc}" key="user.logout" var="logout" />
 <title>${title}</title>
 </head>
 <body>
 
-<h1>This is User page!</h1>
+<h1>${slogan}</h1>
 <c:out value="${sessionScope.client.login}" />
 
 <p>Bla. Bla. Bla </p>
