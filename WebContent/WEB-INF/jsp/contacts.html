@@ -3,11 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Totalizator T-One - Welcome</title>
+	<title>Totalizator T-One - Contacts</title>
 
 	<!-- Иконка страницы -->
-	<link type="image/x-icon" href="bootstrap/img/logo.ico" rel="shortcut icon">
-
+	<link type="image/x-icon" href="img/logo.ico" rel="shortcut icon">
+	
 	<!-- Для совместимости с максимально возможной версией IE -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -18,10 +18,10 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	
 	<!-- Подключение mini версии bootstrap -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 	<!-- Подключение файла собственных стилей -->
-	<link rel="stylesheet" href="bootstrap/css/style.css">
+	<link rel="stylesheet" href="css/style.css">
 	
 	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
 	<!--[if lt IE 9]>
@@ -29,7 +29,7 @@
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body >
 
 	<!-- Навигационная панель заголовка. Шаблон bootstrap -->
 	<header>
@@ -44,7 +44,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="bootstrap/img/logo3.png" height="100" width="100"></a>
+					<a class="navbar-brand" href="index.html"><img src="img/logo3.png" height="100" width="100"></a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,34 +56,11 @@
 						<li><a href="contacts.html">contacts</a></li>
 					</ul>
 		
+
 					<ul class="nav navbar-nav navbar-right icons">
-						<!-- <li><a href="index.jsp" onclick="javascript:newWindow(this.href); return false;" title="SIGN IN"><img src="bootstrap/img/login.png" height="26" width="27"></a></li> -->
-						<li><a href="#myModal" title="SIGN IN" role="button" class="btn" data-toggle="modal"><img src="bootstrap/img/login.png" height="26" width="27"></a></li>
-						
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-						
-						<li><a href="index.html">RU</a></li>
-						<li><a href="index.html">EN</a></li>
+						<li><a href="login.html" onclick="javascript:newWindow(this.href); return false;" title="SIGN IN"><img src="img/login.png" height="26" width="27"></a></li>
+						<li><a href="contacts.html">RU</a></li>
+						<li><a href="contacts.html">EN</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 				<i class="glyphicon glyphicon-log-in globe"></i>
@@ -94,41 +71,71 @@
 	<!-- Контент страницы -->
 	<div class="content">
 		<div class="container">
-			<div class="slogan" style="margin-bottom: 120px">
-				<h1>Welcome to <span>T-One Totalizator!</span>&nbsp;&nbsp;The best totalizator in Eastern Europe!</h1>
+			<div class="slogan">
+				<h1>Our <span>contacts</span></h1>
 			</div>
 			<div class="row">
 				<div class="card-row clearfix">
-					<div class="col-md-3 col-sm-6">
-						<div class="card">
-							<h4>France - Iceland</h4>
-							<p>EURO-2016. Quater-final</p>
-							<a href="betlist.html#euro"><img src="bootstrap/img/photo/bet1.jpg" height="173" width="218"></a>
+					<div class="col-md-4 col-sm-6">
+						<div class="contacts">
+							<h4>Main Office</h4>
+							<p>Minsk. Nezavisimosti, 133</br>
+							Tel.: +375-29-717-44-20</br>
+							Fax.: +375-29-717-44-22</br>
+							e-mail: t-one@gmail.com</p>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="card">
-							<h4>Krumkachy - BATE</h4>
-							<p>Football. Belarus. Day 21</p>
-							<a href="betlist.html#football"><img src="bootstrap/img/photo/bet2.jpg" height="173" width="218"></a>
+					<div class="col-md-4 col-sm-6">
+						<div class="contacts">
+							<h4>Regional Offices</h4>
+							<h5>Minsk</h5>
+							<p>Minsk. Nezavisimosti, 56</br>
+							Tel. +375-29-717-44-26</p>
+							<p>Minsk. Kamennogorskaja, 3</br>
+							Tel. +375-29-717-44-25</p>
+							<p>Minsk. Nemiga, 8</br>
+							Tel. +375-29-717-44-27</p>
+							<p>Minsk. Kulman, 15</br>
+							Tel. +375-29-717-44-28</p>
+							<h5>Gomel</h5>
+							<p>Gomel. Sovetskaja, 32</br>
+							Tel. +375-29-772-35-15</p>
+							<p>Gomel. Lenina, 9</br>
+							Tel. +375-29-772-35-16</p>
+							<h5>Grodno</h5>
+							<p>Grodno. Kruglaja pl., 1</br>
+							Tel. +375-29-733-16-06</p>
+							<h5>Vitebsk</h5>
+							<p>Vitebsk. Krasnoarmejskaja, 19</br>
+							Tel. +375-29-704-92-12</p>
+							<h5>Pinsk</h5>
+							<p>Pinsk. KPolesskaja, 7a</br>
+							Tel. +375-29-781-24-24</p>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="card">
-							<h4>S.Halep - M.Kis</h4>
-							<p>Wimbledon. Round of 16</p>
-							<a href="betlist.html#tennis"><img src="bootstrap/img/photo/bet3.jpg" height="173" width="218"></a>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="card">
-							<h4>Tyson Fury - Vl. Klitschko</h4>
-							<p>Box. Battle for the titul WBA/WBO </p>
-							<a href="betlist.html#box"><img src="bootstrap/img/photo/bet4.jpg" height="173" width="218"></a>
+					<div class="col-md-4 col-sm-6">
+						<div class="contacts">
+							<h4>International Offices</h4>
+							<h5>Russia</h5>
+							<p>Moscow. Turgeneva, 44</br>
+							Tel. +395-48-587-41-00</p>
+							<h5>Kazakhstan</h5>
+							<p>Astana. Barmalyke, 10</br>
+							Tel. +345-60-811-77-40</p>
+							<h5>Ukraine</h5>
+							<p>Kiev. Solomennaja, 18</br>
+							Tel. +371-59-218-87-61</p>
+							<h5>Poland</h5>
+							<p>Krakow. Malinova, 17</br>
+							Tel. +323-42-114-14-18</p>
+							<h5>Slovakia</h5>
+							<p>Presov. Dubnice, 3</br>
+							Tel. +303-74-650-22-92</p>
 						</div>
 					</div>
 				</div>
 			</div>
+				
 		</div>
 	</div>
 
@@ -141,7 +148,7 @@
 
 	<!-- Подключение jQuery и JavaScript-->
 	<script src="http://code.jquery.com/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bootstrap/js/main.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

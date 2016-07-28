@@ -21,6 +21,9 @@
   <listener>
   	<listener-class>by.epam.totalizator.listener.TotalizatorContextListener</listener-class>
   </listener>
+  <listener>
+  	<listener-class>by.epam.totalizator.listener.TotalizalorRequestListener</listener-class>
+  </listener>
   
   <filter>
   	<display-name>CharsetFilter</display-name>

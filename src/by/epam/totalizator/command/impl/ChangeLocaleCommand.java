@@ -12,20 +12,23 @@ import by.epam.totalizator.command.exception.CommandException;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
+import by.epam.totalizator.controller.ControllerUtil;
 
 public class ChangeLocaleCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+		StringBuffer url = ControllerUtil.getCurrentCommandUrl(request);
+		System.out.println("ChangeLocaleCommand.java : url=" + url);
+		System.out.println("ChangeLocaleCommand.java : getAttribute(CURRENT_COMMAND)=" + request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND));
 		String locale = request.getParameter(RequestParameterName.LOCALE);
 		request.getSession().setAttribute("locale", locale);
 		//Locale.setDefault(new Locale(locale, locale.toUpperCase()));
-		/*StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
+		StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 		
 		if (currentCommand != null) {
 			try {
-				currentCommand.append(RequestParameterName.CHANGED_LANGUAGE);
-				currentCommand.append("=true");
+				System.out.println("ChangeLocaleCommand : CurrentCommand перед sendRedirect : " + currentCommand);
 				response.sendRedirect(currentCommand.toString());
 			} catch (IOException e) {
 				throw new CommandException("Could not sent redirect", e);
@@ -45,14 +48,13 @@ public class ChangeLocaleCommand implements Command {
 			} else {
 				page = PageName.INDEX_PAGE;
 			}
-			*/
-			String page = PageName.INDEX_PAGE;
+			
 			try {
 				request.getRequestDispatcher(page).forward(request, response);
 			} catch (ServletException | IOException e) {
 				throw new CommandException("Could not forward to the page");
 			}
-		//}
+		}
 	}
 
 }

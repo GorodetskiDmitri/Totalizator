@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import by.epam.totalizator.command.impl.ChangeLocaleCommand;
+import by.epam.totalizator.command.impl.ContactsCommand;
 import by.epam.totalizator.command.impl.LoginCommand;
 import by.epam.totalizator.command.impl.LogoutCommand;
 import by.epam.totalizator.command.impl.UnknownCommand;
@@ -14,6 +15,7 @@ public class CommandHelper {
 	
 	public CommandHelper() {
 		commands.put(CommandName.CHANGE_LOCALE, new ChangeLocaleCommand());
+		commands.put(CommandName.CONTACTS, new ContactsCommand());
 		commands.put(CommandName.LOGIN, new LoginCommand());
 		commands.put(CommandName.LOGOUT, new LogoutCommand());
 	}
