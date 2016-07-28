@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.controller.ControllerUtil;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
@@ -16,6 +17,9 @@ public class ShowMainPage implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+		StringBuffer url = ControllerUtil.getCurrentCommandUrl(request);
+		request.getSession(true).setAttribute(RequestParameterName.CURRENT_COMMAND, url);
+		
 		String page = null;
 		User user = (User)request.getSession().getAttribute(RequestParameterName.USER);
 		if (user != null) {

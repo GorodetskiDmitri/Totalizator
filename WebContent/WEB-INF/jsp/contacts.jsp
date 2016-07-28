@@ -15,8 +15,14 @@
 	<fmt:message bundle="${menu}" key="menu.contacts" var="contacts" />
 	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
 	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />
+	<fmt:message bundle="${menu}" key="menu.contacts.title" var="title" />
+	<fmt:message bundle="${menu}" key="menu.contacts.slogan.part1" var="part1" />
+	<fmt:message bundle="${menu}" key="menu.contacts.slogan.part2" var="part2" />
+	<fmt:message bundle="${menu}" key="menu.contacts.main-office" var="main" />
+	<fmt:message bundle="${menu}" key="menu.contacts.regional-offices" var="regional" />
+	<fmt:message bundle="${menu}" key="menu.contacts.international-offices" var="international" />
 	
-	<title>Totalizator T-One - Contacts</title>
+	<title>${title}</title>
 
 	<!-- Иконка страницы -->
 	<link type="image/x-icon" href="bootstrap/img/logo.ico" rel="shortcut icon">
@@ -57,13 +63,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.jsp"><img src="bootstrap/img/logo3.png" height="100" width="100"></a>
+					<a class="navbar-brand" href="Controller?command=home"><img src="bootstrap/img/logo3.png" height="100" width="100"></a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="index.jsp">${home}</a></li>
+						<li><a href="Controller?command=home">${home}</a></li>
 						<li><a href="betlist.html">${bet}</a></li>
 						<li><a href="registration.html">${registration}</a></li>
 						<li><a href="Controller?command=contacts">${contacts}</a></li>
@@ -85,13 +91,13 @@
 	<div class="content">
 		<div class="container">
 			<div class="slogan">
-				<h1>Our <span>contacts</span></h1>
+				<h1>${part1} <span>${part2}</span></h1>
 			</div>
 			<div class="row">
 				<div class="card-row clearfix">
 					<div class="col-md-4 col-sm-6">
 						<div class="contacts">
-							<h4>Main Office</h4>
+							<h4>${main}</h4>
 							<p>Minsk. Nezavisimosti, 133</br>
 							Tel.: +375-29-717-44-20</br>
 							Fax.: +375-29-717-44-22</br>
@@ -100,7 +106,7 @@
 					</div>
 					<div class="col-md-4 col-sm-6">
 						<div class="contacts">
-							<h4>Regional Offices</h4>
+							<h4>${regional}</h4>
 							<h5>Minsk</h5>
 							<p>Minsk. Nezavisimosti, 56</br>
 							Tel. +375-29-717-44-26</p>
@@ -128,7 +134,7 @@
 					</div>
 					<div class="col-md-4 col-sm-6">
 						<div class="contacts">
-							<h4>International Offices</h4>
+							<h4>${international}</h4>
 							<h5>Russia</h5>
 							<p>Moscow. Turgeneva, 44</br>
 							Tel. +395-48-587-41-00</p>

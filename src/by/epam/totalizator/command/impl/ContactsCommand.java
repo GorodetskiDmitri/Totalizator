@@ -16,7 +16,6 @@ public class ContactsCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		System.out.println(ControllerUtil.getCurrentCommandUrl(request));
 		StringBuffer url = ControllerUtil.getCurrentCommandUrl(request);
 		request.getSession(true).setAttribute(RequestParameterName.CURRENT_COMMAND, url);
 		
