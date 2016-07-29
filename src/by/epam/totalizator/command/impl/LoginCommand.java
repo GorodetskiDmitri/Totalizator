@@ -30,7 +30,7 @@ public class LoginCommand implements Command {
 				}
 			} else {
 				System.out.println("нет объекта user");
-				page = PageName.INDEX_PAGE;
+				page = PageName.ERROR_PAGE;
 				request.setAttribute(RequestParameterName.ACCESS_DENIED, true);
 			}
 		} catch (ServiceException e) {
