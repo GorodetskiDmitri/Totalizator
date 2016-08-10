@@ -91,9 +91,13 @@
 			<div class="slogan">
 				<h1><span><c:out value="${slogan}"/></span></h1>
 			</div>
+			
+			<div class="alert alert-error col-xs-6">
+					<a class="close" href="#" data-dismiss="alert">x</a>Информационное сообщение
+			</div>
 
 			<form name="registration" method="POST" class="form-horizontal  label-slyle" onsubmit="return validation();">	
-				<div class="error form-group">
+				<div class="form-group">
 				    <label class="control-label col-xs-3" for="firstName"><c:out value="${name}"/></label>
 				    <div class="col-xs-6">
 				      	<input type="text" class="form-control" id="firstName" placeholder="${placeholder_name}">
@@ -177,9 +181,9 @@
 				<br />
 				<div class="form-group">
 				    <div class="col-xs-offset-3 col-xs-6">
-				      	<input type="submit" class="btn btn-primary" value="${registr}">
+				      	<button type="submit" class="btn btn-primary"><c:out value="${registr}"/></button>
 				      	&nbsp;&nbsp;
-				      	<input type="reset" class="btn btn-default" value="${reset}">
+				      	<button type="reset" class="btn btn-default"><c:out value="${reset}"/></button>
 				    </div>
 				</div> 
 			</form>
@@ -196,6 +200,8 @@
 	 
 	<!-- Подключение jQuery и JavaScript-->
 	<script src="bootstrap/js/main.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="bootstrap/js/bootstrap.js"></script>
  
 </body>
 </html>

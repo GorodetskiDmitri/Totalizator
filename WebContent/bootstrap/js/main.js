@@ -21,13 +21,13 @@ function newWindow(e) {
 // Простая валидация формы (все ли поля формы заполнены)
 function validation() {
 	alert("start validation");
-	var valid = true;
-	$("form[name='registration']").find("input,select")./*not('[type="submit"]').*/each(function() {
+	/*var valid = true;
+	$("form[name='registration']").find("input,select").not('[type="submit"]').each(function() {
 		if ($(this).val() == "")
 			valid = false;		
 	});
 	if (valid == false)
-	 	alert("Заполните все поля формы перед отправкой");
+	 	alert("Заполните все поля формы перед отправкой");*/
 }
 
 // Проверка ставки перед отправкой
