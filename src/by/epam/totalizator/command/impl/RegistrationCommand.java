@@ -12,7 +12,7 @@ import by.epam.totalizator.controller.ControllerUtil;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 
-public class ContactsCommand implements Command {
+public class RegistrationCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -20,7 +20,7 @@ public class ContactsCommand implements Command {
 		request.getSession().setAttribute(RequestParameterName.CURRENT_COMMAND, url);
 		
 		try {
-			request.getRequestDispatcher(PageName.CONTACTS_PAGE).forward(request, response);
+			request.getRequestDispatcher(PageName.REGISTRATION_PAGE).forward(request, response);
 		} catch (ServletException | IOException e) {
 			throw new CommandException("Could not forward to the page");
 		}

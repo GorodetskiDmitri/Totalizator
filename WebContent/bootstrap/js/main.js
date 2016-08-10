@@ -22,7 +22,7 @@ function newWindow(e) {
 function validation() {
 	alert("start validation");
 	var valid = true;
-	$("form[name='registration']").find("input,select").not('[type="submit"]').each(function() {
+	$("form[name='registration']").find("input,select")./*not('[type="submit"]').*/each(function() {
 		if ($(this).val() == "")
 			valid = false;		
 	});

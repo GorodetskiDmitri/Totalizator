@@ -9,12 +9,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
 	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:message bundle="${menu}" key="menu.home" var="home" />
-	<fmt:message bundle="${menu}" key="menu.bet" var="bet" />
-	<fmt:message bundle="${menu}" key="menu.registration" var="registration" />
-	<fmt:message bundle="${menu}" key="menu.contacts" var="contacts" />
-	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
-	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />
 	<fmt:message bundle="${menu}" key="menu.contacts.title" var="title" />
 	<fmt:message bundle="${menu}" key="menu.contacts.slogan.part1" var="part1" />
 	<fmt:message bundle="${menu}" key="menu.contacts.slogan.part2" var="part2" />
@@ -50,42 +44,7 @@
 </head>
 <body >
 
-	<!-- Навигационная панель заголовка. Шаблон bootstrap -->
-	<header>
-		<nav class="navbar navbar-default menu">
-			<div class="container">
-			
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="Controller?command=home"><img src="bootstrap/img/logo3.png" height="100" width="100"></a>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="Controller?command=home">${home}</a></li>
-						<li><a href="betlist.html">${bet}</a></li>
-						<li><a href="registration.html">${registration}</a></li>
-						<li><a href="Controller?command=contacts">${contacts}</a></li>
-					</ul>
-		
-
-					<ul class="nav navbar-nav navbar-right icons">
-						<li><a href="login.html" onclick="javascript:newWindow(this.href); return false;" title="SIGN IN"><img src="bootstrap/img/login.png" height="26" width="27"></a></li>
-						<li><a href="Controller?command=change-locale&locale=ru">${ru}</a></li>
-						<li><a href="Controller?command=change-locale&locale=en">${en}</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-				<i class="glyphicon glyphicon-log-in globe"></i>
-			</div><!-- /.container -->
-		</nav>
-	</header>
+	<jsp:include page="/WEB-INF/jsp/user-header.jsp" />
 
 	<!-- Контент страницы -->
 	<div class="content">
@@ -158,16 +117,8 @@
 		</div>
 	</div>
 
-	<footer>
-		<div class="container">
-			<hr>
-			<p class="pull-right">Design by Gorodetski Dmitri 2016</p>
-		</div>
-	</footer>
-
-	<!-- Подключение jQuery и JavaScript-->
-	<script src="http://code.jquery.com/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+	
+	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+	
 </body>
 </html>

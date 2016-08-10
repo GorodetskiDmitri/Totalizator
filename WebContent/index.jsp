@@ -76,8 +76,8 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="Controller?command=home">${home}</a></li>
-						<li><a href="betlist.html">${bet}</a></li>
-						<li><a href="registration.html">${registration}</a></li>
+						<li><a href="Controller?command=line">${bet}</a></li>
+						<li><a href="Controller?command=registration">${registration}</a></li>
 						<li><a href="Controller?command=contacts">${contacts}</a></li>
 					</ul>
 		
