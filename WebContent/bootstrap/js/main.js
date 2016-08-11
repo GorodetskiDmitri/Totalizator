@@ -18,17 +18,27 @@ function newWindow(e) {
 		',top='+Math.max(0, (screen.availHeight - h)/2));
 }
 
-// Простая валидация формы (все ли поля формы заполнены)
-function validation() {
-	alert("start validation");
-	/*var valid = true;
-	$("form[name='registration']").find("input,select").not('[type="submit"]').each(function() {
+// Простая валидация формы регистрации (все ли поля формы заполнены)
+$("#registration").submit(function() {
+	var valid = true;
+	$("form[name='registration']").find("input").not('[type="submit"]').each(function() {
 		if ($(this).val() == "")
 			valid = false;		
 	});
-	if (valid == false)
-	 	alert("Заполните все поля формы перед отправкой");*/
-}
+	if (valid == false) {
+		alert($("#inputValid").val());
+		return false;
+	}
+	if ($("#password").val() != $("#confirmPassword").val()) {
+		alert($("#passwordValid").val());
+        return false;
+	}
+	if (!$("#agree").prop("checked")) { 
+        alert($("#checkboxValid").val());
+        return false;
+	}
+});
+
 
 // Проверка ставки перед отправкой
 function betStatus() {

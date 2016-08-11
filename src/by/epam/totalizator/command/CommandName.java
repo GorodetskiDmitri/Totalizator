@@ -6,6 +6,7 @@ public enum CommandName {
 	HOME,
 	LOGIN,
 	LOGOUT,
+	REGISTER_USER,
 	REGISTRATION,
 	SHOW_USER_LIST
 }

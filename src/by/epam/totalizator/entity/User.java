@@ -119,7 +119,7 @@ public class User implements Serializable {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
+	
 	public String getBetAllow() {
 		return betAllow;
 	}
@@ -138,8 +138,7 @@ public class User implements Serializable {
 	     if (obj == null || getClass() != obj.getClass()) return false;
 	        
 	     User other = (User) obj;
-	        
-	     if (id != other.id) return false;
+	     
 	     if (status != null ? !status.equals(other.status) : other.status != null) return false;
 	     if (login != null ? !login.equals(other.login) : other.login != null) return false;
 	     if (password != other.password) return false;
@@ -158,7 +157,6 @@ public class User implements Serializable {
 	 @Override
 	 public int hashCode() {
 		 int result = 1;
-	     result = 31 * id;
 	     result = 31 * result + (status != null ? status.hashCode() : 0);
 	     result = 31 * result + (login != null ? login.hashCode() : 0);
 	     result = 31 * result + password;

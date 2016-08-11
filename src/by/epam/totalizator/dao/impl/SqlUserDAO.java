@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.connectionpool.ConnectionPool;
@@ -16,24 +15,24 @@ public class SqlUserDAO implements UserDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
-	private static final String GET_USER = "SELECT * FROM users WHERE login=? AND password=?";
+	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname,"
+			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
 	private static final String GET_LOGIN = "SELECT login FROM users WHERE login=?";
 	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, "
 			+ "email, address, phone, passport, date_of_birth, bet_allow) "
-			+ "VALUES('user',?,?,?,?,?,?,?,?,?,?,'0')";
+			+ "VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
 	
 	@Override
-	public User getUser(String login, String password) throws DAOException {
+	public User getUser(String login, int password) throws DAOException {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null; 
 		ResultSet resultSet = null;
 		User user = null;
-		int pass = password.hashCode();
 		try {
 			connection = connectionPool.takeConnection();
 			prepareStatement = connection.prepareStatement(GET_USER);
 			prepareStatement.setString(1, login);
-			prepareStatement.setInt(2, pass);
+			prepareStatement.setInt(2, password);
 			resultSet = prepareStatement.executeQuery();
 			while (resultSet.next()) {
 				user = new User();
@@ -62,24 +61,22 @@ public class SqlUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean registerUser(String login, String password, Double balance, String name, String surname, 
-			String email, String address, String phone, String passport, Date dateOfBirth) throws DAOException {
+	public boolean registerUser(User user) throws DAOException {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
-		int pass = password.hashCode();
 		try {
 			connection = connectionPool.takeConnection();			
 			prepareStatement = connection.prepareStatement(INSERT_USER);
-			prepareStatement.setString(1, login);
-			prepareStatement.setInt(2, pass);
-			prepareStatement.setDouble(3, balance);
-			prepareStatement.setString(4, name);
-			prepareStatement.setString(5, surname);
-			prepareStatement.setString(6, email);
-			prepareStatement.setString(7, address);
-			prepareStatement.setString(8, phone);
-			prepareStatement.setString(9, passport);
-			prepareStatement.setDate(10, (java.sql.Date) dateOfBirth);
+			prepareStatement.setString(1, user.getLogin());
+			prepareStatement.setInt(2, user.getPassword());
+			prepareStatement.setDouble(3, 0.0);
+			prepareStatement.setString(4, user.getName());
+			prepareStatement.setString(5, user.getSurname());
+			prepareStatement.setString(6, user.getEmail());
+			prepareStatement.setString(7, user.getAddress());
+			prepareStatement.setString(8, user.getPhone());
+			prepareStatement.setString(9, user.getPassport());
+			prepareStatement.setDate(10, new java.sql.Date(user.getDateOfBirth().getTime()));
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
@@ -97,7 +94,6 @@ public class SqlUserDAO implements UserDAO {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null; 
 		ResultSet resultSet = null;
-		User user = null;
 		try {
 			connection = connectionPool.takeConnection();
 			prepareStatement = connection.prepareStatement(GET_LOGIN);

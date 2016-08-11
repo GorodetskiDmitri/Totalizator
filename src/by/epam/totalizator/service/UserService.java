@@ -12,15 +12,31 @@ public final class UserService {
 		if (!Validation.validateLogin(login, password)) {
 			throw new ServiceException("Invalid login or password");
 		}
-		
 		DAOFactory factory = DAOFactory.getInstance();
 		UserDAO userDAO = factory.getUserDAO();
 		User user = null;
-		
 		try {
-			user = userDAO.getUser(login, password);
+			user = userDAO.getUser(login, password.hashCode());
 		} catch (DAOException e) {
 			throw new ServiceException(e);
+		}
+		return user;
+	}
+	
+	public final static User registerUser(User user) throws ServiceException {
+		if (!Validation.validateRegistrationData(user)) {
+			throw new ServiceException("Invalid registration param");
+		}
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		try {
+			if (!userDAO.isLoginFree(user.getLogin())){
+				return null;
+			}
+			userDAO.registerUser(user);
+			user = userDAO.getUser(user.getLogin(), user.getPassword());			
+		} catch (DAOException e) {
+			throw new ServiceException(e); 
 		}
 		return user;
 	}
@@ -32,6 +48,40 @@ public final class UserService {
 				return false;
 			}
 			if (password.isEmpty()) {
+				return false;
+			}
+			return true;
+		}
+		
+		public static boolean validateRegistrationData(User user) {
+			if (user == null) {
+				return false;
+			} 
+			if (user.getLogin().isEmpty()) {
+				return false;
+			}
+			if (user.getPassword() == 0) {
+				return false;
+			}
+			if (user.getName().isEmpty()) {
+				return false;
+			}
+			if (user.getSurname().isEmpty()) {
+				return false;
+			}
+			if (user.getEmail().isEmpty()) {
+				return false;
+			}
+			if (user.getAddress().isEmpty()) {
+				return false;
+			}
+			if (user.getPhone().isEmpty()) {
+				return false;
+			}
+			if (user.getPassport().isEmpty()) {
+				return false;
+			}
+			if (user.getDateOfBirth() == null) {
 				return false;
 			}
 			return true;

@@ -31,11 +31,11 @@
 	<fmt:message bundle="${registration}" key="registration.placeholder.phone" var="placeholder_phone" />
 	<fmt:message bundle="${registration}" key="registration.address" var="address" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.address" var="placeholder_address" />
-	<fmt:message bundle="${registration}" key="registration.sex" var="sex" />
-	<fmt:message bundle="${registration}" key="registration.male" var="male" />
-	<fmt:message bundle="${registration}" key="registration.female" var="female" />
 	<fmt:message bundle="${registration}" key="registration.agree" var="agree" />
 	<fmt:message bundle="${registration}" key="registration.conditions" var="conditions" />
+	<fmt:message bundle="${registration}" key="registration.validation.input" var="inputValid" />
+	<fmt:message bundle="${registration}" key="registration.validation.password" var="passwordValid" />
+	<fmt:message bundle="${registration}" key="registration.validation.checkbox" var="checkboxValid" />
 	<fmt:message bundle="${registration}" key="registration" var="registr" />
 	<fmt:message bundle="${registration}" key="registration.reset" var="reset" />
 
@@ -92,89 +92,82 @@
 				<h1><span><c:out value="${slogan}"/></span></h1>
 			</div>
 			
-			<div class="alert alert-error col-xs-6">
-					<a class="close" href="#" data-dismiss="alert">x</a>Информационное сообщение
-			</div>
-
-			<form name="registration" method="POST" class="form-horizontal  label-slyle" onsubmit="return validation();">	
+			<c:if test="${concurenseName == true}">
+				<div class="alert alert-error">
+					<a class="close" href="#" data-dismiss="alert">x</a>LOGIN Is In DB
+				</div>
+			</c:if>
+			
+			<form id="registration" name="registration" method="POST" action="Controller" class="form-horizontal  label-slyle" > 
+				<input type="hidden" name="command" value="register-user" />
+				<input type="hidden" id="inputValid" value="${inputValid}" />
+				<input type="hidden" id="passwordValid" value="${passwordValid}" />
+				<input type="hidden" id="checkboxValid" value="${checkboxValid}" />	
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="firstName"><c:out value="${name}"/></label>
+				    <label class="control-label col-xs-3" for="name"><c:out value="${name}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="text" class="form-control" id="firstName" placeholder="${placeholder_name}">
+				      	<input type="text" class="form-control" id="name" name="name" placeholder="${placeholder_name}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="lastName"><c:out value="${surname}"/></label>
+				    <label class="control-label col-xs-3" for="surname"><c:out value="${surname}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="text" class="form-control" id="lastName" placeholder="${placeholder_surname}">
+				    	<input type="text" class="form-control" id="surname" name="surname" placeholder="${placeholder_surname}">
 				    </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="datetimepicker"><c:out value="${birthday}"/></label>
 					<div class="date col-xs-6" >
-    					<input type="text" class="form-control" id="datetimepicker" placeholder="${placeholder_birthday}"/>
+    					<input type="text" class="form-control" id="datetimepicker" name="dateOfBirth" placeholder="${placeholder_birthday}"/>
   					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="login"><c:out value="${login}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="login" placeholder="${placeholder_login}">
+				 		<input type="text" class="form-control" id="login" name="login" placeholder="${placeholder_login}">
 					</div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="inputPassword"><c:out value="${password}"/></label>
+				    <label class="control-label col-xs-3" for="password"><c:out value="${password}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="password" class="form-control" id="inputPassword" placeholder="${placeholder_password}">
-				      	<span id="span-password" class="help-inline">${password}</span>
+				      	<input type="password" class="form-control" id="password" name="password" placeholder="${placeholder_password}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="confirmPassword"><c:out value="${confirm}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="password" class="form-control" id="confirmPassword" placeholder="${placeholder_confirm}">
+				    	<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="${placeholder_confirm}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="inputEmail"><c:out value="${email}"/></label>
+				    <label class="control-label col-xs-3" for="email"><c:out value="${email}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="email" class="form-control" id="inputEmail" placeholder="${placeholder_email}">
+				      	<input type="email" class="form-control" id="email" name="email" placeholder="${placeholder_email}">
 				    </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="passport"><c:out value="${passport}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="passport" placeholder="${placeholder_passport}">
+				 		<input type="text" class="form-control" id="passport" name="passport" maxlength="9" placeholder="${placeholder_passport}">
 					</div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="phoneNumber"><c:out value="${phone}"/></label>
+				    <label class="control-label col-xs-3" for="phone"><c:out value="${phone}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="tel" class="form-control" id="phoneNumber" placeholder="${placeholder_phone}">
+				      	<input type="tel" class="form-control" id="phone" name="phone" placeholder="${placeholder_phone}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="postalAddress"><c:out value="${address}"/></label>
+				    <label class="control-label col-xs-3" for="address"><c:out value="${address}"/></label>
 				    <div class="col-xs-6">
-				      	<textarea rows="2" class="form-control" id="postalAddress" placeholder="${placeholder_address}"></textarea>
+				      	<textarea rows="2" class="form-control" id="address" name="address" placeholder="${placeholder_address}"></textarea>
 				    </div>
 				</div>
-				<div class="form-group">
-				    <label class="control-label col-xs-3"><c:out value="${sex}"/></label>
-				    <div class="col-xs-1">
-				      	<label class="radio-inline">
-				        	<input type="radio" name="genderRadios" value="male" checked> <c:out value="${male}"/>
-				      	</label>
-				    </div>
-				    <div class="col-xs-1">
-				      	<label class="radio-inline">
-				        	<input type="radio" name="genderRadios" value="female"> <c:out value="${female}"/>
-				      	</label>
-				    </div>
-				</div>
+				
 				<div class="form-group">
 				    <div class="col-xs-offset-3 col-xs-6">
 				      	<label class="checkbox-inline">
-				        	<input type="checkbox" value="agree">  <c:out value="${agree}"/> <a href="conditions.txt" onclick="javascript:newWindow(this.href); return false;"><c:out value="${conditions}"/></a>.
+				        	<input type="checkbox" id="agree" name="agree">  <c:out value="${agree}"/> <a href="conditions.txt" onclick="javascript:newWindow(this.href); return false;"><c:out value="${conditions}"/></a>.
 				      	</label>
 				    </div>
 				</div>
@@ -200,8 +193,6 @@
 	 
 	<!-- Подключение jQuery и JavaScript-->
 	<script src="bootstrap/js/main.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="bootstrap/js/bootstrap.js"></script>
  
 </body>
 </html>
