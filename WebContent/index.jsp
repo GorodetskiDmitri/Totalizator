@@ -26,6 +26,7 @@
 	<fmt:message bundle="${log}" key="login.password" var="password" />
 	<fmt:message bundle="${log}" key="login.errorPassword" var="errorPassword" />
 	<fmt:message bundle="${log}" key="login.errorAccess" var="errorAccess" />
+	<fmt:message bundle="${log}" key="login.cancel" var="cancel" />
 	<fmt:message bundle="${log}" key="login.signin" var="signin" />
 	
 	<title>${title}</title>
@@ -103,7 +104,6 @@
       <div class="modal-body">
        <c:if test="${accessDenied == true}">
 			<div class="alert alert-danger">
-    			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     			<h5><c:out value="${errorAccess}"/></h5>
   			</div>
 		</c:if>
@@ -112,19 +112,20 @@
 			<input type="hidden" name="command" value="login" />
 			<div id="login-control-group" class="control-group">
 				<div class="controls">
-					<input type="text" name="login" id="login" class="span4" value="${param.login}" placeholder="${login}" onkeypress="delSpan('login')">
+					<input type="text" name="login" id="login" value="${param.login}" placeholder="${login}" size="25" maxlength="20" onkeypress="delSpan('login')">
 					<span id="span-login" class="help-inline error">${errorLogin}</span>
 					<br/><br/>
 				</div>
 			</div>
 			<div id="password-control-group" class="control-group">
 				<div class="controls">
-					<input type="password" name="password" id="password" value="${param.password}" placeholder="${password}" onkeypress="delSpan('password')">
+					<input type="password" name="password" id="password" value="${param.password}" placeholder="${password}" size="25" maxlength="20" onkeypress="delSpan('password')">
 					<span id="span-password" class="help-inline error">${errorPassword}</span>
 					<br/><br/>
 				</div>
 			</div>
-			<button class="btn btn-primary" type="submit">${signin}</button>
+			<button class="btn btn-primary" type="submit">${signin}</button>&nbsp;&nbsp;
+			<a href="Controller?command=logout"><input id="cancelBtn" type="button" value="${cancel}" class="btn btn-danger"/></a>
 		</form>
       </div>
     </div>
