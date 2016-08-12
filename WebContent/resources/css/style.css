@@ -67,7 +67,10 @@ header{
 }
 .slogan h1 span{
 	color: #d42819;
-}                                                                               
+} 
+.error{
+	color: #d42819;
+}                                                                              
 .contacts h4{
 	color: #ffffff;
 }

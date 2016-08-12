@@ -10,5 +10,5 @@
 
 	<!-- Подключение jQuery и JavaScript-->
 	<script src="http://code.jquery.com/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/main.js"></script>

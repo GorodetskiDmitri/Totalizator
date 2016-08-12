@@ -6,7 +6,11 @@ $(function() {
 
 // Идентифицируем элемент HTML, для которого необходимо инициализировать виджет "Bootstrap datetimepicker"
 $(function () {
-   	$('#datetimepicker').datetimepicker({pickTime:false, language: 'ru'});
+	try {
+  		$('#datetimepicker').datetimepicker({pickTime:false, language: 'ru'});
+	} catch(de) {
+		console.log(de)
+	}
 });
 
 // Открываем страницу в новом окне

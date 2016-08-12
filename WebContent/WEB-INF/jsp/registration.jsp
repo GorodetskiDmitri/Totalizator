@@ -36,13 +36,15 @@
 	<fmt:message bundle="${registration}" key="registration.validation.input" var="inputValid" />
 	<fmt:message bundle="${registration}" key="registration.validation.password" var="passwordValid" />
 	<fmt:message bundle="${registration}" key="registration.validation.checkbox" var="checkboxValid" />
+	<fmt:message bundle="${registration}" key="registration.validation.slogan1" var="validSlogan1" />
+	<fmt:message bundle="${registration}" key="registration.validation.slogan2" var="validSlogan2" />
 	<fmt:message bundle="${registration}" key="registration" var="registr" />
 	<fmt:message bundle="${registration}" key="registration.reset" var="reset" />
 
 	<title><c:out value="${title}"/></title>
 
 	<!-- Иконка страницы -->
-	<link type="image/x-icon" href="bootstrap/img/logo.ico" rel="shortcut icon">
+	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
 
 	<!-- Для совместимости с максимально возможной версией IE -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,25 +56,25 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	
 	<!-- Подключение mini версии bootstrap -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
 	<!-- Подключение файла собственных стилей -->
-	<link rel="stylesheet" href="bootstrap/css/style.css">
+	<link rel="stylesheet" href="resources/css/style.css">
 
 	<!-- Подключение библиотеки jQuery -->
-  	<script type="text/javascript" src="bootstrap/js/jquery-1.11.1.min.js"></script>
+  	<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
  	
  	<!-- Подключение скрипта moment-with-locales.min.js для работы с датами -->
-  	<script type="text/javascript" src="bootstrap/js/moment-with-locales.min.js"></script>
+  	<script type="text/javascript" src="resources/js/moment-with-locales.min.js"></script>
   
   	<!-- Подключение скрипта платформы Twitter Bootstrap 3 -->
-  	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
     
     <!-- Подключение скрипта виджета "Bootstrap datetimepicker" -->
-  	<script type="text/javascript" src="bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+  	<script type="text/javascript" src="resources/js/bootstrap-datetimepicker.min.js"></script>
     
     <!-- Подключение CSS виджета "Bootstrap datetimepicker" -->  
-  	<link rel="stylesheet" href="bootstrap/css/bootstrap-datetimepicker.min.css" />
+  	<link rel="stylesheet" href="resources/css/bootstrap-datetimepicker.min.css" />
 
 	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
 	<!--[if lt IE 9]>
@@ -92,82 +94,97 @@
 				<h1><span><c:out value="${slogan}"/></span></h1>
 			</div>
 			
-			<c:if test="${concurenseName == true}">
-				<div class="alert alert-error">
-					<a class="close" href="#" data-dismiss="alert">x</a>LOGIN Is In DB
-				</div>
-			</c:if>
+			
 			
 			<form id="registration" name="registration" method="POST" action="Controller" class="form-horizontal  label-slyle" > 
 				<input type="hidden" name="command" value="register-user" />
 				<input type="hidden" id="inputValid" value="${inputValid}" />
 				<input type="hidden" id="passwordValid" value="${passwordValid}" />
 				<input type="hidden" id="checkboxValid" value="${checkboxValid}" />	
+				
+				<div class="form-group">
+				    <div class="col-xs-3"></div>
+				    <div class="col-xs-6">
+				      	<c:if test="${concurenseName == true}">
+							<div class="alert alert-danger">
+    							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    							<h4>${validSlogan1} <strong>${param.login}</strong> ${validSlogan2}</h4>
+  							</div>
+						</c:if>
+				    </div>
+				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="name"><c:out value="${name}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="text" class="form-control" id="name" name="name" placeholder="${placeholder_name}">
+				      	<input type="text" class="form-control" id="name" name="name" value="${param.name}" maxlength="30" placeholder="${placeholder_name}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="surname"><c:out value="${surname}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="text" class="form-control" id="surname" name="surname" placeholder="${placeholder_surname}">
+				    	<input type="text" class="form-control" id="surname" name="surname" value="${param.surname}" maxlength="40" placeholder="${placeholder_surname}">
 				    </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="datetimepicker"><c:out value="${birthday}"/></label>
 					<div class="date col-xs-6" >
-    					<input type="text" class="form-control" id="datetimepicker" name="dateOfBirth" placeholder="${placeholder_birthday}"/>
+    					<input type="text" class="form-control" id="datetimepicker" name="dateOfBirth" value="${param.dateOfBirth}" placeholder="${placeholder_birthday}"/>
   					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="login"><c:out value="${login}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="login" name="login" placeholder="${placeholder_login}">
+				 		<input type="text" class="form-control" id="login" name="login" value="${param.login}" maxlength="20" placeholder="${placeholder_login}">
 					</div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="password"><c:out value="${password}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="password" class="form-control" id="password" name="password" placeholder="${placeholder_password}">
+				      	<input type="password" class="form-control" id="password" name="password" value="${param.password}" maxlength="20" placeholder="${placeholder_password}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="confirmPassword"><c:out value="${confirm}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="${placeholder_confirm}">
+				    	<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="${param.confirmPassword}" maxlength="20" placeholder="${placeholder_confirm}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="email"><c:out value="${email}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="email" class="form-control" id="email" name="email" placeholder="${placeholder_email}">
+				      	<input type="email" class="form-control" id="email" name="email" value="${param.email}" maxlength="40" placeholder="${placeholder_email}">
 				    </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="passport"><c:out value="${passport}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="passport" name="passport" maxlength="9" placeholder="${placeholder_passport}">
+				 		<input type="text" class="form-control" id="passport" name="passport" value="${param.passport}" maxlength="9" placeholder="${placeholder_passport}">
 					</div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="phone"><c:out value="${phone}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="tel" class="form-control" id="phone" name="phone" placeholder="${placeholder_phone}">
+				      	<input type="tel" class="form-control" id="phone" name="phone" value="${param.phone}" maxlength="20" placeholder="${placeholder_phone}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="address"><c:out value="${address}"/></label>
 				    <div class="col-xs-6">
-				      	<textarea rows="2" class="form-control" id="address" name="address" placeholder="${placeholder_address}"></textarea>
+				      	<textarea rows="2" class="form-control" id="address" name="address" maxlength="70" placeholder="${placeholder_address}">${param.address}</textarea>
 				    </div>
 				</div>
 				
 				<div class="form-group">
 				    <div class="col-xs-offset-3 col-xs-6">
 				      	<label class="checkbox-inline">
-				        	<input type="checkbox" id="agree" name="agree">  <c:out value="${agree}"/> <a href="conditions.txt" onclick="javascript:newWindow(this.href); return false;"><c:out value="${conditions}"/></a>.
+				        	<input type="checkbox" id="agree" name="agree">  <c:out value="${agree}"/> 
+				        	<c:if test="${sessionScope.locale.equalsIgnoreCase(\"ru\")}" >
+				        		<a href="resources/html/conditions_ru.html" onclick="javascript:newWindow(this.href); return false;">
+				        	</c:if>
+				        	<c:if test="${sessionScope.locale.equalsIgnoreCase(\"en\")}" >
+				        		<a href="resources/html/conditions_en.html" onclick="javascript:newWindow(this.href); return false;">
+				        	</c:if>
+				        	<c:out value="${conditions}"/></a>.
 				      	</label>
 				    </div>
 				</div>
@@ -183,16 +200,8 @@
 				
 		</div>
 	</div>
-
-	<footer>
-		<div class="container">
-			<hr>
-			<p class="pull-right">Design by Gorodetski Dmitri 2016</p>		
-		</div>
-	</footer>
-	 
-	<!-- Подключение jQuery и JavaScript-->
-	<script src="bootstrap/js/main.js"></script>
+	
+	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
  
 </body>
 </html>

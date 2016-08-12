@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="resources/css/bootstrap.css" rel="stylesheet">
+<link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
 <fmt:setLocale value="${sessionScope.locale}" />
 <fmt:setBundle basename="by.epam.totalizator.localization.menu" var="loc" />
 <fmt:message bundle="${loc}" key="menu.brand" var="brand" />
@@ -60,6 +60,6 @@
 		</div>
 	</div>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="bootstrap/js/bootstrap.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
 </body>
 </html>

@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="Controller?command=home"><img src="bootstrap/img/logo3.png" height="100" width="100"></a>
+					<a class="navbar-brand" href="Controller?command=home"><img src="resources/img/logo3.png" height="100" width="100"></a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,7 +43,7 @@
 		
 
 					<ul class="nav navbar-nav navbar-right icons">
-						<li><a href="login.html" onclick="javascript:newWindow(this.href); return false;" title="SIGN IN"><img src="bootstrap/img/login.png" height="26" width="27"></a></li>
+						<li><a href="login.html" onclick="javascript:newWindow(this.href); return false;" title="SIGN IN"><img src="resources/img/login.png" height="26" width="27"></a></li>
 						<li><a href="Controller?command=change-locale&locale=ru">${ru}</a></li>
 						<li><a href="Controller?command=change-locale&locale=en">${en}</a></li>
 					</ul>

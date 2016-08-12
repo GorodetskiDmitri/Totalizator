@@ -19,7 +19,7 @@
 	<title>${title}</title>
 
 	<!-- Иконка страницы -->
-	<link type="image/x-icon" href="bootstrap/img/logo.ico" rel="shortcut icon">
+	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
 	
 	<!-- Для совместимости с максимально возможной версией IE -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,10 +31,10 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	
 	<!-- Подключение mini версии bootstrap -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
 	<!-- Подключение файла собственных стилей -->
-	<link rel="stylesheet" href="bootstrap/css/style.css">
+	<link rel="stylesheet" href="resources/css/style.css">
 	
 	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
 	<!--[if lt IE 9]>
