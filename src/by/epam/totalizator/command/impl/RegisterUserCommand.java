@@ -25,17 +25,17 @@ public class RegisterUserCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		User user = new User();
-		user.setLogin(request.getParameter(RequestParameterName.LOGIN).trim());
-		if (request.getParameter(RequestParameterName.PASSWORD) != null) {
-			user.setPassword(request.getParameter(RequestParameterName.PASSWORD).trim().hashCode());
+		user.setLogin(request.getParameter(RequestParameterName.REG_LOGIN).trim());
+		if (request.getParameter(RequestParameterName.REG_PASSWORD) != null) {
+			user.setPassword(request.getParameter(RequestParameterName.REG_PASSWORD).trim().hashCode());
 		}
-		user.setName(request.getParameter(RequestParameterName.NAME).trim());
-		user.setSurname(request.getParameter(RequestParameterName.SURNAME).trim());
-		user.setEmail(request.getParameter(RequestParameterName.EMAIL).trim());
-		user.setAddress(request.getParameter(RequestParameterName.ADDRESS).trim());
-		user.setPhone(request.getParameter(RequestParameterName.PHONE).trim());
-		user.setPassport(request.getParameter(RequestParameterName.PASSPORT).trim());
-		String dateOfBirthStr = request.getParameter(RequestParameterName.DATE_OF_BIRTH).trim(); 
+		user.setName(request.getParameter(RequestParameterName.REG_NAME).trim());
+		user.setSurname(request.getParameter(RequestParameterName.REG_SURNAME).trim());
+		user.setEmail(request.getParameter(RequestParameterName.REG_EMAIL).trim());
+		user.setAddress(request.getParameter(RequestParameterName.REG_ADDRESS).trim());
+		user.setPhone(request.getParameter(RequestParameterName.REG_PHONE).trim());
+		user.setPassport(request.getParameter(RequestParameterName.REG_PASSPORT).trim());
+		String dateOfBirthStr = request.getParameter(RequestParameterName.REG_DATE_OF_BIRTH).trim(); 
 		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_DAY_MONTH_YEAR);
 		try {
 			Date dateOfBirth = dateFormat.parse(dateOfBirthStr);

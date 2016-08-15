@@ -11,25 +11,25 @@
 	<fmt:setBundle basename="localization.registration" var="registration" />
 	<fmt:message bundle="${registration}" key="registration.title" var="title" />
 	<fmt:message bundle="${registration}" key="registration.slogan" var="slogan" />
-	<fmt:message bundle="${registration}" key="registration.name" var="name" />
+	<fmt:message bundle="${registration}" key="registration.name" var="regName" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.name" var="placeholder_name" />
-	<fmt:message bundle="${registration}" key="registration.surname" var="surname" />
+	<fmt:message bundle="${registration}" key="registration.surname" var="regSurname" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.surname" var="placeholder_surname" />
-	<fmt:message bundle="${registration}" key="registration.birthday" var="birthday" />
+	<fmt:message bundle="${registration}" key="registration.birthday" var="regBirthday" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.birthday" var="placeholder_birthday" />
-	<fmt:message bundle="${registration}" key="registration.login" var="login" />
+	<fmt:message bundle="${registration}" key="registration.login" var="regLogin" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.login" var="placeholder_login" />
-	<fmt:message bundle="${registration}" key="registration.password" var="password" />
+	<fmt:message bundle="${registration}" key="registration.password" var="regPassword" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.password" var="placeholder_password" />
-	<fmt:message bundle="${registration}" key="registration.confirm" var="confirm" />
+	<fmt:message bundle="${registration}" key="registration.confirm" var="regConfirmPassword" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.confirm" var="placeholder_confirm" />
-	<fmt:message bundle="${registration}" key="registration.email" var="email" />
+	<fmt:message bundle="${registration}" key="registration.email" var="regEmail" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.email" var="placeholder_email" />
-	<fmt:message bundle="${registration}" key="registration.passport" var="passport" />
+	<fmt:message bundle="${registration}" key="registration.passport" var="regPassport" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.passport" var="placeholder_passport" />
-	<fmt:message bundle="${registration}" key="registration.phone" var="phone" />
+	<fmt:message bundle="${registration}" key="registration.phone" var="regPhone" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.phone" var="placeholder_phone" />
-	<fmt:message bundle="${registration}" key="registration.address" var="address" />
+	<fmt:message bundle="${registration}" key="registration.address" var="regAddress" />
 	<fmt:message bundle="${registration}" key="registration.placeholder.address" var="placeholder_address" />
 	<fmt:message bundle="${registration}" key="registration.agree" var="agree" />
 	<fmt:message bundle="${registration}" key="registration.conditions" var="conditions" />
@@ -86,7 +86,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/jsp/user-header.jsp" />
-
+	
 	<!-- Контент страницы -->
 	<div class="content">
 		<div class="container">
@@ -108,69 +108,69 @@
 				      	<c:if test="${concurenseName == true}">
 							<div class="alert alert-danger">
     							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    							<h4>${validSlogan1} <strong>${param.login}</strong> ${validSlogan2}</h4>
+    							<h4>${validSlogan1} <strong>${param.regLogin}</strong> ${validSlogan2}</h4>
   							</div>
 						</c:if>
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="name"><c:out value="${name}"/></label>
+				    <label class="control-label col-xs-3" for="regName"><c:out value="${regName}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="text" class="form-control" id="name" name="name" value="${param.name}" maxlength="30" placeholder="${placeholder_name}">
+				      	<input type="text" class="form-control" id="regName" name="regName" value="${param.regName}" maxlength="30" placeholder="${placeholder_name}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="surname"><c:out value="${surname}"/></label>
+				    <label class="control-label col-xs-3" for="regSurname"><c:out value="${regSurname}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="text" class="form-control" id="surname" name="surname" value="${param.surname}" maxlength="40" placeholder="${placeholder_surname}">
+				    	<input type="text" class="form-control" id="regSurname" name="regSurname" value="${param.regSurname}" maxlength="40" placeholder="${placeholder_surname}">
 				    </div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-xs-3" for="datetimepicker"><c:out value="${birthday}"/></label>
+					<label class="control-label col-xs-3" for="datetimepicker"><c:out value="${regBirthday}"/></label>
 					<div class="date col-xs-6" >
-    					<input type="text" class="form-control" id="datetimepicker" name="dateOfBirth" value="${param.dateOfBirth}" placeholder="${placeholder_birthday}"/>
+    					<input type="text" class="form-control" id="datetimepicker" name="regBirthday" value="${param.regBirthday}"  placeholder="${placeholder_birthday}"/>
   					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-xs-3" for="login"><c:out value="${login}"/></label>
+					<label class="control-label col-xs-3" for="regLogin"><c:out value="${regLogin}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="login" name="login" value="${param.login}" maxlength="20" placeholder="${placeholder_login}">
+				 		<input type="text" class="form-control" id="regLogin" name="regLogin" value="${param.regLogin}" maxlength="20" placeholder="${placeholder_login}">
 					</div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="password"><c:out value="${password}"/></label>
+				    <label class="control-label col-xs-3" for="regPassword"><c:out value="${regPassword}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="password" class="form-control" id="password" name="password" value="${param.password}" maxlength="20" placeholder="${placeholder_password}">
+				      	<input type="password" class="form-control" id="regPassword" name="regPassword" value="${param.regPassword}" maxlength="20" placeholder="${placeholder_password}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="confirmPassword"><c:out value="${confirm}"/></label>
+				    <label class="control-label col-xs-3" for="regConfirmPassword"><c:out value="${regConfirmPassword}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="${param.confirmPassword}" maxlength="20" placeholder="${placeholder_confirm}">
+				    	<input type="password" class="form-control" id="regConfirmPassword" name="regConfirmPassword" value="${param.regConfirmPassword}" maxlength="20" placeholder="${placeholder_confirm}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="email"><c:out value="${email}"/></label>
+				    <label class="control-label col-xs-3" for="regEmail"><c:out value="${regEmail}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="email" class="form-control" id="email" name="email" value="${param.email}" maxlength="40" placeholder="${placeholder_email}">
+				      	<input type="email" class="form-control" id="regEmail" name="regEmail" value="${param.regEmail}" maxlength="40" placeholder="${placeholder_email}">
 				    </div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-xs-3" for="passport"><c:out value="${passport}"/></label>
+					<label class="control-label col-xs-3" for="regPassport"><c:out value="${regPassport}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="passport" name="passport" value="${param.passport}" maxlength="9" placeholder="${placeholder_passport}">
+				 		<input type="text" class="form-control" id="regPassport" name="regPassport" value="${param.regPassport}" maxlength="9" placeholder="${placeholder_passport}">
 					</div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="phone"><c:out value="${phone}"/></label>
+				    <label class="control-label col-xs-3" for="regPhone"><c:out value="${regPhone}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="tel" class="form-control" id="phone" name="phone" value="${param.phone}" maxlength="20" placeholder="${placeholder_phone}">
+				      	<input type="tel" class="form-control" id="regPhone" name="regPhone" value="${param.regPhone}" maxlength="20" placeholder="${placeholder_phone}">
 				    </div>
 				</div>
 				<div class="form-group">
-				    <label class="control-label col-xs-3" for="address"><c:out value="${address}"/></label>
+				    <label class="control-label col-xs-3" for="regAddress"><c:out value="${regAddress}"/></label>
 				    <div class="col-xs-6">
-				      	<textarea rows="2" class="form-control" id="address" name="address" maxlength="70" placeholder="${placeholder_address}">${param.address}</textarea>
+				      	<textarea rows="2" class="form-control" id="regAddress" name="regAddress" maxlength="70" placeholder="${placeholder_address}">${param.regAddress}</textarea>
 				    </div>
 				</div>
 				
@@ -193,7 +193,7 @@
 				    <div class="col-xs-offset-3 col-xs-6">
 				      	<button type="submit" class="btn btn-primary"><c:out value="${registr}"/></button>
 				      	&nbsp;&nbsp;
-				      	<button type="reset" class="btn btn-default"><c:out value="${reset}"/></button>
+				      	<input type="button" class="btn btn-default" id="resetBtn" value="${reset}" />
 				    </div>
 				</div> 
 			</form>
@@ -201,7 +201,15 @@
 		</div>
 	</div>
 	
-	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
- 
+	<footer>
+		<div class="container">
+			<hr>
+			<p class="pull-right">Design by Gorodetski Dmitri 2016</p>		
+		</div>
+	</footer>
+	 
+	<!-- Подключение jQuery и JavaScript-->
+	<script src="resources/js/registration.js"></script>
+
 </body>
 </html>

@@ -10,6 +10,7 @@ import by.epam.totalizator.command.impl.LogoutCommand;
 import by.epam.totalizator.command.impl.RegisterUserCommand;
 import by.epam.totalizator.command.impl.RegistrationCommand;
 import by.epam.totalizator.command.impl.ShowMainPage;
+import by.epam.totalizator.command.impl.ShowUserListCommand;
 import by.epam.totalizator.command.impl.UnknownCommand;
 
 public class CommandHelper {
@@ -24,6 +25,7 @@ public class CommandHelper {
 		commands.put(CommandName.LOGOUT, new LogoutCommand());
 		commands.put(CommandName.REGISTER_USER, new RegisterUserCommand());
 		commands.put(CommandName.REGISTRATION, new RegistrationCommand());
+		commands.put(CommandName.SHOW_USER_LIST, new ShowUserListCommand());
 	}
 	
 	public Command getCommand(String commandName) {

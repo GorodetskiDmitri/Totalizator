@@ -7,12 +7,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
 	<fmt:setBundle basename="localization.menu" var="menu" />
+	<fmt:setBundle basename="localization.login" var="log" />
 	<fmt:message bundle="${menu}" key="menu.home" var="home" />
 	<fmt:message bundle="${menu}" key="menu.bet" var="bet" />
 	<fmt:message bundle="${menu}" key="menu.registration" var="registration" />
 	<fmt:message bundle="${menu}" key="menu.contacts" var="contacts" />
 	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
 	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />
+	<fmt:message bundle="${log}" key="login.legend" var="legend" />
+	<fmt:message bundle="${log}" key="login.login" var="login" />
+	<fmt:message bundle="${log}" key="login.errorLogin" var="errorLogin" />
+	<fmt:message bundle="${log}" key="login.password" var="password" />
+	<fmt:message bundle="${log}" key="login.errorPassword" var="errorPassword" />
+	<fmt:message bundle="${log}" key="login.errorAccess" var="errorAccess" />
+	<fmt:message bundle="${log}" key="login.cancel" var="cancel" />
+	<fmt:message bundle="${log}" key="login.signin" var="signin" />
 	
 	<title>${title}</title>
 
@@ -43,7 +52,53 @@
 		
 
 					<ul class="nav navbar-nav navbar-right icons">
-						<li><a href="login.html" onclick="javascript:newWindow(this.href); return false;" title="SIGN IN"><img src="resources/img/login.png" height="26" width="27"></a></li>
+						<li><a id="modalLogin1" href="#myModal" title="SIGN IN" role="button" class="btn" data-toggle="modal"><img src="resources/img/login.png" height="26" width="27"></a></li>
+						
+   
+						
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">${legend}</h4>
+      </div>
+      
+      <div class="modal-body">
+       <c:if test="${accessDenied == true}">
+			<div class="alert alert-danger">
+    			<h5><c:out value="${errorAccess}"/></h5>
+  			</div>
+		</c:if>
+       
+        <form id="login-form" method="POST" action="Controller" accept-charset="UTF-8">
+			<input type="hidden" name="command" value="login" />
+			<div id="login-control-group" class="control-group">
+				<div class="controls">
+					<input type="text" name="login" id="login" value="${param.login}" placeholder="${login}" size="25" maxlength="20" onkeypress="delSpan('login')">
+					<span id="span-login" class="help-inline error">${errorLogin}</span>
+					<br/><br/>
+				</div>
+			</div>
+			<div id="password-control-group" class="control-group">
+				<div class="controls">
+					<input type="password" name="password" id="password" value="${param.password}" placeholder="${password}" size="25" maxlength="20" onkeypress="delSpan('password')">
+					<span id="span-password" class="help-inline error">${errorPassword}</span>
+					<br/><br/>
+				</div>
+			</div>
+			<button class="btn btn-primary" type="submit">${signin}</button>&nbsp;&nbsp;
+			<a href="Controller?command=logout"><input id="cancelBtn" type="button" value="${cancel}" class="btn btn-danger"/></a>
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
+						
 						<li><a href="Controller?command=change-locale&locale=ru">${ru}</a></li>
 						<li><a href="Controller?command=change-locale&locale=en">${en}</a></li>
 					</ul>
@@ -52,3 +107,5 @@
 			</div><!-- /.container -->
 		</nav>
 	</header>
+	
+	<script src="resources/js/main.js"></script>

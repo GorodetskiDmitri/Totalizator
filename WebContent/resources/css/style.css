@@ -68,6 +68,13 @@ header{
 .slogan h1 span{
 	color: #d42819;
 } 
+.usermessage{
+	color: #8d8c8c;
+	font-size: 14px;
+}
+.maincolor{
+	color: #d42819;
+}
 .error{
 	color: #d42819;
 }                                                                              

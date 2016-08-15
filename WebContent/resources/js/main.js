@@ -4,15 +4,6 @@ $(function() {
 	});
 });
 
-// Идентифицируем элемент HTML, для которого необходимо инициализировать виджет "Bootstrap datetimepicker"
-$(function () {
-	try {
-  		$('#datetimepicker').datetimepicker({pickTime:false, language: 'ru'});
-	} catch(de) {
-		console.log(de)
-	}
-});
-
 // Открываем страницу в новом окне
 function newWindow(e) {
 	var h = 500,
@@ -22,26 +13,48 @@ function newWindow(e) {
 		',top='+Math.max(0, (screen.availHeight - h)/2));
 }
 
-// Простая валидация формы регистрации (все ли поля формы заполнены)
-$("#registration").submit(function() {
-	var valid = true;
-	$("form[name='registration']").find("input").not('[type="submit"]').each(function() {
-		if ($(this).val() == "")
-			valid = false;		
-	});
-	if (valid == false) {
-		alert($("#inputValid").val());
-		return false;
-	}
-	if ($("#password").val() != $("#confirmPassword").val()) {
-		alert($("#passwordValid").val());
-        return false;
-	}
-	if (!$("#agree").prop("checked")) { 
-        alert($("#checkboxValid").val());
-        return false;
-	}
+// Показать/скрыть сообщения в модальном окне логинации логинации
+$(function() {
+	$("#span-login").hide();
+	$("#span-password").hide();
 });
+$("#login-form").submit(function() {
+	if ($("#login").val() == "" && $("#password").val() == "") {
+		$("#span-login").show();
+		$("#span-password").show();
+		$("#login").focus();
+	} else {
+		$("#span-login").hide();
+		$("#span-password").hide();
+	}
+	
+	if ($("#login").val() == "") {
+		$("#span-login").show();
+		$("#login").focus();
+		return false;
+	} else {
+		$("#span-login").hide();
+	}
+	
+	if ($("#password").val() == "") {
+		$("#span-password").show();
+		$("#password").focus();
+		return false;
+	} else {
+		$("#span-password").hide();
+	}
+})
+
+function delSpan(span) {
+	if (span == "login") { 
+		$("#span-login").hide();
+	}
+	if (span == "password") { 
+		$("#span-password").hide(); 
+	}
+}
+
+
 
 
 // Проверка ставки перед отправкой
