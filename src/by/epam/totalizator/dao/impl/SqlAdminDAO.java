@@ -18,7 +18,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
-	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname,"
+	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, "
 			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client'";
 	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow='1' WHERE id=? AND status='client'";
 	
@@ -35,7 +35,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			String query = USER_LIST;
 			if (findCriteria != null && !findCriteria.equals("")) {
 				query += " AND (login LIKE '%" + findCriteria + "%' OR name LIKE '%" + findCriteria + "%' "
-						+ "OR surname LIKE '%" + findCriteria + "%')";
+						+ "OR sirname LIKE '%" + findCriteria + "%')";
 			}
 			resultSet = statement.executeQuery(query);
 			while (resultSet.next()) {

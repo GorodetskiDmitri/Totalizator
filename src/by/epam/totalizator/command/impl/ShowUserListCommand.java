@@ -23,7 +23,7 @@ import by.epam.totalizator.service.exception.ServiceException;
 
 public class ShowUserListCommand implements Command{
 	
-	public static final int PAGE_LINES = 4;
+	private static final int LINES_ON_PAGE = 7;
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -40,8 +40,8 @@ public class ShowUserListCommand implements Command{
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}
-		int totalPage = totalUserList.size() / PAGE_LINES;
-		if ((totalUserList.size() % PAGE_LINES) > 0) {
+		int totalPage = totalUserList.size() / LINES_ON_PAGE;
+		if ((totalUserList.size() % LINES_ON_PAGE) > 0) {
 			totalPage = totalPage + 1;
 		}
 		
@@ -50,7 +50,7 @@ public class ShowUserListCommand implements Command{
 			pageList.add(Integer.toString(i));
 		}
 		
-		List<User> userList = getUserListInPage(totalUserList, currentPage, PAGE_LINES);
+		List<User> userList = getUserListInPage(totalUserList, currentPage, LINES_ON_PAGE);
 		request.setAttribute(RequestParameterName.TOTAL_PAGE, totalPage);
 		request.setAttribute(RequestParameterName.USER_LIST, userList);
 		request.setAttribute(RequestParameterName.PAGE_LIST, pageList);

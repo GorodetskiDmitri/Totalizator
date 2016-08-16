@@ -100,19 +100,19 @@ header{
 .nav-pager{
 	text-align: center;
 }
-.pagination > li > a, .pagination > li >span{
-	color: #b5b3b3;
-}
-.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover, .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
-	background: #fff;
-	border: 1px solid #ddd;
-	color: #d42819;
+.float-style{
+	text-align: right;
+	float: left; 
+	width:50%
 }
 footer{
 	margin-bottom: 15px;
 }
 footer hr{
 	border-color: #b7b6b6;
+}
+.table-style{
+	text-align: center;
 }
 .table-prop{
 	text-align: center;
