@@ -142,34 +142,28 @@
       		</div>
       		
       		<div class="modal-footer">
-				<div align="left">
-				<table>
-				<tr>
-				<td style="padding: 5px">
-				<form id="remove-form" method="POST" action="Controller" accept-charset="UTF-8">
+				<div>
+				<div style="float: left; padding: 5px">
+					<form id="remove-form" method="POST" action="Controller" accept-charset="UTF-8">
 					<input type="hidden" name="command" value="remove-user" />
-					
+					<input type="hidden" name="userId" id="userId" value=""/>
 					<button type="submit" class="btn btn-primary"><c:out value="${btnRemoveUser}"/></button>
-				</form>
-				</td>
-				
-				<td style="padding: 5px">
-				<form id="allowBet-form" method="POST" action="Controller" accept-charset="UTF-8">
+					</form>
+				</div>
+				<div style="float: left; padding: 5px">
+					<form id="allowBet-form" method="POST" action="Controller" accept-charset="UTF-8">
 					<input type="hidden" name="command" value="allow-bet" />
 					<input type="hidden" name="userId" id="userId" value=""/>
 					<button type="submit" class="btn btn-success"><c:out value="${btnAllowBet}"/></button>
-				</form>
-				</td>
-				
-				<td style="padding: 5px">
+					</form>
+				</div>
+				<div style="float: left; padding: 5px">
+					<form id="forbidBet-form" method="POST" action="Controller" accept-charset="UTF-8">
 					<input type="hidden" name="command" value="forbid-bet" />
-					<a href="Controller?command=forbid-bet&userId=">
-						<input type="button" class="btn btn-danger" value="${btnForbidBet}">
-					</a>
-				</td>
-				</tr>
-				</table>
-					
+					<input type="hidden" name="userId" id="userId" value=""/>
+					<button type="submit" class="btn btn-danger"><c:out value="${btnForbidBet}"/></button>
+					</form>
+				</div>
 				</div>
 			</div>
 		</div>
