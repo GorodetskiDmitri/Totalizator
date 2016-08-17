@@ -32,6 +32,9 @@
 			<div>
 				<table class="simple-table">
 					<tr>
+						<td colspan="2" style="color: darkorange"><c:out value="${sessionScope.client.name}"/>&nbsp;<c:out value="${sessionScope.client.surname}"/></td>
+					</tr>
+					<tr>
 						<td><c:out value="${current}"/></td>
 						<td style="color: yellow"><c:out value="${sessionScope.client.balance}"/>&nbsp;$</td>
 					</tr>
@@ -74,7 +77,7 @@
 						<input type="text" name="cardNumber" id="cardNumber" maxlength="12"/>
 						
 						<br/>Summa<br/>
-						<input type="text" name="deposit" id="deposit" maxlength="7"/>
+						<input type="text" name="summa" id="summa" maxlength="7"/>
 					</form>
 				</div>
       		</div>
@@ -95,6 +98,9 @@
 	
 
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+	
+	<!-- Подключение jQuery и JavaScript-->
+	<script src="resources/js/deposit.js"></script>
 	
 </body>
 </html>
