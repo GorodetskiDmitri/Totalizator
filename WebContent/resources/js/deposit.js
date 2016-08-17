@@ -2,7 +2,6 @@
 $('#cardNumber').keypress(function(event) {
 	if (event.which != 8) {
 		if (event.which < 48 || event.which > 57) {
-			alert("sssss");
 			return false;
 		}
 	}
