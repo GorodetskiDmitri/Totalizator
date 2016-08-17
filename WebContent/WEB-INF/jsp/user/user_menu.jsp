@@ -9,13 +9,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
 	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:setBundle basename="localization.admin" var="admin" />
+	<fmt:setBundle basename="localization.user" var="user" />
 	<fmt:message bundle="${menu}" key="menu.usermessage" var="usermessage" />
 	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
 	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />	
-	<fmt:message bundle="${admin}" key="admin.menu.showUsers" var="showUsers" />
-	<fmt:message bundle="${admin}" key="admin.menu.fixResults" var="fixResults" />
-	<fmt:message bundle="${admin}" key="admin.logout" var="logout" />
+	<fmt:message bundle="${user}" key="user.menu.deposit" var="deposit" />
+	<fmt:message bundle="${user}" key="user.logout" var="logout" />
 
 	<!-- Иконка страницы -->
 	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
@@ -62,8 +61,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li id="user-list"><a href="#"><c:out value="${showUsers}"/></a></li>
-						<li id="fix-result"><a href="#"><c:out value="${fixResults}"/></a></li>
+						<li id="deposit"><a href="#"><c:out value="${deposit}"/></a></li>
 					</ul>
 		
 					<ul class="nav navbar-nav navbar-right icons">
@@ -78,10 +76,9 @@
 			</div><!-- /.container -->
 		</nav>
 	</header>
-					
+	
 	<form method="POST" action="Controller" id="form">
 		<input type="hidden" name="command" id="command" value=""/>
-		<input type="hidden" name="currentPage" value="1"/>
 	</form>
 	
 	<!-- Подключение jQuery и JavaScript-->
@@ -89,12 +86,11 @@
 	<script src="resources/js/bootstrap.min.js"></script> 
 	
 	<script type="text/javascript">
-		$("#user-list").click(function() {
-			$("#command").val("show-user-list");
+		$("#deposit").click(function() {
+			$("#command").val("show-deposit");
 			$("#form").submit();
 		});
 	</script>
-	
 	
 </body>
 </html>

@@ -54,9 +54,9 @@ public class RegisterUserCommand implements Command {
 		
 		if (user != null) {
 			request.getSession().setAttribute(RequestParameterName.USER, user);
-			page = PageName.INDEX_PAGE;
+			page = PageName.USER_PAGE;
 		} else {
-			request.setAttribute(RequestParameterName.CONCURENSE_NAME, true);
+			request.setAttribute(RequestParameterName.CONCURENSE_LOGIN, true);
 			page = PageName.REGISTRATION_PAGE;
 		}
 		try {

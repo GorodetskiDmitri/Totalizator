@@ -17,6 +17,9 @@ public class ControllerUtil {
 			url.append(request.getParameter(parameter));
 			url.append("&");
 		}
+		if (url.lastIndexOf("&") == (url.length()-1)) {
+			url.deleteCharAt(url.length()-1);
+		}
 		return url;
 	}
 }

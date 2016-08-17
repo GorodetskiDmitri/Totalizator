@@ -13,7 +13,7 @@ function newWindow(e) {
 		',top='+Math.max(0, (screen.availHeight - h)/2));
 }
 
-// Показать/скрыть сообщения в модальном окне логинации логинации
+// Показать/скрыть сообщения в модальном окне логинации
 $(function() {
 	$("#span-login").hide();
 	$("#span-password").hide();

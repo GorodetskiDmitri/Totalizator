@@ -7,5 +7,6 @@ import by.epam.totalizator.entity.User;
 
 public interface AdminDAO extends UserDAO {
 	List<User> getUserList(String findCriteria) throws DAOException;
-	boolean allowBetForUser(int userId) throws DAOException;
+	boolean removeUser(int userId) throws DAOException;
+	boolean allowBetForUser(int userId, String allowBet) throws DAOException;
 }

@@ -44,7 +44,7 @@
 </head>
 <body >
 
-	<jsp:include page="/WEB-INF/jsp/user-header.jsp" />
+	<jsp:include page="/WEB-INF/jsp/common-header.jsp" />
 
 	<!-- Контент страницы -->
 	<div class="content">
@@ -87,7 +87,7 @@
 							<p>Vitebsk. Krasnoarmejskaja, 19</br>
 							Tel. +375-29-704-92-12</p>
 							<h5>Pinsk</h5>
-							<p>Pinsk. KPolesskaja, 7a</br>
+							<p>Pinsk. Polesskaja, 7a</br>
 							Tel. +375-29-781-24-24</p>
 						</div>
 					</div>

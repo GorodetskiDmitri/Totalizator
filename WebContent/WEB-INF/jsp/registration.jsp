@@ -85,7 +85,7 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/jsp/user-header.jsp" />
+	<jsp:include page="/WEB-INF/jsp/common-header.jsp" />
 	
 	<!-- Контент страницы -->
 	<div class="content">
@@ -93,8 +93,6 @@
 			<div class="slogan">
 				<h1><span><c:out value="${slogan}"/></span></h1>
 			</div>
-			
-			
 			
 			<form id="registration" name="registration" method="POST" action="Controller" class="form-horizontal  label-slyle" > 
 				<input type="hidden" name="command" value="register-user" />
@@ -105,7 +103,7 @@
 				<div class="form-group">
 				    <div class="col-xs-3"></div>
 				    <div class="col-xs-6">
-				      	<c:if test="${concurenseName == true}">
+				      	<c:if test="${concurenseLogin == true}">
 							<div class="alert alert-danger">
     							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     							<h4>${validSlogan1} <strong>${param.regLogin}</strong> ${validSlogan2}</h4>

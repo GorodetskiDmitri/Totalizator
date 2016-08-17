@@ -6,10 +6,10 @@ public final class RequestParameterName {
 	
 	public static final String ACCESS_DENIED = "accessDenied";
 	public static final String ADMIN = "admin";
-	public static final String BET_ALLOW = "betAllow";
+	public static final String ALLOW_BET = "allowBet";
 	public static final String CHANGED_LANGUAGE = "changedLanguage";
 	public static final String COMMAND = "command";
-	public static final String CONCURENSE_NAME = "concurenseName";
+	public static final String CONCURENSE_LOGIN = "concurenseLogin";
 	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String CURRENT_PAGE = "currentPage";
 	public static final String LOCALE = "locale";

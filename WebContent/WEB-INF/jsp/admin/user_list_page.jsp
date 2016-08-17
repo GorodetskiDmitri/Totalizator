@@ -142,29 +142,31 @@
       		</div>
       		
       		<div class="modal-footer">
-				<div>
-				<div style="float: left; padding: 5px">
-					<form id="remove-form" method="POST" action="Controller" accept-charset="UTF-8">
-					<input type="hidden" name="command" value="remove-user" />
-					<input type="hidden" name="userId" id="userId" value=""/>
-					<button type="submit" class="btn btn-primary"><c:out value="${btnRemoveUser}"/></button>
+			  <div>
+				<div class="float-style">
+					<form id="removeUser-form" method="POST" action="Controller" accept-charset="UTF-8">
+						<input type="hidden" name="command" value="remove-user" />
+						<input type="hidden" name="userId" id="userId" value=""/>
+						<button type="submit" class="btn btn-primary"><c:out value="${btnRemoveUser}"/></button>
 					</form>
 				</div>
-				<div style="float: left; padding: 5px">
+				<div class="float-style">
 					<form id="allowBet-form" method="POST" action="Controller" accept-charset="UTF-8">
-					<input type="hidden" name="command" value="allow-bet" />
-					<input type="hidden" name="userId" id="userId" value=""/>
-					<button type="submit" class="btn btn-success"><c:out value="${btnAllowBet}"/></button>
+						<input type="hidden" name="command" value="allow-bet" />
+						<input type="hidden" name="userId" value=""/>
+						<input type="hidden" name="allowBet" id="allowBet" value="1"/>
+						<button type="submit" class="btn btn-success"><c:out value="${btnAllowBet}"/></button>
 					</form>
 				</div>
-				<div style="float: left; padding: 5px">
+				<div class="float-style">
 					<form id="forbidBet-form" method="POST" action="Controller" accept-charset="UTF-8">
-					<input type="hidden" name="command" value="forbid-bet" />
-					<input type="hidden" name="userId" id="userId" value=""/>
-					<button type="submit" class="btn btn-danger"><c:out value="${btnForbidBet}"/></button>
+						<input type="hidden" name="command" value="allow-bet" />
+						<input type="hidden" name="userId" value=""/>
+						<input type="hidden" name="allowBet" id="allowBet" value="0"/>
+						<button type="submit" class="btn btn-danger"><c:out value="${btnForbidBet}"/></button>
 					</form>
 				</div>
-				</div>
+			  </div>
 			</div>
 		</div>
 		
@@ -173,41 +175,8 @@
 
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#user-list").addClass("active");
-			$("#" + $("#currentPage").val() + "_li").addClass("active");
-		})
-		$("#submitButton").click(function(){
-			$("#currentPage").val("1");
-		});
-		$(".page-link").click(function(){
-			$("#currentPage").val($(this).text());
-			$("#searchForm").submit();
-		});
-		$(".userLink").click(function(){
-			$(".btn-success").prop('disabled', false);
-			$(".btn-danger").prop('disabled', false);
-			
-			$("#userId").val(this.id);
-			if ($("#"+$("#userId").val()+"_betAllowFlag").val() == 0) {
-				$(".btn-danger").prop('disabled', true);
-			} else {
-				$(".btn-success").prop('disabled', true);
-			}
-			
-			$("#userLogin").text($(this).text());
-			$("#userName").text($("#"+this.id+"_name").text());
-			$("#userSurname").text($("#"+this.id+"_surname").text());
-			$("#userBalance").text($("#"+this.id+"_balance").text());
-			$("#userDateOfBirth").text($("#"+this.id+"_dateOfBirth").text());
-			$("#userEmail").text($("#"+this.id+"_email").val());
-			$("#userPassport").text($("#"+this.id+"_passport").val());
-			$("#userAddress").text($("#"+this.id+"_address").val());
-			$("#userPhone").text($("#"+this.id+"_phone").val());
-			$("#userBetAllow").text($("#"+this.id+"_betAllow").text());
-		});
-	</script>
+	<!-- Подключение jQuery и JavaScript-->
+	<script src="resources/js/user-list.js"></script>
 	
 </body>
 </html>

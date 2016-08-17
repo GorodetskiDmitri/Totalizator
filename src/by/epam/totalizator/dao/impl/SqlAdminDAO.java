@@ -20,7 +20,8 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	
 	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, "
 			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client'";
-	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow='1' WHERE id=? AND status='client'";
+	private static final String REMOVE_USER = "DELETE FROM users WHERE id=? AND status='client'";
+	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow=? WHERE id=? AND status='client'";
 	
 	@Override
 	public List<User> getUserList(String findCriteria) throws DAOException {
@@ -64,22 +65,43 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		}
 		return userList;
 	}
-
+	
 	@Override
-	public boolean allowBetForUser(int userId) throws DAOException {
+	public boolean removeUser(int userId) throws DAOException {
 		Connection connection = null;
-		PreparedStatement prepareStatement = null;
+		PreparedStatement preparedStatement = null;
 		try {
 			connection = connectionPool.takeConnection();
-			prepareStatement = connection.prepareStatement(ALLOW_BET_FOR_USER);
-			prepareStatement.setInt(1, userId);
-			prepareStatement.executeUpdate();			
+			preparedStatement = connection.prepareStatement(REMOVE_USER);
+			preparedStatement.setInt(1, userId);
+			preparedStatement.executeUpdate();
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
+			connectionPool.closeConnection(connection, preparedStatement);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean allowBetForUser(int userId, String allowBet) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		System.out.println("DAO: userId="+userId+"; allowBet="+allowBet);
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(ALLOW_BET_FOR_USER);
+			preparedStatement.setString(1, allowBet);
+			preparedStatement.setInt(2, userId);
+			preparedStatement.executeUpdate();			
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, preparedStatement);
 		}
 		return true;
 	}

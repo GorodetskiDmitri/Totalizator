@@ -101,9 +101,8 @@ header{
 	text-align: center;
 }
 .float-style{
-	text-align: right;
 	float: left; 
-	width:50%
+	padding: 5px;
 }
 footer{
 	margin-bottom: 15px;
@@ -113,6 +112,13 @@ footer hr{
 }
 .table-style{
 	text-align: center;
+}
+.simple-table{
+	text-align: right;
+	font-size: 16px;
+}
+.simple-table td{
+	padding: 5px;
 }
 .table-prop{
 	text-align: center;
