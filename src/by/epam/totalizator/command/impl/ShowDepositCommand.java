@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.AdminService;
+import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
 
 
@@ -26,7 +28,20 @@ public class ShowDepositCommand implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		StringBuffer url = ControllerUtil.getCurrentCommandUrl(request);
+		User user = (User) request.getSession().getAttribute(RequestParameterName.USER);
+		String login = user.getLogin();
+		int password = user.getPassword();
 		request.getSession().setAttribute(RequestParameterName.CURRENT_COMMAND, url);
+		
+		User currentUser;
+		try {
+			currentUser = UserService.getUser(login, password);
+		} catch (ServiceException e) {
+			throw new CommandException(e);
+		}
+		
+		request.getSession().removeAttribute(RequestParameterName.USER);
+		request.getSession().setAttribute(RequestParameterName.USER, currentUser);
 		
 		try {
 			request.getRequestDispatcher(PageName.DEPOSIT_PAGE).forward(request, response);

@@ -20,7 +20,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	
 	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, "
 			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client'";
-	private static final String REMOVE_USER = "DELETE FROM users WHERE id=? AND status='client'";
+	private static final String REMOVE_USER = "DELETE FROM users WHERE id=? AND status='client' AND balance=0.0";
 	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow=? WHERE id=? AND status='client'";
 	
 	@Override

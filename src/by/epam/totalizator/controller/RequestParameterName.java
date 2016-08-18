@@ -7,6 +7,7 @@ public final class RequestParameterName {
 	public static final String ACCESS_DENIED = "accessDenied";
 	public static final String ADMIN = "admin";
 	public static final String ALLOW_BET = "allowBet";
+	public static final String BALANCE = "balance";
 	public static final String CHANGED_LANGUAGE = "changedLanguage";
 	public static final String COMMAND = "command";
 	public static final String CONCURENSE_LOGIN = "concurenseLogin";
@@ -27,6 +28,7 @@ public final class RequestParameterName {
 	public static final String REG_PHONE = "regPhone";
 	public static final String REG_SURNAME = "regSurname";
 	public static final String SEARCH_TEXT = "searchText";
+	public static final String SUMMA = "summa";
 	public static final String TOTAL_PAGE = "totalPage";
 	public static final String USER = "client";
 	public static final String USER_ID = "userId";

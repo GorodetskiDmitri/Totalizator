@@ -1,5 +1,6 @@
 package by.epam.totalizator.service;
 
+import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.DAOFactory;
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.exception.DAOException;
@@ -23,6 +24,18 @@ public final class UserService {
 		return user;
 	}
 	
+	public final static User getUser(String login, int password) throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		User user = null;
+		try {
+			user = userDAO.getUser(login, password);
+		} catch (DAOException e) {
+			throw new ServiceException(e); 
+		}
+		return user;
+	}
+	
 	public final static User registerUser(User user) throws ServiceException {
 		if (!Validation.validateRegistrationData(user)) {
 			throw new ServiceException("Invalid registration param");
@@ -39,6 +52,17 @@ public final class UserService {
 			throw new ServiceException(e); 
 		}
 		return user;
+	}
+	
+	public final static boolean makeDeposit(String login, double summa) throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		
+		try {
+			return userDAO.makeDeposit(login, summa);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
 	}
 	
 	static class Validation {

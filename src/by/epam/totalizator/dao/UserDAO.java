@@ -7,4 +7,5 @@ public interface UserDAO {
 	User getUser(String login, int password) throws DAOException;
 	boolean registerUser(User user) throws DAOException;
 	boolean isLoginFree(String login) throws DAOException;
+	boolean makeDeposit(String login, double summa) throws DAOException;
 }

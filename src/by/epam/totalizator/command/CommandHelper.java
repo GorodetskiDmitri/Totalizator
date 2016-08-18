@@ -8,6 +8,7 @@ import by.epam.totalizator.command.impl.ChangeLocaleCommand;
 import by.epam.totalizator.command.impl.ContactsCommand;
 import by.epam.totalizator.command.impl.LoginCommand;
 import by.epam.totalizator.command.impl.LogoutCommand;
+import by.epam.totalizator.command.impl.MakeDepositCommand;
 import by.epam.totalizator.command.impl.RegisterUserCommand;
 import by.epam.totalizator.command.impl.RegistrationCommand;
 import by.epam.totalizator.command.impl.RemoveUserCommand;
@@ -27,6 +28,7 @@ public class CommandHelper {
 		commands.put(CommandName.HOME, new ShowMainPage());
 		commands.put(CommandName.LOGIN, new LoginCommand());
 		commands.put(CommandName.LOGOUT, new LogoutCommand());
+		commands.put(CommandName.MAKE_DEPOSIT, new MakeDepositCommand());
 		commands.put(CommandName.REGISTER_USER, new RegisterUserCommand());
 		commands.put(CommandName.REGISTRATION, new RegistrationCommand());
 		commands.put(CommandName.REMOVE_USER, new RemoveUserCommand());

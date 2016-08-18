@@ -7,6 +7,7 @@ public enum CommandName {
 	HOME,
 	LOGIN,
 	LOGOUT,
+	MAKE_DEPOSIT,
 	REGISTER_USER,
 	REGISTRATION,
 	REMOVE_USER,

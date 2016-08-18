@@ -21,6 +21,7 @@ public class SqlUserDAO implements UserDAO {
 	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, "
 			+ "email, address, phone, passport, date_of_birth, bet_allow) "
 			+ "VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
+	private static final String MAKE_DEPOSIT = "UPDATE users SET balance=? WHERE login=?";
 	
 	@Override
 	public User getUser(String login, int password) throws DAOException {
@@ -112,6 +113,24 @@ public class SqlUserDAO implements UserDAO {
 		}
 	}
 
-	
+	@Override
+	public boolean makeDeposit(String login, double summa) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(MAKE_DEPOSIT);
+			prepareStatement.setDouble(1, summa);
+			prepareStatement.setString(2, login);
+			prepareStatement.executeUpdate();
+			return true;
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement);
+		}
+	}
 	
 }

@@ -15,14 +15,21 @@
 	<fmt:message bundle="${user}" key="user.deposit.unresolved" var="unresolved" />
 	<fmt:message bundle="${user}" key="user.deposit.ordered" var="ordered" />
 	<fmt:message bundle="${user}" key="user.deposit.adjunction" var="adjunction" />
+	<fmt:message bundle="${user}" key="user.deposit.cardNumber" var="cardNumber" />
+	<fmt:message bundle="${user}" key="user.deposit.summa" var="summa" />
+	<fmt:message bundle="${user}" key="user.deposit.validSumma" var="validSumma" />
+	<fmt:message bundle="${user}" key="user.deposit.error.card" var="cardError" />
+	<fmt:message bundle="${user}" key="user.deposit.error.cardNumber" var="cardNumberError" />
+	<fmt:message bundle="${user}" key="user.deposit.error.summa" var="summaError" />
 	<fmt:message bundle="${user}" key="user.button.deposit" var="btnDeposit" />
 	<fmt:message bundle="${user}" key="user.button.depositAction" var="btnDepositAction" />
+	<fmt:message bundle="${user}" key="user.button.cancel" var="btnCancel" />
 	
 	<title>${title}</title>
 </head>
 <body>
 	<%@ include file="user_menu.jsp" %>
-	
+		
 	<!-- Контент страницы -->
 	<div class="content">
 		<div class="container">
@@ -61,10 +68,13 @@
         		<h4 class="modal-title"><c:out value="${adjunction}"/></h4>
       		</div>
       		
+      		<form id="deposit-form" method="POST" action="Controller" accept-charset="UTF-8"> 
       		<div class="modal-body">
 				<div>
-					<form id="deposit-form" name="deposit-form" method="POST" action="Controller" class="form-horizontal" > 
 						<input type="hidden" name="command" value="make-deposit" />
+						<input type="hidden" name="login" value="${sessionScope.client.login}" />
+						<input type="hidden" name="balance" value="${sessionScope.client.balance}" />
+						<input type="hidden" id="cardLimit" value="${Math.random()*1500}"/>
 						
 						<input type="radio" name="card" value="webMoney"> WEB MONEY
 						<br/>
@@ -72,21 +82,38 @@
 						<br/>
 						<input type="radio" name="card" value="masterCard"> MASTER CARD
 						<br/>
+						<span id="span-card" class="help-inline error"><c:out value="${cardError}"/><br/></span>
+						<br/>
 						
-						<br/>Card Number<br/>
-						<input type="text" name="cardNumber" id="cardNumber" maxlength="12"/>
+						<div id="card-control-group" class="control-group">
+							<div class="controls">
+								<c:out value="${cardNumber}"/><br/>
+								<input type="text" name="cardNumber" id="cardNumber" maxlength="12" onkeypress="delSpan()"/>
+								<span id="span-cardNumber" class="help-inline error"><c:out value="${cardNumberError}"/></span>
+							</div>
+						</div>
 						
-						<br/>Summa<br/>
-						<input type="text" name="summa" id="summa" maxlength="7"/>
-					</form>
+						<div id="summa-control-group" class="control-group">
+							<div class="controls">
+								<c:out value="${summa}"/><br/>
+								<input type="text" name="summa" id="summa" maxlength="7" onkeypress="delSpan()"/>
+								<span id="span-summa" class="help-inline error"><c:out value="${summaError}"/></span>
+								<br/>
+								<span style="color: olive"><c:out value="${validSumma}"/></span>
+							</div>
+						</div>
+						<span id="span-limit" class="help-inline error"><br/>Недостаточно средств на карте</span>
 				</div>
       		</div>
       		
       		<div class="modal-footer">
 			  	<div align="left">
 			  		<button type="submit" class="btn btn-primary"><c:out value="${btnDepositAction}"/></button>
+			  		&nbsp;&nbsp;
+			  		<a href="Controller?command=show-deposit"><input id="cancelBtn" type="button" value="${btnCancel}" class="btn btn-danger"/></a>
 				</div>
 			</div>
+			</form>
 		</div>
 		</div>
 	</div>
