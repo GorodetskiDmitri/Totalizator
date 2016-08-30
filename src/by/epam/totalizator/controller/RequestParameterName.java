@@ -30,6 +30,7 @@ public final class RequestParameterName {
 	public static final String SEARCH_TEXT = "searchText";
 	public static final String SUMMA = "summa";
 	public static final String TOTAL_PAGE = "totalPage";
+	public static final String UNRESOLVED_MONEY = "unresolvedMoney";
 	public static final String USER = "client";
 	public static final String USER_ID = "userId";
 	public static final String USER_LIST = "userList";

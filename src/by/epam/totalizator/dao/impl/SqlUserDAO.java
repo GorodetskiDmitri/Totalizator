@@ -22,6 +22,7 @@ public class SqlUserDAO implements UserDAO {
 			+ "email, address, phone, passport, date_of_birth, bet_allow) "
 			+ "VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
 	private static final String MAKE_DEPOSIT = "UPDATE users SET balance=? WHERE login=?";
+	private static final String SHOW_UNRESOLVED_MONEY = "SELECT SUM(amount) FROM bet WHERE id_user=? AND bet_status='0';";
 	
 	@Override
 	public User getUser(String login, int password) throws DAOException {
@@ -131,6 +132,30 @@ public class SqlUserDAO implements UserDAO {
 		} finally {
 			connectionPool.closeConnection(connection, prepareStatement);
 		}
+	}
+	
+	@Override
+	public double getUnresolvedMoney(int userId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+		double money = 0.0;
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(SHOW_UNRESOLVED_MONEY);
+			prepareStatement.setInt(1, userId);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				money = resultSet.getDouble(1);
+			}
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement);
+		}
+		return money;
 	}
 	
 }

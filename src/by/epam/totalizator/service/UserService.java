@@ -1,6 +1,5 @@
 package by.epam.totalizator.service;
 
-import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.DAOFactory;
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.exception.DAOException;
@@ -63,6 +62,19 @@ public final class UserService {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
+	}
+	
+	public final static double getUnresolvedMoney(int idUser) throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		double money = 0.0;
+		try {
+			money = userDAO.getUnresolvedMoney(idUser);
+			System.out.println("money="+money);
+		} catch (DAOException e) {
+			throw new ServiceException(e); 
+		}
+		return money;
 	}
 	
 	static class Validation {

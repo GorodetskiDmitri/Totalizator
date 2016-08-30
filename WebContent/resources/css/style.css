@@ -104,6 +104,17 @@ header{
 	float: left; 
 	padding: 5px;
 }
+.card-img{
+	padding: 5px;
+}
+.card-img img{
+	height: 24px;
+	width: 36px;
+}
+.card-img div{
+	display:inline-block; 
+	vertical-align:middle;
+}
 footer{
 	margin-bottom: 15px;
 }
@@ -157,6 +168,9 @@ footer hr{
 	font-weight: bold;
 	color: #d42819;
 	padding: 2px;
+}
+.reg{
+	background-color: LightYellow;
 }
 
 /* Large Devices, Wide Screens */

@@ -34,14 +34,17 @@ public class ShowDepositCommand implements Command{
 		request.getSession().setAttribute(RequestParameterName.CURRENT_COMMAND, url);
 		
 		User currentUser;
+		double unresolvedMoney = 0.0;
 		try {
 			currentUser = UserService.getUser(login, password);
+			unresolvedMoney = UserService.getUnresolvedMoney(user.getId());
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}
 		
 		request.getSession().removeAttribute(RequestParameterName.USER);
 		request.getSession().setAttribute(RequestParameterName.USER, currentUser);
+		request.getSession().setAttribute(RequestParameterName.UNRESOLVED_MONEY, unresolvedMoney);
 		
 		try {
 			request.getRequestDispatcher(PageName.DEPOSIT_PAGE).forward(request, response);

@@ -114,61 +114,61 @@
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regName"><c:out value="${regName}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="text" class="form-control" id="regName" name="regName" value="${param.regName}" maxlength="30" placeholder="${placeholder_name}">
+				      	<input type="text" class="form-control reg" id="regName" name="regName" value="${param.regName}" maxlength="30" placeholder="${placeholder_name}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regSurname"><c:out value="${regSurname}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="text" class="form-control" id="regSurname" name="regSurname" value="${param.regSurname}" maxlength="40" placeholder="${placeholder_surname}">
+				    	<input type="text" class="form-control reg" id="regSurname" name="regSurname" value="${param.regSurname}" maxlength="40" placeholder="${placeholder_surname}">
 				    </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="datetimepicker"><c:out value="${regBirthday}"/></label>
 					<div class="date col-xs-6" >
-    					<input type="text" class="form-control" id="datetimepicker" name="regBirthday" value="${param.regBirthday}"  placeholder="${placeholder_birthday}"/>
+    					<input type="text" class="form-control reg" id="datetimepicker" name="regBirthday" value="${param.regBirthday}"  placeholder="${placeholder_birthday}"/>
   					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="regLogin"><c:out value="${regLogin}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="regLogin" name="regLogin" value="${param.regLogin}" maxlength="20" placeholder="${placeholder_login}">
+				 		<input type="text" class="form-control reg" id="regLogin" name="regLogin" value="${param.regLogin}" maxlength="20" placeholder="${placeholder_login}">
 					</div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regPassword"><c:out value="${regPassword}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="password" class="form-control" id="regPassword" name="regPassword" value="${param.regPassword}" maxlength="20" placeholder="${placeholder_password}">
+				      	<input type="password" class="form-control reg" id="regPassword" name="regPassword" value="${param.regPassword}" maxlength="20" placeholder="${placeholder_password}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regConfirmPassword"><c:out value="${regConfirmPassword}"/></label>
 				    <div class="col-xs-6">
-				    	<input type="password" class="form-control" id="regConfirmPassword" name="regConfirmPassword" value="${param.regConfirmPassword}" maxlength="20" placeholder="${placeholder_confirm}">
+				    	<input type="password" class="form-control reg" id="regConfirmPassword" name="regConfirmPassword" value="${param.regConfirmPassword}" maxlength="20" placeholder="${placeholder_confirm}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regEmail"><c:out value="${regEmail}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="email" class="form-control" id="regEmail" name="regEmail" value="${param.regEmail}" maxlength="40" placeholder="${placeholder_email}">
+				      	<input type="email" class="form-control reg" id="regEmail" name="regEmail" value="${param.regEmail}" maxlength="40" placeholder="${placeholder_email}">
 				    </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="regPassport"><c:out value="${regPassport}"/></label>
 					<div class="col-xs-6">
-				 		<input type="text" class="form-control" id="regPassport" name="regPassport" value="${param.regPassport}" maxlength="9" placeholder="${placeholder_passport}">
+				 		<input type="text" class="form-control reg" id="regPassport" name="regPassport" value="${param.regPassport}" maxlength="9" placeholder="${placeholder_passport}">
 					</div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regPhone"><c:out value="${regPhone}"/></label>
 				    <div class="col-xs-6">
-				      	<input type="tel" class="form-control" id="regPhone" name="regPhone" value="${param.regPhone}" maxlength="20" placeholder="${placeholder_phone}">
+				      	<input type="tel" class="form-control reg" id="regPhone" name="regPhone" value="${param.regPhone}" maxlength="20" placeholder="${placeholder_phone}">
 				    </div>
 				</div>
 				<div class="form-group">
 				    <label class="control-label col-xs-3" for="regAddress"><c:out value="${regAddress}"/></label>
 				    <div class="col-xs-6">
-				      	<textarea rows="2" class="form-control" id="regAddress" name="regAddress" maxlength="70" placeholder="${placeholder_address}">${param.regAddress}</textarea>
+				      	<textarea rows="2" class="form-control reg" id="regAddress" name="regAddress" maxlength="70" placeholder="${placeholder_address}">${param.regAddress}</textarea>
 				    </div>
 				</div>
 				

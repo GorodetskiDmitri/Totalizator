@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td><c:out value="${unresolved}"/></td>
-						<td style="color: #d42819">0.00&nbsp;$</td>
+						<td style="color: #d42819"><c:out value="${sessionScope.unresolvedMoney}"/>&nbsp;$</td>
 					</tr>
 					<tr>
 						<td><c:out value="${ordered}"/></td>
@@ -76,12 +76,18 @@
 						<input type="hidden" name="balance" value="${sessionScope.client.balance}" />
 						<input type="hidden" id="cardLimit" value="${Math.random()*1500}"/>
 						
-						<input type="radio" name="card" value="webMoney"> WEB MONEY
-						<br/>
-						<input type="radio" name="card" value="visa"> VISA
-						<br/>
-						<input type="radio" name="card" value="masterCard"> MASTER CARD
-						<br/>
+						<div class="card-img">
+							<img src="resources/img/cards/webmoney.png" height="24" width="36">&nbsp;&nbsp;
+							<div><input type="radio" name="card" value="webMoney"> WEB MONEY</div>
+						</div>
+						<div class="card-img">
+							<img src="resources/img/cards/visa.png">&nbsp;&nbsp;
+							<div><input type="radio" name="card" value="visa"> VISA</div>
+						</div>
+						<div class="card-img">
+							<img src="resources/img/cards/mastercard.png">&nbsp;&nbsp;
+							<div><input type="radio" name="card" value="masterCard"> MASTER CARD</div>
+						</div>
 						<span id="span-card" class="help-inline error"><c:out value="${cardError}"/><br/></span>
 						<br/>
 						

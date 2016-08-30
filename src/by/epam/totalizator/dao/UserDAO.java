@@ -8,4 +8,5 @@ public interface UserDAO {
 	boolean registerUser(User user) throws DAOException;
 	boolean isLoginFree(String login) throws DAOException;
 	boolean makeDeposit(String login, double summa) throws DAOException;
+	double getUnresolvedMoney(int idUser) throws DAOException;
 }
