@@ -46,9 +46,9 @@ public class ShowBetHistoryCommand implements Command {
 			pageList.add(Integer.toString(i));
 		}
 		
-		List<Bet> userList = getBetListInPage(totalBetList, currentPage, LINES_ON_PAGE);
+		List<Bet> betList = getBetListInPage(totalBetList, currentPage, LINES_ON_PAGE);
 		request.setAttribute(RequestParameterName.TOTAL_PAGE, totalPage);
-		request.setAttribute(RequestParameterName.USER_LIST, userList);
+		request.setAttribute(RequestParameterName.BET_LIST, betList);
 		request.setAttribute(RequestParameterName.PAGE_LIST, pageList);
 		try {
 			request.getRequestDispatcher(PageName.BET_HISTORY_PAGE).forward(request, response);

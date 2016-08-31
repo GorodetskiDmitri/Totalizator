@@ -80,10 +80,10 @@
 							<c:forEach items="${betList}" var="bet">
 								<tr>
 									<td><c:out value="${bet.betDate}" /></td>
-									<td><c:out value="${bet.betDate}" /></td>
-									<td><c:out value="${bet.betDate}" /></td>
-									<td><c:out value="${bet.betDate}" /></td>
-									<td><c:out value="${bet.betDate}" /></td>
+									<td align="left"><c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}" /></td>
+									<td><c:out value="${bet.outcome}" /></td>
+									<td><c:out value="${bet.amount}" /></td>
+									<td><c:out value="${bet.line.score1} : ${bet.line.score2}" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>

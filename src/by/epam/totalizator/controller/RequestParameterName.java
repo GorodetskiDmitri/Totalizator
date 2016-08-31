@@ -8,6 +8,7 @@ public final class RequestParameterName {
 	public static final String ADMIN = "admin";
 	public static final String ALLOW_BET = "allowBet";
 	public static final String BALANCE = "balance";
+	public static final String BET_LIST = "betList";
 	public static final String CHANGED_LANGUAGE = "changedLanguage";
 	public static final String COMMAND = "command";
 	public static final String CONCURENSE_LOGIN = "concurenseLogin";
