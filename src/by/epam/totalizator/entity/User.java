@@ -21,7 +21,7 @@ public class User implements Serializable {
 	private Date dateOfBirth;
 	private String betAllow;
 	
-	public User(){
+	public User() {
 	}
 	
 	public int getId() {

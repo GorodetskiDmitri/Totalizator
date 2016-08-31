@@ -14,6 +14,7 @@
 	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
 	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />	
 	<fmt:message bundle="${user}" key="user.menu.deposit" var="deposit" />
+	<fmt:message bundle="${user}" key="user.menu.betHistory" var="betHistory" />
 	<fmt:message bundle="${user}" key="user.logout" var="logout" />
 
 	<!-- Иконка страницы -->
@@ -62,6 +63,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li id="deposit"><a href="#"><c:out value="${deposit}"/></a></li>
+						<li id="betHistory"><a href="#"><c:out value="${betHistory}"/></a></li>
 					</ul>
 		
 					<ul class="nav navbar-nav navbar-right icons">
@@ -79,6 +81,7 @@
 	
 	<form method="POST" action="Controller" id="form">
 		<input type="hidden" name="command" id="command" value=""/>
+		<input type="hidden" name="currentPage" value="1"/>
 	</form>
 	
 	<!-- Подключение jQuery и JavaScript-->
@@ -88,6 +91,10 @@
 	<script type="text/javascript">
 		$("#deposit").click(function() {
 			$("#command").val("show-deposit");
+			$("#form").submit();
+		});
+		$("#betHistory").click(function() {
+			$("#command").val("show-bet-history");
 			$("#form").submit();
 		});
 	</script>

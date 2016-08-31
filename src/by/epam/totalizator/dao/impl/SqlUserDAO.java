@@ -4,17 +4,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.connectionpool.ConnectionPool;
 import by.epam.totalizator.dao.connectionpool.exception.ConnectionPoolException;
 import by.epam.totalizator.dao.exception.DAOException;
+import by.epam.totalizator.entity.Bet;
+import by.epam.totalizator.entity.Competition;
+import by.epam.totalizator.entity.Line;
+import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
 
 public class SqlUserDAO implements UserDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
+	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY bet_status, bet_date DESC";
+	private static final String GET_LINE = "SELECT a.*, s.name, c.name FROM line a "
+			+ "INNER JOIN sport s ON a.id_sport = s.id "
+			+ "INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
+	private static final String GET_SPORT = "SELECT * FROM sport WHERE id=?";
+	private static final String GET_COMPETITION = "SELECT * FROM competition WHERE id=?";
 	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname,"
 			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
 	private static final String GET_LOGIN = "SELECT login FROM users WHERE login=?";
@@ -153,9 +166,142 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
 		}
 		return money;
+	}
+	
+	@Override
+	public List<Bet> getAllUserBet(int userId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+		Bet bet = null;
+		Line line = null;
+		List<Bet> betList = new ArrayList<Bet>();
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_ALL_USER_BET);
+			prepareStatement.setInt(1, userId);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				bet = new Bet();
+				bet.setId(resultSet.getInt(1));
+				line = getLine(resultSet.getInt(3));
+				bet.setLine(line);
+				bet.setBetDate(resultSet.getDate(4));
+				bet.setAmount(resultSet.getDouble(5));
+				bet.setOutcome(resultSet.getString(6));
+				bet.setBetStatus(resultSet.getString(7));
+				betList.add(bet);
+			}
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return betList;
+	}
+	
+	@Override
+	public Line getLine(int idLine) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Line line = null;
+		Sport sport = null;
+		Competition competition = null;
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_LINE);
+			prepareStatement.setInt(1, idLine);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				sport = new Sport();
+				sport.setId(resultSet.getInt(2));
+				sport.setName(resultSet.getString(14));
+				
+				competition = new Competition();
+				competition.setId(resultSet.getInt(3));
+				competition.setName(resultSet.getString(15));
+				
+				line = new Line();
+				line.setId(resultSet.getInt(1));
+				line.setSport(sport);
+				line.setCompetition(competition);
+				line.setEventName(resultSet.getString(4));
+				line.setStartDate(resultSet.getDate(5));
+				line.setWinCoeff(resultSet.getDouble(6));
+				line.setDrawCoeff(resultSet.getDouble(7));
+				line.setLoseCoeff(resultSet.getDouble(8));
+				line.setMinBet(resultSet.getDouble(9));
+				line.setMaxBet(resultSet.getDouble(10));
+				line.setFixedResult(resultSet.getString(11));
+				line.setScore1(resultSet.getInt(12));
+				line.setScore2(resultSet.getInt(13));
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return line;
+	}
+	
+	@Override
+	public Sport getSport(int idSport) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Sport sport = null;
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_SPORT);
+			prepareStatement.setInt(1, idSport);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				sport = new Sport();
+				sport.setId(resultSet.getInt(1));
+				sport.setName(resultSet.getString(2));
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return sport;
+	}
+	
+	@Override
+	public Competition getCompetition(int idCompetition) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Competition competition = null;
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_COMPETITION);
+			prepareStatement.setInt(1, idCompetition);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				competition = new Competition();
+				competition.setId(resultSet.getInt(1));
+				competition.setName(resultSet.getString(2));
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return competition;
 	}
 	
 }

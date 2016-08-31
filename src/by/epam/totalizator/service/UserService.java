@@ -1,8 +1,14 @@
 package by.epam.totalizator.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.DAOFactory;
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.exception.DAOException;
+import by.epam.totalizator.entity.Bet;
+import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.exception.ServiceException;
 
@@ -70,11 +76,25 @@ public final class UserService {
 		double money = 0.0;
 		try {
 			money = userDAO.getUnresolvedMoney(idUser);
-			System.out.println("money="+money);
+			List<Bet> betList = userDAO.getAllUserBet(2);
+			System.out.println("BET = "+betList.size());
 		} catch (DAOException e) {
 			throw new ServiceException(e); 
 		}
 		return money;
+	}
+	
+	public final static List<Bet> getAllUserBet(int idUser) throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		List<Bet> betList = new ArrayList<Bet>();
+		
+		try {
+			betList = userDAO.getAllUserBet(idUser);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return betList;
 	}
 	
 	static class Validation {

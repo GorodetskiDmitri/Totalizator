@@ -7,6 +7,8 @@ public final class PageName {
 	
 	public static final String USER_PAGE = "WEB-INF/jsp/user/user_page.jsp";
 	public static final String DEPOSIT_PAGE = "WEB-INF/jsp/user/deposit.jsp";
+	public static final String BET_HISTORY_PAGE = "WEB-INF/jsp/user/bet_history.jsp";
+	
 	
 	public static final String ADMIN_PAGE = "WEB-INF/jsp/admin/admin_page.jsp";
 	public static final String USER_LIST_PAGE = "WEB-INF/jsp/admin/user_list_page.jsp";
