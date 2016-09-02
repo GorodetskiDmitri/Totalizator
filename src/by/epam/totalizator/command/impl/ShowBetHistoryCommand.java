@@ -20,7 +20,7 @@ import by.epam.totalizator.service.exception.ServiceException;
 
 public class ShowBetHistoryCommand implements Command {
 	
-	private static final int LINES_ON_PAGE = 7;
+	private static final int LINES_ON_PAGE = 10;
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

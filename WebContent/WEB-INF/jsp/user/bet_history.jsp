@@ -13,33 +13,12 @@
 	<fmt:message bundle="${user}" key="user.slogan.betHistory" var="slogan" />
 	<fmt:message bundle="${user}" key="user.betHistory.betDate" var="betDate" />
 	<fmt:message bundle="${user}" key="user.betHistory.betEvent" var="betEvent" />
+	<fmt:message bundle="${user}" key="user.betHistory.betOutcome" var="betOutcome" />
 	<fmt:message bundle="${user}" key="user.betHistory.betAmount" var="betAmount" />
 	<fmt:message bundle="${user}" key="user.betHistory.betCoefficient" var="betCoefficient" />
 	<fmt:message bundle="${user}" key="user.betHistory.betResult" var="betResult" /> 
-	<%-- <fmt:message bundle="${admin}" key="admin.userlist.slogan" var="slogan" />
-	<fmt:message bundle="${admin}" key="admin.title.general" var="title" />
-	<fmt:message bundle="${admin}" key="admin.userlist.search" var="search" />
-	<fmt:message bundle="${admin}" key="admin.userlist.find" var="find" />
-	<fmt:message bundle="${admin}" key="admin.userlist.login" var="userLogin" />
-	<fmt:message bundle="${admin}" key="admin.userlist.name" var="userName" />
-	<fmt:message bundle="${admin}" key="admin.userlist.surname" var="userSurname" />
-	<fmt:message bundle="${admin}" key="admin.userlist.dateOfBirth" var="userDateOfBirth" />
-	<fmt:message bundle="${admin}" key="admin.userlist.balance" var="userBalance" />
-	<fmt:message bundle="${admin}" key="admin.userlist.betAllow" var="userBetAllow" />
-	<fmt:message bundle="${admin}" key="admin.userlist.betAllow.yes" var="userBetAllowYes" />
-	<fmt:message bundle="${admin}" key="admin.userlist.betAllow.no" var="userBetAllowNo" />
-	<fmt:message bundle="${admin}" key="admin.userlist.email" var="userEmail" />
-	<fmt:message bundle="${admin}" key="admin.userlist.passport" var="userPassport" />
-	<fmt:message bundle="${admin}" key="admin.userlist.address" var="userAddress" />
-	<fmt:message bundle="${admin}" key="admin.userlist.phone" var="userPhone" />
-	<fmt:message bundle="${admin}" key="admin.userlist.notFound" var="userNotFound" />
-	<fmt:message bundle="${admin}" key="admin.userlist.userInfo" var="userInfo" />
-	<fmt:message bundle="${admin}" key="admin.button.removeUser" var="btnRemoveUser" />
-	<fmt:message bundle="${admin}" key="admin.button.allowBet" var="btnAllowBet" />
-	<fmt:message bundle="${admin}" key="admin.button.forbidBet" var="btnForbidBet" />
-	
-	<c:set var="totalPage" value="${totalPage}" scope="request"/>
-	<c:set var="searchText" value="${param.searchText}"/>--%>
+	<fmt:message bundle="${user}" key="user.betHistory.betCash" var="betCash" /> 
+	<fmt:message bundle="${user}" key="user.betHistory.betNotFound" var="betNotFound" /> 
 	<c:set var="totalPage" value="${totalPage}" scope="request"/>
 	<c:set var="currentPage" value="${param.currentPage}"/> 
 	
@@ -54,14 +33,6 @@
 			<div class="slogan" style="margin-bottom: 10px">
 				<h1>${slogan}</h1>
 			</div>
-			 <div>
-				<form method="POST" action="Controller" class="form-inline" name="searchForm" id="searchForm">
-					<input type="hidden" name="command" value="show-bet-history"/>
-					<input type="text" name="currentPage" id="currentPage" value="${currentPage}"/>
-					
-      				<input type="submit" id="submitButton" class="btn btn-primary" value="tttt"/>
-				</form>
-			</div>
 			<br/>
 			<c:if test="${betList.size() != 0}">
 				<div class="table-responsive table-wrapper">
@@ -70,10 +41,11 @@
 							<tr class="table-head">
 								<th><c:out value="${betDate}" /></th>
  								<th><c:out value="${betEvent}" /></th>
+ 								<th><c:out value="${betOutcome}" /></th>
  								<th><c:out value="${betCoefficient}" /></th>
  								<th><c:out value="${betAmount}" /></th>
  								<th><c:out value="${betResult}" /></th> 
- 								
+ 								<th><c:out value="${betCash}" /></th> 
 							</tr>
 						</thead>
 						<tbody>
@@ -81,9 +53,64 @@
 								<tr>
 									<td><c:out value="${bet.betDate}" /></td>
 									<td align="left"><c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}" /></td>
-									<td><c:out value="${bet.outcome}" /></td>
+									<td>
+										<c:if test="${bet.outcome.equals('1')}">
+											<c:out value="Win 1" />
+										</c:if>
+										<c:if test="${bet.outcome.equals('2')}">
+											<c:out value="Draw" />
+										</c:if>
+										<c:if test="${bet.outcome.equals('3')}">
+											<c:out value="Win 2" />
+										</c:if>
+									</td>
+									<td>
+										<c:if test="${bet.outcome.equals('1')}">
+											<c:out value="${bet.line.winCoeff}" />
+										</c:if>
+										<c:if test="${bet.outcome.equals('2')}">
+											<c:out value="${bet.line.drawCoeff}" />
+										</c:if>
+										<c:if test="${bet.outcome.equals('3')}">
+											<c:out value="${bet.line.loseCoeff}" />
+										</c:if>
+									</td>
 									<td><c:out value="${bet.amount}" /></td>
-									<td><c:out value="${bet.line.score1} : ${bet.line.score2}" /></td>
+									<td>
+										<c:choose>
+											<c:when test="${bet.line.score1 == -1 || bet.line.score2 == -1 || !bet.line.fixedResult.equals('1')}">
+											</c:when>
+											<c:otherwise>
+												<c:out value="${bet.line.score1} : ${bet.line.score2}" />
+											</c:otherwise>
+										</c:choose>
+									</td>
+									
+									<c:if test="${bet.line.fixedResult.equals('1')}">
+										<c:choose>
+											<c:when test="${bet.outcome.equals('1') && (bet.line.score1 > bet.line.score2) }">
+												<td style="color: DodgerBlue"><b>
+													<fmt:formatNumber type="number" pattern=".##" value="${bet.amount * bet.line.winCoeff}" />
+												</b></td>
+											</c:when>
+											<c:when test="${bet.outcome.equals('2') && (bet.line.score1 == bet.line.score2) }">
+												<td style="color: DodgerBlue"><b>
+													<fmt:formatNumber type="number" pattern=".##" value="${bet.amount * bet.line.drawCoeff}" />
+												</b></td>
+											</c:when>
+											<c:when test="${bet.outcome.equals('3') && (bet.line.score1 < bet.line.score2) }">
+												<td style="color: DodgerBlue"><b>
+													<fmt:formatNumber type="number" pattern=".##"  value="${bet.amount * bet.line.loseCoeff}" />
+												</b></td>
+											</c:when>
+											<c:otherwise>
+												<td style="color: #d42819"><b><c:out value="0.00" /></b></td>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+									<c:if test="${!bet.line.fixedResult.equals('1')}">
+										<td><c:out value="?" /></td>
+									</c:if>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -92,42 +119,7 @@
 			</c:if>
 			
 			<c:if test="${betList.isEmpty()}">
-				<h3 align="center">Not Found</h3>
-			</c:if>
-			<%--<c:if test="${userList.size() != 0}">
-			<div class="table-responsive table-wrapper">
-				<table id="userListTable" class="table table-hover table-style">
-					
- 					<tbody>
-						<c:forEach items="${userList}" var="user">
-						<tr>
-							<td><a href="#myModal" class="userLink" id="${user.id}" data-toggle="modal">${user.login}</a></td>
-							<td id="${user.id}_name"><c:out value="${user.name}" /></td>
-							<td id="${user.id}_surname"><c:out value="${user.surname}" /></td>
-							<td id="${user.id}_dateOfBirth"><c:out value="${user.dateOfBirth}" /></td>
-							<td id="${user.id}_balance"><c:out value="${user.balance}" /></td>
-							<td id="${user.id}_betAllow">
-								<c:if test="${user.betAllow == 1}">
-									<c:out value="${userBetAllowYes}" />
-								</c:if>
-								<c:if test="${user.betAllow == 0}">
-									<c:out value="${userBetAllowNo}" />
-								</c:if>
-							</td>
-							<input type="hidden" id="${user.id}_betAllowFlag" value="${user.betAllow}"/>
-							<input type="hidden" id="${user.id}_email" value="${user.email}"/>
-							<input type="hidden" id="${user.id}_address" value="${user.address}"/>
-							<input type="hidden" id="${user.id}_phone" value="${user.phone}"/>
-							<input type="hidden" id="${user.id}_passport" value="${user.passport}"/>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			</c:if>
-			
-			<c:if test="${userList.isEmpty()}">
-				<h3 align="center"><c:out value="${userNotFound}" /></h3>
+				<h3 align="center"><c:out value="${betNotFound}" /></h3>
 			</c:if>
 			
 			<c:if test="${totalPage != 1}"> 
@@ -141,9 +133,12 @@
         	</c:if>
 		
 		</div>
-	</div>--%>
+	</div>
 	
-	
+	<form method="POST" action="Controller" class="form-inline" name="betHistoryForm" id="betHistoryForm">
+		<input type="hidden" name="command" value="show-bet-history"/>
+		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}"/>
+	</form>
 		
 		</div> 
 	</div>
@@ -151,7 +146,7 @@
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
 	<!-- Подключение jQuery и JavaScript-->
-	<script src="resources/js/user-list.js"></script>
+	<script src="resources/js/bet-history.js"></script>
 	
 </body>
 </html>
