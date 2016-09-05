@@ -49,7 +49,7 @@
 							<c:forEach items="${line}" var="line">
 								<tr>
 									<c:if test="${!sport.equalsIgnoreCase(line.sport.name)}">
-											<td colspan="6" align="left"><c:out value="${line.sport.name.toUpperCase()}" /></td></tr><tr>
+											<td colspan="6" class="table-sport"><c:out value="${line.sport.name.toUpperCase()}" /></td></tr><tr>
 											<c:set var="sport" value="${line.sport.name}" scope="request"/>
 									</c:if>
 										
@@ -58,10 +58,10 @@
 									<td align="left"><c:out value="${line.eventName}" /></td>
 									<td><a href="#"><c:out value="${line.winCoeff}" /></a></td>
 									<td><c:if test="${line.drawCoeff > 0}">
-											<c:out value="${line.drawCoeff}" />
+											<a href="#"><c:out value="${line.drawCoeff}" /></a>
 										</c:if>
 									</td>
-									<td><c:out value="${line.loseCoeff}" /></td>
+									<td><a href="#"><c:out value="${line.loseCoeff}" /></a></td>
 									<%-- <td align="left"><c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}" /></td>
 									<td>
 										<c:if test="${bet.outcome.equals('1')}">

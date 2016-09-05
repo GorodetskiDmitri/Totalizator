@@ -133,26 +133,27 @@ footer hr{
 }
 
 .table-prop{
-	text-align: center;
-	font-size: 14px;
-	color: #4c4c4c;
-	background-color: #ececec;
+	font-size: 12px; 
 }
 .table-prop > tbody > tr > td > a {
 	text-decoration: none;
-	color: #4c4c4c;
+	color: khaki;
 }
 .table-prop > tbody > tr > td > a:active,
 .table-prop > tbody > tr > td > a:visited
 {
-	color: #4c4c4c;
 	font-weight: normal;
 }
 .table-prop > tbody > tr > td > a:hover,
 .table-prop > tbody > tr > td > a:focus
 {
 	color: red;
+}
+.table-sport{
+	font-size: 14px;
 	font-weight: bold;
+	text-align: left;
+	color: orange;
 }
 .table-head{
 	background-color: #d42819;
