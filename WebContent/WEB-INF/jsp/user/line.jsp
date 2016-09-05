@@ -9,18 +9,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
 	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${user}" key="user.title.betHistory" var="title" />
-	<fmt:message bundle="${user}" key="user.slogan.betHistory" var="slogan" />
-	<fmt:message bundle="${user}" key="user.betHistory.betDate" var="betDate" />
-	<fmt:message bundle="${user}" key="user.betHistory.betEvent" var="betEvent" />
-	<fmt:message bundle="${user}" key="user.betHistory.betOutcome" var="betOutcome" />
-	<fmt:message bundle="${user}" key="user.betHistory.betAmount" var="betAmount" />
-	<fmt:message bundle="${user}" key="user.betHistory.betCoefficient" var="betCoefficient" />
-	<fmt:message bundle="${user}" key="user.betHistory.betResult" var="betResult" /> 
-	<fmt:message bundle="${user}" key="user.betHistory.betCash" var="betCash" /> 
-	<fmt:message bundle="${user}" key="user.betHistory.betNotFound" var="betNotFound" /> 
-	<c:set var="totalPage" value="${totalPage}" scope="request"/>
-	<c:set var="currentPage" value="${param.currentPage}"/> 
+	<fmt:message bundle="${user}" key="user.title.line" var="title" />
+	<fmt:message bundle="${user}" key="user.slogan.line" var="slogan" />
+	<fmt:message bundle="${user}" key="user.line.lineNotFound" var="lineNotFound" />
+	<c:set var="sport" value="" scope="request"/> 
 	
 	<title>${title}</title>
 </head>
@@ -34,25 +26,43 @@
 				<h1>${slogan}</h1>
 			</div>
 			<br/>
-			<c:if test="${betList.size() != 0}">
+			<c:if test="${line.size() != 0}">
 				<div class="table-responsive table-wrapper">
-					<table id="betHistoryTable" class="table table-hover table-style">
+					<table id="lineTable" class="table table-style table-prop">
 						<thead>
 							<tr class="table-head">
-								<th><c:out value="${betDate}" /></th>
- 								<th><c:out value="${betEvent}" /></th>
+								<th>Date</th>
+								<th>Competition</th>
+								<th>Event Name</th>
+								<th>Win</th>
+								<th>Draw</th>
+								<th>Lose</th>
+ 								<%-- <th><c:out value="${betEvent}" /></th>
  								<th><c:out value="${betOutcome}" /></th>
  								<th><c:out value="${betCoefficient}" /></th>
  								<th><c:out value="${betAmount}" /></th>
  								<th><c:out value="${betResult}" /></th> 
- 								<th><c:out value="${betCash}" /></th> 
+ 								<th><c:out value="${betCash}" /></th>  --%>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${betList}" var="bet">
+							<c:forEach items="${line}" var="line">
 								<tr>
-									<td><c:out value="${bet.betDate}" /></td>
-									<td align="left"><c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}" /></td>
+									<c:if test="${!sport.equalsIgnoreCase(line.sport.name)}">
+											<td colspan="6" align="left"><c:out value="${line.sport.name.toUpperCase()}" /></td></tr><tr>
+											<c:set var="sport" value="${line.sport.name}" scope="request"/>
+									</c:if>
+										
+									<td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${line.startDate}" /></td>
+									<td align="left"><c:out value="${line.competition.name}" /></td>
+									<td align="left"><c:out value="${line.eventName}" /></td>
+									<td><a href="#"><c:out value="${line.winCoeff}" /></a></td>
+									<td><c:if test="${line.drawCoeff > 0}">
+											<c:out value="${line.drawCoeff}" />
+										</c:if>
+									</td>
+									<td><c:out value="${line.loseCoeff}" /></td>
+									<%-- <td align="left"><c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}" /></td>
 									<td>
 										<c:if test="${bet.outcome.equals('1')}">
 											<c:out value="Win 1" />
@@ -110,7 +120,7 @@
 									</c:if>
 									<c:if test="${!bet.line.fixedResult.equals('1')}">
 										<td><c:out value="?" /></td>
-									</c:if>
+									</c:if> --%>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -118,44 +128,16 @@
 				</div>
 			</c:if>
 			
-			<c:if test="${betList.isEmpty()}">
-				<h3 align="center"><c:out value="${betNotFound}" /></h3>
+			<c:if test="${line.isEmpty()}">
+				<h3 align="center"><c:out value="${lineNotFound}" /></h3>
 			</c:if>
 			
-			<c:if test="${totalPage != 1}"> 
-			<div class="container" align="center">
-          		<ul class="pagination pagination-centered">
-          			<c:forEach items="${pageList}" var="page">
-            			<li id="${page}_li"><a class="page-link" href="#">${page}</a></li>
-          			</c:forEach>
-          		</ul>
-        	</div>
-        	</c:if>
-		
-		</div>
-	</div>
+			
 	
-	<form method="POST" action="Controller" class="form-inline" name="betHistoryForm" id="betHistoryForm">
-		<input type="hidden" name="command" value="show-bet-history"/>
-		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}"/>
-	</form>
-		
 		</div> 
 	</div>
 
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
-	
-	<!-- Подключение jQuery и JavaScript-->
-	<script type="text/javascript"">
-		$(document).ready(function() {
-			$("#" + $("#currentPage").val() + "_li").addClass("active");
-		});
-	
-		$(".page-link").click(function() {
-			$("#currentPage").val($(this).text());
-			$("#betHistoryForm").submit();
-		});
-	</script>
 	
 </body>
 </html>

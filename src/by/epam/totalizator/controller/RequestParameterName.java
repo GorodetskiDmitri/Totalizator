@@ -14,6 +14,7 @@ public final class RequestParameterName {
 	public static final String CONCURENSE_LOGIN = "concurenseLogin";
 	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String CURRENT_PAGE = "currentPage";
+	public static final String LINE = "line";
 	public static final String LOCALE = "locale";
 	public static final String LOGIN = "login";
 	public static final String NAME = "name";

@@ -26,6 +26,10 @@ public class SqlUserDAO implements UserDAO {
 	private static final String GET_LINE = "SELECT a.*, s.name, c.name FROM line a "
 			+ "INNER JOIN sport s ON a.id_sport = s.id "
 			+ "INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
+	private static final String GET_LINE_LIST = "SELECT a.*, s.name, c.name FROM line a "
+			+ "INNER JOIN sport s ON a.id_sport = s.id "
+			+ "INNER JOIN competition c ON a.id_competition=c.id "
+			+ "WHERE fixed_result='0' ORDER BY s.name, c.name, a.start_date";
 	private static final String GET_SPORT = "SELECT * FROM sport WHERE id=?";
 	private static final String GET_COMPETITION = "SELECT * FROM competition WHERE id=?";
 	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname,"
@@ -250,6 +254,54 @@ public class SqlUserDAO implements UserDAO {
 			connectionPool.closeConnection(connection, prepareStatement, resultSet);
 		}
 		return line;
+	}
+	
+	@Override
+	public List<Line> getLineList() throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Line line = null;
+		Sport sport = null;
+		Competition competition = null;
+		List<Line> lineList = new ArrayList<Line>();
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_LINE_LIST);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				sport = new Sport();
+				sport.setId(resultSet.getInt(2));
+				sport.setName(resultSet.getString(14));
+				
+				competition = new Competition();
+				competition.setId(resultSet.getInt(3));
+				competition.setName(resultSet.getString(15));
+				
+				line = new Line();
+				line.setId(resultSet.getInt(1));
+				line.setSport(sport);
+				line.setCompetition(competition);
+				line.setEventName(resultSet.getString(4));
+				line.setStartDate(resultSet.getTimestamp(5));
+				line.setWinCoeff(resultSet.getDouble(6));
+				line.setDrawCoeff(resultSet.getDouble(7));
+				line.setLoseCoeff(resultSet.getDouble(8));
+				line.setMinBet(resultSet.getDouble(9));
+				line.setMaxBet(resultSet.getDouble(10));
+				line.setFixedResult(resultSet.getString(11));
+				line.setScore1(resultSet.getInt(12));
+				line.setScore2(resultSet.getInt(13));
+				lineList.add(line);
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return lineList;
 	}
 	
 	@Override

@@ -15,6 +15,7 @@
 	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />	
 	<fmt:message bundle="${user}" key="user.menu.deposit" var="deposit" />
 	<fmt:message bundle="${user}" key="user.menu.betHistory" var="betHistory" />
+	<fmt:message bundle="${user}" key="user.menu.line" var="lineList" />
 	<fmt:message bundle="${user}" key="user.logout" var="logout" />
 
 	<!-- Иконка страницы -->
@@ -64,6 +65,7 @@
 					<ul class="nav navbar-nav">
 						<li id="deposit"><a href="#"><c:out value="${deposit}"/></a></li>
 						<li id="betHistory"><a href="#"><c:out value="${betHistory}"/></a></li>
+						<li id="line"><a href="#"><c:out value="${lineList}"/></a></li>
 					</ul>
 		
 					<ul class="nav navbar-nav navbar-right icons">
@@ -95,6 +97,10 @@
 		});
 		$("#betHistory").click(function() {
 			$("#command").val("show-bet-history");
+			$("#form").submit();
+		});
+		$("#line").click(function() {
+			$("#command").val("show-line");
 			$("#form").submit();
 		});
 	</script>

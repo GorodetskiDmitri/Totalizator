@@ -13,5 +13,6 @@ public enum CommandName {
 	REMOVE_USER,
 	SHOW_BET_HISTORY,
 	SHOW_DEPOSIT,
+	SHOW_LINE,
 	SHOW_USER_LIST
 }

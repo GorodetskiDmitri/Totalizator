@@ -13,6 +13,7 @@ public interface UserDAO {
 	User getUser(String login, int password) throws DAOException;
 	List<Bet> getAllUserBet(int idUser) throws DAOException;
 	Line getLine(int idLine) throws DAOException;
+	List<Line> getLineList() throws DAOException;
 	Sport getSport(int idSport) throws DAOException;
 	Competition getCompetition(int idCompetition) throws DAOException;
 	boolean registerUser(User user) throws DAOException;
