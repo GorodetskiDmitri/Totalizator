@@ -87,7 +87,7 @@
       		</div>
       		
       		<form id="bet-form" method="POST" action="Controller" accept-charset="UTF-8"> 
-      		<div class="modal-body" style="background-color: #d42819; color: black">
+      		<div class="modal-body" style="background-color: orange; color: black">
 				<div>
 						<h5><span id="startDate" /></h5>
 						<h5><span id="sport" /></h5>

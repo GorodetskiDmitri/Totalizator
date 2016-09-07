@@ -17,6 +17,7 @@ import by.epam.totalizator.command.impl.ShowDepositCommand;
 import by.epam.totalizator.command.impl.ShowLineCommand;
 import by.epam.totalizator.command.impl.ShowMainPage;
 import by.epam.totalizator.command.impl.ShowResultCommand;
+import by.epam.totalizator.command.impl.ShowResultForFixCommand;
 import by.epam.totalizator.command.impl.ShowUserListCommand;
 import by.epam.totalizator.command.impl.UnknownCommand;
 
@@ -39,6 +40,7 @@ public class CommandHelper {
 		commands.put(CommandName.SHOW_DEPOSIT, new ShowDepositCommand());
 		commands.put(CommandName.SHOW_LINE, new ShowLineCommand());
 		commands.put(CommandName.SHOW_RESULT, new ShowResultCommand());
+		commands.put(CommandName.SHOW_RESULT_FOR_FIX, new ShowResultForFixCommand());
 		commands.put(CommandName.SHOW_USER_LIST, new ShowUserListCommand());
 	}
 	

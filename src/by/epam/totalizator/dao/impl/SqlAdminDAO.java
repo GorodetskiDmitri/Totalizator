@@ -12,14 +12,17 @@ import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.connectionpool.ConnectionPool;
 import by.epam.totalizator.dao.connectionpool.exception.ConnectionPoolException;
 import by.epam.totalizator.dao.exception.DAOException;
+import by.epam.totalizator.entity.Competition;
+import by.epam.totalizator.entity.Line;
+import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
 
 public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
-	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, "
-			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client'";
+	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client'";
+	private static final String GET_RESULT_LIST_FOR_FIX = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport=s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.fixed_result='0' AND a.start_date <= CURDATE() ORDER BY a.start_date, s.name, c.name, a.event_name";
 	private static final String REMOVE_USER = "DELETE FROM users WHERE id=? AND status='client' AND balance=0.0";
 	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow=? WHERE id=? AND status='client'";
 	
@@ -104,6 +107,54 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			connectionPool.closeConnection(connection, preparedStatement);
 		}
 		return true;
+	}
+	
+	@Override
+	public List<Line> getResultListForFix() throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Line line = null;
+		Sport sport = null;
+		Competition competition = null;
+		List<Line> lineList = new ArrayList<Line>();
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_RESULT_LIST_FOR_FIX);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				sport = new Sport();
+				sport.setId(resultSet.getInt(2));
+				sport.setName(resultSet.getString(14));
+				
+				competition = new Competition();
+				competition.setId(resultSet.getInt(3));
+				competition.setName(resultSet.getString(15));
+				
+				line = new Line();
+				line.setId(resultSet.getInt(1));
+				line.setSport(sport);
+				line.setCompetition(competition);
+				line.setEventName(resultSet.getString(4));
+				line.setStartDate(resultSet.getTimestamp(5));
+				line.setWinCoeff(resultSet.getDouble(6));
+				line.setDrawCoeff(resultSet.getDouble(7));
+				line.setLoseCoeff(resultSet.getDouble(8));
+				line.setMinBet(resultSet.getDouble(9));
+				line.setMaxBet(resultSet.getDouble(10));
+				line.setFixedResult(resultSet.getString(11));
+				line.setScore1(resultSet.getInt(12));
+				line.setScore2(resultSet.getInt(13));
+				lineList.add(line);
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return lineList;
 	}
 
 }

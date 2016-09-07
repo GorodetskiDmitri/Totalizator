@@ -93,6 +93,10 @@
 			$("#command").val("show-user-list");
 			$("#form").submit();
 		});
+		$("#fix-result").click(function() {
+			$("#command").val("show-result-for-fix");
+			$("#form").submit();
+		});
 	</script>
 	
 	

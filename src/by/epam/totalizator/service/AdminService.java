@@ -7,6 +7,7 @@ import java.util.List;
 
 import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.exception.DAOException;
+import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.exception.ServiceException;
 
@@ -46,5 +47,18 @@ public class AdminService {
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
+	}
+	
+	public final static List<Line> getResultListForFix() throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		AdminDAO adminDAO = factory.getAdminDAO();
+		List<Line> lineList = new ArrayList<Line>();
+		
+		try {
+			lineList = adminDAO.getResultListForFix();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return lineList;
 	}
 }

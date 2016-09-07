@@ -15,5 +15,6 @@ public enum CommandName {
 	SHOW_DEPOSIT,
 	SHOW_LINE,
 	SHOW_RESULT,
+	SHOW_RESULT_FOR_FIX,
 	SHOW_USER_LIST
 }
