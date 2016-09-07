@@ -14,5 +14,6 @@ public enum CommandName {
 	SHOW_BET_HISTORY,
 	SHOW_DEPOSIT,
 	SHOW_LINE,
+	SHOW_RESULT,
 	SHOW_USER_LIST
 }

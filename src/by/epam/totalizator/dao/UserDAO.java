@@ -20,5 +20,5 @@ public interface UserDAO {
 	boolean isLoginFree(String login) throws DAOException;
 	boolean makeDeposit(String login, double summa) throws DAOException;
 	double getUnresolvedMoney(int idUser) throws DAOException;
-	
+	List<Line> getResultList() throws DAOException;
 }

@@ -110,6 +110,19 @@ public final class UserService {
 		return lineList;
 	}
 	
+	public final static List<Line> getResultList() throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		List<Line> resultList = new ArrayList<Line>();
+		
+		try {
+			resultList = userDAO.getResultList();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return resultList;
+	}
+	
 	static class Validation {
 		
 		public static boolean validateLogin(String login, String password) {
