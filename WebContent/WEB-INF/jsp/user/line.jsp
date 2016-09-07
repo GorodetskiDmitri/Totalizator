@@ -36,7 +36,7 @@
 								<th>Event Name</th>
 								<th>Win</th>
 								<th>Draw</th>
-								<th>Lose</th>
+								<th>Lose1</th>
  								<%-- <th><c:out value="${betEvent}" /></th>
  								<th><c:out value="${betOutcome}" /></th>
  								<th><c:out value="${betCoefficient}" /></th>
