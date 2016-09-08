@@ -26,7 +26,9 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	private static final String REMOVE_USER = "DELETE FROM users WHERE id=? AND status='client' AND balance=0.0";
 	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow=? WHERE id=? AND status='client'";
 	private static final String FIX_RESULT = "UPDATE line SET fixed_result='1', score1=?, score2=? WHERE id=?";
-	//private static final String FIRST_TEAM_WIN = "";
+	private static final String DEFAULT_LOSE_BET = "UPDATE bet SET bet_status='1' WHERE id_line=?";
+	private static final String FIRST_TEAM_WIN = "UPDATE bet SET bet_status='3' WHERE outcome='1' AND id_line=?";
+	private static final String WIN_BETS_LIST = "SELECT b.id_user, Sum(b.amount), a.win_coeff FROM bet b, line a WHERE b.id_line=a.id AND b.outcome='1' AND b.bet_status='3' AND b.id_line=? GROUP BY b.id_user";
 	
 	@Override
 	public List<User> getUserList(String findCriteria) throws DAOException {
@@ -162,6 +164,8 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	public boolean fixResult(int score1, int score2, int lineId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
+		PreparedStatement insidePrepareStatement = null;
+		ResultSet resultSet = null;
 		try {
 			connection = connectionPool.takeConnection();
 			connection.setAutoCommit(false);
@@ -173,9 +177,24 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 			
-			/*if (score1 > score2) {
+			prepareStatement = connection.prepareStatement(DEFAULT_LOSE_BET);
+			prepareStatement.setInt(1, lineId);
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+			
+			if (score1 > score2) { 
 				prepareStatement = connection.prepareStatement(FIRST_TEAM_WIN);
-			}*/
+				prepareStatement.setInt(1, lineId);
+				prepareStatement.executeUpdate();
+				prepareStatement.close();
+				
+				prepareStatement = connection.prepareStatement(WIN_BETS_LIST);
+				prepareStatement.setInt(1, lineId);
+				resultSet = prepareStatement.executeQuery();
+				while (resultSet.next()) {
+				
+				}
+			}
 			
 			connection.commit();
 		} catch (ConnectionPoolException e) {
