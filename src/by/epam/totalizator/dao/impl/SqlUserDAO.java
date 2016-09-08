@@ -22,7 +22,7 @@ public class SqlUserDAO implements UserDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
-	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY bet_status, bet_date DESC";
+	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY bet_status ASC, id DESC, bet_date DESC";
 	private static final String GET_LINE = "SELECT a.*, s.name, c.name FROM line a "
 			+ "INNER JOIN sport s ON a.id_sport = s.id "
 			+ "INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
@@ -43,8 +43,15 @@ public class SqlUserDAO implements UserDAO {
 	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, "
 			+ "email, address, phone, passport, date_of_birth, bet_allow) "
 			+ "VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
+	private static final String INSERT_BET = "INSERT INTO bet(id_user, id_line, bet_date, amount, outcome, bet_status) "
+			+ "VALUES(?,?,CURDATE(),?,?,'0')";
+	private static final String REDUCE_USER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE id=? AND status='client'";
+	private static final String INCREASE_USER_BALANCE = "UPDATE users SET balance=(balance + (?)) WHERE id=? AND status='client'";
+	private static final String REDUCE_BOOKMAKER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE status='bookmaker'";
+	private static final String INCREASE_BOOKMAKER_BALANCE = "UPDATE users SET balance=(balance + (?)) WHERE status='bookmaker'";
 	private static final String MAKE_DEPOSIT = "UPDATE users SET balance=? WHERE login=?";
 	private static final String SHOW_UNRESOLVED_MONEY = "SELECT SUM(amount) FROM bet WHERE id_user=? AND bet_status='0';";
+	
 	
 	@Override
 	public User getUser(String login, int password) throws DAOException {
@@ -407,5 +414,47 @@ public class SqlUserDAO implements UserDAO {
 			connectionPool.closeConnection(connection, prepareStatement, resultSet);
 		}
 		return resultList;
+	}
+	
+	@Override
+	public boolean makeBet(Bet bet) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			connection = connectionPool.takeConnection();
+			connection.setAutoCommit(false);
+			
+			prepareStatement = connection.prepareStatement(REDUCE_USER_BALANCE);
+			prepareStatement.setDouble(1, bet.getAmount());
+			prepareStatement.setInt(2, bet.getUser().getId());
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+			
+			prepareStatement = connection.prepareStatement(INCREASE_BOOKMAKER_BALANCE);
+			prepareStatement.setDouble(1, bet.getAmount());
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+
+			prepareStatement = connection.prepareStatement(INSERT_BET);
+			prepareStatement.setInt(1, bet.getUser().getId());
+			prepareStatement.setInt(2, bet.getLine().getId());
+			prepareStatement.setDouble(3, bet.getAmount());
+			prepareStatement.setString(4, bet.getOutcome());
+			prepareStatement.executeUpdate();
+			
+			connection.commit();
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} catch (SQLException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				throw new DAOException("Exception rollback transaction");
+			}
+			throw new DAOException("Invalid sql query",e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement);
+		}
+		return true;
 	}
 }

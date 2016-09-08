@@ -12,17 +12,20 @@ $(document).ready(function() {
 		});
 		
 		$(".userLink").click(function() {
+			$(".btn-primary").prop('disabled', true);
 			$(".btn-success").prop('disabled', false);
 			$(".btn-danger").prop('disabled', false);
 			
 			$("input[name='userId']").val(this.id);
 			
+			if ($("#"+this.id+"_balance").text() == "0.0")
+				$(".btn-primary").prop('disabled', false);
 			if ($("#"+$("#userId").val()+"_betAllowFlag").val() == 0) {
 				$(".btn-danger").prop('disabled', true);
 			} else {
 				$(".btn-success").prop('disabled', true);
 			}
-			
+						
 			$("#userLogin").text($(this).text());
 			$("#userName").text($("#"+this.id+"_name").text());
 			$("#userSurname").text($("#"+this.id+"_surname").text());

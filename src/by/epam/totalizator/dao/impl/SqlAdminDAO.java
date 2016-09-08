@@ -21,10 +21,12 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
-	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client'";
+	private static final String USER_LIST = "SELECT id, status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE status='client' ORDER BY login";
 	private static final String GET_RESULT_LIST_FOR_FIX = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport=s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.fixed_result='0' AND a.start_date <= CURDATE() ORDER BY a.start_date, s.name, c.name, a.event_name";
 	private static final String REMOVE_USER = "DELETE FROM users WHERE id=? AND status='client' AND balance=0.0";
 	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow=? WHERE id=? AND status='client'";
+	private static final String FIX_RESULT = "UPDATE line SET fixed_result='1', score1=?, score2=? WHERE id=?";
+	//private static final String FIRST_TEAM_WIN = "";
 	
 	@Override
 	public List<User> getUserList(String findCriteria) throws DAOException {
@@ -92,7 +94,6 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	public boolean allowBetForUser(int userId, String allowBet) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		System.out.println("DAO: userId="+userId+"; allowBet="+allowBet);
 		try {
 			connection = connectionPool.takeConnection();
 			preparedStatement = connection.prepareStatement(ALLOW_BET_FOR_USER);
@@ -155,6 +156,41 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			connectionPool.closeConnection(connection, prepareStatement, resultSet);
 		}
 		return lineList;
+	}
+	
+	@Override
+	public boolean fixResult(int score1, int score2, int lineId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		try {
+			connection = connectionPool.takeConnection();
+			connection.setAutoCommit(false);
+			
+			prepareStatement = connection.prepareStatement(FIX_RESULT);
+			prepareStatement.setInt(1, score1);
+			prepareStatement.setInt(2, score2);
+			prepareStatement.setInt(3, lineId);
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+			
+			/*if (score1 > score2) {
+				prepareStatement = connection.prepareStatement(FIRST_TEAM_WIN);
+			}*/
+			
+			connection.commit();
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} catch (SQLException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				throw new DAOException("Exception rollback transaction");
+			}
+			throw new DAOException("Invalid sql query",e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement);
+		}
+		return true;
 	}
 
 }

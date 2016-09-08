@@ -11,4 +11,5 @@ public interface AdminDAO extends UserDAO {
 	boolean removeUser(int userId) throws DAOException;
 	boolean allowBetForUser(int userId, String allowBet) throws DAOException;
 	List<Line> getResultListForFix() throws DAOException;
+	boolean fixResult(int score1, int score2, int lineId) throws DAOException;
 }

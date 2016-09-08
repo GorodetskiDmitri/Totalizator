@@ -10,20 +10,19 @@ import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
-import by.epam.totalizator.service.UserService;
+import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
 
-public class MakeDepositCommand implements Command {
+public class FixResultCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		String login = request.getParameter(RequestParameterName.LOGIN);
-		double balance = Double.parseDouble(request.getParameter(RequestParameterName.BALANCE));
-		double summa = Double.parseDouble(request.getParameter(RequestParameterName.SUMMA));
-		summa = summa + balance;
+		int lineId = Integer.parseInt(request.getParameter(RequestParameterName.LINE_ID));
+		int score1 = Integer.parseInt(request.getParameter(RequestParameterName.SCORE1));
+		int score2 = Integer.parseInt(request.getParameter(RequestParameterName.SCORE2));
 		
 		try {
-			if (UserService.makeDeposit(login, summa)) {
+			if (AdminService.fixResult(score1, score2, lineId)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

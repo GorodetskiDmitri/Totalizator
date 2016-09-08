@@ -98,6 +98,10 @@
       		
       		<form id="bet-form" method="POST" action="Controller" accept-charset="UTF-8"> 
       			<input type="hidden" name="command" value="make-bet" />
+      			<input type="hidden" name="userId" value="${sessionScope.client.id}" />
+      			<input type="hidden" name="lineId" value="" />
+      			<input type="hidden" name="outcome" value="" /> 
+      			
       			<div class="modal-body" style="background-color: orange">
 					<div>
 						<h5><span id="startDate" /></h5>
@@ -172,12 +176,19 @@
 			$("#startDate").text($("#"+idLine+"_startDate").text());
 			$("#sport").text($("#"+idLine+"_sport").val().toUpperCase() + ". " + $("#"+idLine+"_competition").text());
 			$("#event").text($("#"+idLine+"_event").text());
-			if (outcome == "win")
+			$("[name=lineId]").val(idLine);
+			if (outcome == "win") {
 				$("#outcome").text($("#outcomeWin").val());
-			if (outcome == "draw")
+				$("[name=outcome]").val("1");
+			}
+			if (outcome == "draw") {
 				$("#outcome").text($("#outcomeDraw").val());
-			if (outcome == "lose")
+				$("[name=outcome]").val("2");
+			}
+			if (outcome == "lose") {
 				$("#outcome").text($("#outcomeLose").val());
+				$("[name=outcome]").val("3");
+			}
 			$("#coefficient").text($("#"+this.id).text());
 			$("#minBet").text($("#"+idLine+"_minBet").val());
 			$("#maxBet").text($("#"+idLine+"_maxBet").val()); 
@@ -227,7 +238,6 @@
 					$("#summa").focus();
 					return false;
 			}
-			return false;
 		});
 	</script>
 </body>

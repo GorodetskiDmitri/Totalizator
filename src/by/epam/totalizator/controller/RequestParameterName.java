@@ -15,9 +15,11 @@ public final class RequestParameterName {
 	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String CURRENT_PAGE = "currentPage";
 	public static final String LINE = "line";
+	public static final String LINE_ID = "lineId";
 	public static final String LOCALE = "locale";
 	public static final String LOGIN = "login";
 	public static final String NAME = "name";
+	public static final String OUTCOME = "outcome";
 	public static final String PAGE_LIST = "pageList";
 	public static final String PASSWORD = "password";
 	public static final String REG_ADDRESS = "regAddress";
@@ -30,6 +32,8 @@ public final class RequestParameterName {
 	public static final String REG_PHONE = "regPhone";
 	public static final String REG_SURNAME = "regSurname";
 	public static final String SEARCH_TEXT = "searchText";
+	public static final String SCORE1 = "score1";
+	public static final String SCORE2 = "score2";
 	public static final String SUMMA = "summa";
 	public static final String TOTAL_PAGE = "totalPage";
 	public static final String UNRESOLVED_MONEY = "unresolvedMoney";

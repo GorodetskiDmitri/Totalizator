@@ -43,28 +43,29 @@
  					<tbody>
 						<c:forEach items="${line}" var="line">
 						<tr>
+							<form id="line${line.id}-form" method="POST" action="Controller" accept-charset="UTF-8">
+									<input type="hidden" name="command" value="fix-result" />
+      								<input type="hidden" name="lineId" value="${line.id}" />
+      								
 							<td id="${line.id}_date"><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${line.startDate}" /></td>
 							<td id="${line.id}_sport"><c:out value="${line.sport.name.toUpperCase()}" /></td>
 							<td id="${line.id}_competition"><c:out value="${line.competition.name}" /></td>
 							<td id="${line.id}_event"><c:out value="${line.eventName}" /></td>
 							<td>
-								<input type="text" id="${line.id}_score1" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
+								<input type="text" id="${line.id}_score1" name="score1" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
 								 : 
-								<input type="text" id="${line.id}_score2" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
+								<input type="text" id="${line.id}_score2" name="score2" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
 							</td>
 							<td>
-								<button type="button" class="btn btn-primary btn-xs" ><c:out value="Fix Result"/></button>
+      								<button type="submit" class="btn btn-primary btn-xs" ><c:out value="Fix Result"/></button>
 							</td>
 							
-							<%-- <input type="hidden" id="${user.id}_betAllowFlag" value="${user.betAllow}"/>
-							<input type="hidden" id="${user.id}_email" value="${user.email}"/>
-							<input type="hidden" id="${user.id}_address" value="${user.address}"/>
-							<input type="hidden" id="${user.id}_phone" value="${user.phone}"/>
-							<input type="hidden" id="${user.id}_passport" value="${user.passport}"/> --%>
+							</form>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				
 			</div>
 			</c:if>
 			

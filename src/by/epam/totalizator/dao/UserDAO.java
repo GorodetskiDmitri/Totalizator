@@ -21,4 +21,5 @@ public interface UserDAO {
 	boolean makeDeposit(String login, double summa) throws DAOException;
 	double getUnresolvedMoney(int idUser) throws DAOException;
 	List<Line> getResultList() throws DAOException;
+	boolean makeBet(Bet bet) throws DAOException;
 }

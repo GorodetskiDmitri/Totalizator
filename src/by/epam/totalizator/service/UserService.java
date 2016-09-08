@@ -123,6 +123,18 @@ public final class UserService {
 		return resultList;
 	}
 	
+	public final static boolean makeBet(Bet bet) throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		UserDAO userDAO = factory.getUserDAO();
+		try {
+			return userDAO.makeBet(bet);			
+		} catch (DAOException e) {
+			throw new ServiceException(e); 
+		}
+	}
+	
+	
+	
 	static class Validation {
 		
 		public static boolean validateLogin(String login, String password) {

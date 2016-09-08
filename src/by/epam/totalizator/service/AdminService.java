@@ -61,4 +61,15 @@ public class AdminService {
 		}
 		return lineList;
 	}
+	
+	public static boolean fixResult(int score1, int score2, int lineId) throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		AdminDAO adminDAO = factory.getAdminDAO();
+		
+		try {
+			return adminDAO.fixResult(score1, score2, lineId);
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+	}
 }
