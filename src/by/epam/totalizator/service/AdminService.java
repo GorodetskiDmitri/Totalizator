@@ -1,7 +1,11 @@
 package by.epam.totalizator.service;
 
 import by.epam.totalizator.dao.DAOFactory;
+import by.epam.totalizator.dao.connectionpool.ConnectionPool;
+import by.epam.totalizator.dao.connectionpool.exception.ConnectionPoolException;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +17,7 @@ import by.epam.totalizator.service.exception.ServiceException;
 
 
 public class AdminService {
-
+	
 	public static List<User> getUserList(String findCriteria) throws ServiceException {
 		DAOFactory factory = DAOFactory.getInstance();
 		AdminDAO adminDAO = factory.getAdminDAO();
@@ -66,10 +70,30 @@ public class AdminService {
 		DAOFactory factory = DAOFactory.getInstance();
 		AdminDAO adminDAO = factory.getAdminDAO();
 		
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		Connection connection = null;
+		
 		try {
-			return adminDAO.fixResult(score1, score2, lineId);
-		} catch (DAOException e) {
+			connection = connectionPool.takeConnection();
+			connection.setAutoCommit(false);
+		
+			adminDAO.fixResult(connection, score1, score2, lineId);
+			
+			connection.commit();
+		} catch (ConnectionPoolException | DAOException | SQLException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				throw new ServiceException("Exception rollback transaction", e1);
+			}
 			throw new ServiceException(e);
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new ServiceException(e);
+			}
 		}
+		return true;
 	}
 }

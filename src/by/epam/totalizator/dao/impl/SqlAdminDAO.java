@@ -161,6 +161,22 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	}
 	
 	@Override
+	public void fixResult(Connection connection, int score1, int score2, int lineId) throws DAOException {
+		PreparedStatement prepareStatement = null;
+		
+		try {
+			prepareStatement = connection.prepareStatement(FIX_RESULT);
+			prepareStatement.setInt(1, score1);
+			prepareStatement.setInt(2, score2);
+			prepareStatement.setInt(3, lineId);
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} 
+	}
+	
+	/*@Override
 	public boolean fixResult(int score1, int score2, int lineId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
@@ -210,6 +226,6 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			connectionPool.closeConnection(connection, prepareStatement);
 		}
 		return true;
-	}
+	}*/
 
 }
