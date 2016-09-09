@@ -78,6 +78,10 @@ public class AdminService {
 			connection.setAutoCommit(false);
 		
 			adminDAO.fixResult(connection, score1, score2, lineId);
+			adminDAO.defaultLose(connection, lineId);
+			if (score1 > score2) { 
+				adminDAO.checkWinBet(connection, lineId, 1);
+			}
 			
 			connection.commit();
 		} catch (ConnectionPoolException | DAOException | SQLException e) {

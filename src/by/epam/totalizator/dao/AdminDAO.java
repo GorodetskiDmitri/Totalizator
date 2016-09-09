@@ -13,4 +13,6 @@ public interface AdminDAO extends UserDAO {
 	boolean allowBetForUser(int userId, String allowBet) throws DAOException;
 	List<Line> getResultListForFix() throws DAOException;
 	void fixResult(Connection connection, int score1, int score2, int lineId) throws DAOException;
+	void defaultLose(Connection connection, int lineId) throws DAOException;
+	void checkWinBet(Connection connection, int lineId, int winOutcome) throws DAOException;
 }

@@ -27,7 +27,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	private static final String ALLOW_BET_FOR_USER = "UPDATE users SET bet_allow=? WHERE id=? AND status='client'";
 	private static final String FIX_RESULT = "UPDATE line SET fixed_result='1', score1=?, score2=? WHERE id=?";
 	private static final String DEFAULT_LOSE_BET = "UPDATE bet SET bet_status='1' WHERE id_line=?";
-	private static final String FIRST_TEAM_WIN = "UPDATE bet SET bet_status='3' WHERE outcome='1' AND id_line=?";
+	private static final String CHECK_WIN_BET = "UPDATE bet SET bet_status='3' WHERE outcome=? AND id_line=?";
 	private static final String WIN_BETS_LIST = "SELECT b.id_user, Sum(b.amount), a.win_coeff FROM bet b, line a WHERE b.id_line=a.id AND b.outcome='1' AND b.bet_status='3' AND b.id_line=? GROUP BY b.id_user";
 	
 	@Override
@@ -169,6 +169,35 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.setInt(1, score1);
 			prepareStatement.setInt(2, score2);
 			prepareStatement.setInt(3, lineId);
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} 
+	}
+	
+	@Override
+	public void defaultLose(Connection connection, int lineId) throws DAOException {
+		PreparedStatement prepareStatement = null;
+		
+		try {
+			prepareStatement = connection.prepareStatement(DEFAULT_LOSE_BET);
+			prepareStatement.setInt(1, lineId);
+			prepareStatement.executeUpdate();
+			prepareStatement.close();
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} 
+	}
+	
+	@Override
+	public void checkWinBet(Connection connection, int lineId, int winOutcome) throws DAOException {
+		PreparedStatement prepareStatement = null;
+		
+		try {
+			prepareStatement = connection.prepareStatement(CHECK_WIN_BET);
+			prepareStatement.setInt(1, winOutcome);
+			prepareStatement.setInt(2, lineId);
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
