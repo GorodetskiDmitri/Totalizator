@@ -21,6 +21,8 @@
 	<fmt:message bundle="${user}" key="user.line.betOutcome" var="betOutcome" />
 	<fmt:message bundle="${user}" key="user.line.betCoefficient" var="betCoefficient" />
 	<fmt:message bundle="${user}" key="user.line.betBalance" var="betBalance" />
+	<fmt:message bundle="${user}" key="user.line.ban" var="ban" />
+	<fmt:message bundle="${user}" key="user.line.banMessage" var="banMessage" />
 	<fmt:message bundle="${user}" key="user.deposit.summa" var="betSumma" />
 	<fmt:message bundle="${user}" key="user.deposit.error.summa" var="errorSumma1" />
 	<fmt:message bundle="${user}" key="user.line.error.summa" var="errorSumma2" />
@@ -32,7 +34,12 @@
 	<title>${title}</title>
 </head>
 <body>
-	<%@ include file="user_menu.jsp" %>
+	<c:if test="${sessionScope.client.id != null}">
+		<%@ include file="user_menu.jsp" %>
+	</c:if>
+	<c:if test="${sessionScope.client.id == null}">
+		<%@ include file="../header.jsp" %>
+	</c:if>
 	
 	<!-- Контент страницы -->
 	<div class="content">
@@ -66,7 +73,12 @@
 									<td id="${line.id}_startDate"><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${line.startDate}" /></td>
 									<td id="${line.id}_competition" align="left"><c:out value="${line.competition.name}" /></td>
 									<td id="${line.id}_event" align="left"><c:out value="${line.eventName}" /></td>
-									<td><a href="#betModal" class="betLink" id="${line.id}_win" data-toggle="modal"><c:out value="${line.winCoeff}" /></a></td>
+									<c:if test="${sessionScope.client.id == null}">
+										<td><a href="#myModal" class="betLink" id="modalLogin1" data-toggle="modal"><c:out value="${line.winCoeff}" /></a></td>
+									</c:if>
+									<c:if test="${sessionScope.client.id != null}">
+										<td><a href="#betModal" class="betLink" id="${line.id}_win" data-toggle="modal"><c:out value="${line.winCoeff}" /></a></td>
+									</c:if>
 									<td>
 										<c:if test="${line.drawCoeff > 0}">
 											<a href="#betModal" class="betLink" id="${line.id}_draw" data-toggle="modal"><c:out value="${line.drawCoeff}" /></a>
@@ -91,6 +103,23 @@
 		
 			<!-- Modal content-->
     		<div class="modal-content" style="color: black">
+    			<c:if test="${sessionScope.client.betAllow == 0}">
+    				<div class="modal-header">
+      					<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				<h4 class="modal-title"><c:out value="${ban}"/></h4>
+      				</div>
+      				<div class="modal-body" style="background-color: orange">
+						<div>
+							<h5><c:out value="${banMessage}"/>.</h5>
+							<br/>
+						</div>
+      				</div>
+      					<div class="modal-footer">
+						</div>
+					</div>
+    			</c:if>
+		
+			<c:if test="${sessionScope.client.betAllow != 0}">
       			<div class="modal-header">
       				<button type="button" class="close" data-dismiss="modal">&times;</button>
         			<h4 class="modal-title"><c:out value="${bet}"/></h4>
@@ -152,10 +181,55 @@
 				</div>
 			</div>
 			</form>
+			</c:if>
 		</div>
 		</div>
 	</div>
 	<!-- End modal content-->
+	
+	<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><c:out value="${legend}"/></h4>
+      </div>
+      
+      <div class="modal-body">
+       <c:if test="${accessDenied == true}">
+			<div class="alert alert-danger">
+    			<h5><c:out value="${errorAccess}"/></h5>
+  			</div>
+		</c:if>
+       
+        <form id="loginFromLineForm" method="POST" action="Controller" accept-charset="UTF-8">
+			<input type="hidden" name="command" value="login" />
+			<div id="login-control-group" class="control-group">
+				<div class="controls">
+					<input type="text" name="login" id="login" value="${param.login}" placeholder="${login}" size="25" maxlength="20" onkeypress="delSpan('login')">
+					<span id="span-login" class="help-inline error">${errorLogin}</span>
+					<br/><br/>
+				</div>
+			</div>
+			<div id="password-control-group" class="control-group">
+				<div class="controls">
+					<input type="password" name="password" id="password" value="${param.password}" placeholder="${password}" size="25" maxlength="20" onkeypress="delSpan('password')">
+					<span id="span-password" class="help-inline error">${errorPassword}</span>
+					<br/><br/>
+				</div>
+			</div>
+			<button class="btn btn-primary" type="submit">${signin}</button>&nbsp;&nbsp;
+			<a href="Controller?command=logout"><input id="cancelBtn" type="button" value="${cancel}" class="btn btn-danger"/></a>
+		</form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- End modal content-->
 	
 			<c:if test="${line.isEmpty()}">
 				<h3 align="center"><c:out value="${lineNotFound}" /></h3>

@@ -6,6 +6,7 @@ import java.util.List;
 import by.epam.totalizator.dao.exception.DAOException;
 import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.User;
+import by.epam.totalizator.entity.Winner;
 
 public interface AdminDAO extends UserDAO {
 	List<User> getUserList(String findCriteria) throws DAOException;
@@ -15,4 +16,6 @@ public interface AdminDAO extends UserDAO {
 	void fixResult(Connection connection, int score1, int score2, int lineId) throws DAOException;
 	void defaultLose(Connection connection, int lineId) throws DAOException;
 	void checkWinBet(Connection connection, int lineId, int winOutcome) throws DAOException;
+	List<Winner> getWinners(Connection connection, int lineId, int winOutcome) throws DAOException;
+	void payout (Connection connection, List<Winner> winners) throws DAOException;
 }

@@ -71,7 +71,7 @@
 					</ul>
 		
 					<ul class="nav navbar-nav navbar-right icons">
-						<li><a href="Controller?command=logout" title="SIGN OUT" role="button" class="btn"><img src="resources/img/login.png" height="26" width="27"></a></li>
+						<li><a href="Controller?command=logout" title="SIGN OUT" role="button" class="btn"><img src="resources/img/logout.png" height="26" width="27"></a></li>
 						
 						<li><a href="Controller?command=change-locale&locale=ru">${ru}</a></li>
 						<li><a href="Controller?command=change-locale&locale=en">${en}</a></li>

@@ -18,33 +18,10 @@
 	
 	<title>${title}</title>
 
-	<!-- Иконка страницы -->
-	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
-	
-	<!-- Для совместимости с максимально возможной версией IE -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-	<!-- Для адаптивности с любыми устройствами -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Подключение шрифта из Google Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	
-	<!-- Подключение mini версии bootstrap -->
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-	
-	<!-- Подключение файла собственных стилей -->
-	<link rel="stylesheet" href="resources/css/style.css">
-	
-	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 <body >
 
-	<jsp:include page="/WEB-INF/jsp/common-header.jsp" />
+	<jsp:include page="/WEB-INF/jsp/header.jsp" />
 
 	<!-- Контент страницы -->
 	<div class="content">

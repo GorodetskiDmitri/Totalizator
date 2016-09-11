@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
@@ -23,7 +24,31 @@
 	<fmt:message bundle="${log}" key="login.cancel" var="cancel" />
 	<fmt:message bundle="${log}" key="login.signin" var="signin" />
 	
-	<title>${title}</title>
+	<!-- Иконка страницы -->
+	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
+
+	<!-- Для совместимости с максимально возможной версией IE -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Для адаптивности с любыми устройствами -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Подключение шрифта из Google Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	
+	<!-- Подключение mini версии bootstrap -->
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+	
+	<!-- Подключение файла собственных стилей -->
+	<link rel="stylesheet" href="resources/css/style.css">
+	
+	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
 
 	<!-- Навигационная панель заголовка. Шаблон bootstrap -->
 	<header>
@@ -108,4 +133,34 @@
 		</nav>
 	</header>
 	
-	<script src="resources/js/main.js"></script>
+		
+	<form method="POST" action="Controller" id="form">
+		<input type="hidden" name="command" id="command" value=""/>
+		<input type="hidden" name="currentPage" value="1"/>
+	</form>
+	
+	<!-- Подключение jQuery и JavaScript-->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script> 
+	
+	<script type="text/javascript">
+		$("#deposit").click(function() {
+			$("#command").val("show-deposit");
+			$("#form").submit();
+		});
+		$("#betHistory").click(function() {
+			$("#command").val("show-bet-history");
+			$("#form").submit();
+		});
+		$("#line").click(function() {
+			$("#command").val("show-line");
+			$("#form").submit();
+		});
+		$("#result").click(function() {
+			$("#command").val("show-result");
+			$("#form").submit();
+		});
+	</script>
+	
+</body>
+</html>

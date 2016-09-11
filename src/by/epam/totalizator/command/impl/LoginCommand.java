@@ -23,6 +23,7 @@ public class LoginCommand implements Command {
 			User user = UserService.checkLogin(request.getParameter(RequestParameterName.LOGIN).trim(), request.getParameter(RequestParameterName.PASSWORD).trim());
 			if (user != null) {
 				request.getSession().setAttribute(RequestParameterName.USER, user);
+				
 				if (user.getStatus().equals(RequestParameterName.USER)) {
 					page = PageName.USER_PAGE;
 				} else {

@@ -15,6 +15,7 @@
 	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />	
 	<fmt:message bundle="${admin}" key="admin.menu.showUsers" var="showUsers" />
 	<fmt:message bundle="${admin}" key="admin.menu.fixResults" var="fixResults" />
+	<fmt:message bundle="${admin}" key="admin.menu.addEvent" var="addEvent" />
 	<fmt:message bundle="${admin}" key="admin.logout" var="logout" />
 
 	<!-- Иконка страницы -->
@@ -64,11 +65,12 @@
 					<ul class="nav navbar-nav">
 						<li id="user-list"><a href="#"><c:out value="${showUsers}"/></a></li>
 						<li id="fix-result"><a href="#"><c:out value="${fixResults}"/></a></li>
+						<li id="add-event"><a href="#"><c:out value="${addEvent}"/></a></li>
 					</ul>
 		
 					<ul class="nav navbar-nav navbar-right icons">
-						<li><a href="Controller?command=logout" title="SIGN OUT" role="button" class="btn"><img src="resources/img/login.png" height="26" width="27"></a></li>
-						
+						<li><a href="Controller?command=logout" title="SIGN OUT" role="button" class="btn"><img src="resources/img/logout.png" height="26" width="27"></a></li>
+												
 						<li><a href="Controller?command=change-locale&locale=ru">${ru}</a></li>
 						<li><a href="Controller?command=change-locale&locale=en">${en}</a></li>
 					</ul>
@@ -95,6 +97,10 @@
 		});
 		$("#fix-result").click(function() {
 			$("#command").val("show-result-for-fix");
+			$("#form").submit();
+		});
+		$("#add-event").click(function() {
+			$("#command").val("show-event-creation");
 			$("#form").submit();
 		});
 	</script>

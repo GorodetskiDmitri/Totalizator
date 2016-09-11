@@ -16,6 +16,7 @@ import by.epam.totalizator.command.impl.RegistrationCommand;
 import by.epam.totalizator.command.impl.RemoveUserCommand;
 import by.epam.totalizator.command.impl.ShowBetHistoryCommand;
 import by.epam.totalizator.command.impl.ShowDepositCommand;
+import by.epam.totalizator.command.impl.ShowEventCreation;
 import by.epam.totalizator.command.impl.ShowLineCommand;
 import by.epam.totalizator.command.impl.ShowMainPage;
 import by.epam.totalizator.command.impl.ShowResultCommand;
@@ -42,6 +43,7 @@ public class CommandHelper {
 		commands.put(CommandName.REMOVE_USER, new RemoveUserCommand());
 		commands.put(CommandName.SHOW_BET_HISTORY, new ShowBetHistoryCommand());
 		commands.put(CommandName.SHOW_DEPOSIT, new ShowDepositCommand());
+		commands.put(CommandName.SHOW_EVENT_CREATION, new ShowEventCreation());
 		commands.put(CommandName.SHOW_LINE, new ShowLineCommand());
 		commands.put(CommandName.SHOW_RESULT, new ShowResultCommand());
 		commands.put(CommandName.SHOW_RESULT_FOR_FIX, new ShowResultForFixCommand());

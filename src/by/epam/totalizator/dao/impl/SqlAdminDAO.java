@@ -16,6 +16,7 @@ import by.epam.totalizator.entity.Competition;
 import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
+import by.epam.totalizator.entity.Winner;
 
 public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 
@@ -28,7 +29,8 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	private static final String FIX_RESULT = "UPDATE line SET fixed_result='1', score1=?, score2=? WHERE id=?";
 	private static final String DEFAULT_LOSE_BET = "UPDATE bet SET bet_status='1' WHERE id_line=?";
 	private static final String CHECK_WIN_BET = "UPDATE bet SET bet_status='3' WHERE outcome=? AND id_line=?";
-	private static final String WIN_BETS_LIST = "SELECT b.id_user, Sum(b.amount), a.win_coeff FROM bet b, line a WHERE b.id_line=a.id AND b.outcome='1' AND b.bet_status='3' AND b.id_line=? GROUP BY b.id_user";
+	private static final String WIN_BETS_LIST = "SELECT b.id_user, Sum(b.amount), a.win_coeff FROM bet b, line a WHERE b.id_line=a.id AND b.outcome=? AND b.bet_status='3' AND b.id_line=? GROUP BY b.id_user";
+	private static final String PAYOUT = "UPDATE users SET balance = (balance + ((?)*(?))) WHERE id=?";
 	
 	@Override
 	public List<User> getUserList(String findCriteria) throws DAOException {
@@ -205,56 +207,50 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} 
 	}
 	
-	/*@Override
-	public boolean fixResult(int score1, int score2, int lineId) throws DAOException {
-		Connection connection = null;
-		PreparedStatement prepareStatement = null;
-		PreparedStatement insidePrepareStatement = null;
+	@Override
+	public List<Winner> getWinners(Connection connection, int lineId, int winOutcome) throws DAOException {
+		PreparedStatement prepareStatement = null; 
 		ResultSet resultSet = null;
+		Winner winner = null;
+		List<Winner> winnersList = new ArrayList<Winner>();
 		try {
-			connection = connectionPool.takeConnection();
-			connection.setAutoCommit(false);
-			
-			prepareStatement = connection.prepareStatement(FIX_RESULT);
-			prepareStatement.setInt(1, score1);
-			prepareStatement.setInt(2, score2);
-			prepareStatement.setInt(3, lineId);
-			prepareStatement.executeUpdate();
+			prepareStatement = connection.prepareStatement(WIN_BETS_LIST);
+			prepareStatement.setInt(1, winOutcome);
+			prepareStatement.setInt(2, lineId);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				System.out.println("wery good");
+				winner = new Winner();
+				winner.setIdUser(resultSet.getInt(1));
+				winner.setAmount(resultSet.getDouble(2));
+				winner.setCoefficient(resultSet.getDouble(3));
+				winnersList.add(winner);
+			} 
 			prepareStatement.close();
-			
-			prepareStatement = connection.prepareStatement(DEFAULT_LOSE_BET);
-			prepareStatement.setInt(1, lineId);
-			prepareStatement.executeUpdate();
-			prepareStatement.close();
-			
-			if (score1 > score2) { 
-				prepareStatement = connection.prepareStatement(FIRST_TEAM_WIN);
-				prepareStatement.setInt(1, lineId);
+			resultSet.close();
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} 
+		return winnersList;
+	}
+	
+	@Override
+	public void payout(Connection connection, List<Winner> winners) throws DAOException {
+		PreparedStatement prepareStatement = null;
+		
+		try {
+			prepareStatement = connection.prepareStatement(PAYOUT);
+			for (Winner winner : winners) {
+				prepareStatement.setDouble(1, winner.getAmount());
+				prepareStatement.setDouble(2, winner.getCoefficient());
+				prepareStatement.setInt(3, winner.getIdUser());
 				prepareStatement.executeUpdate();
-				prepareStatement.close();
-				
-				prepareStatement = connection.prepareStatement(WIN_BETS_LIST);
-				prepareStatement.setInt(1, lineId);
-				resultSet = prepareStatement.executeQuery();
-				while (resultSet.next()) {
-				
-				}
 			}
+			prepareStatement.close();
 			
-			connection.commit();
-		} catch (ConnectionPoolException e) {
-			throw new DAOException(e);
-		} catch (SQLException e) {
-			try {
-				connection.rollback();
-			} catch (SQLException e1) {
-				throw new DAOException("Exception rollback transaction");
-			}
-			throw new DAOException("Invalid sql query",e);
-		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
-		}
-		return true;
-	}*/
-
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} 
+	}
+	
 }

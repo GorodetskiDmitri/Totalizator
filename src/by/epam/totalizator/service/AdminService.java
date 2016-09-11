@@ -13,6 +13,7 @@ import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.exception.DAOException;
 import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.User;
+import by.epam.totalizator.entity.Winner;
 import by.epam.totalizator.service.exception.ServiceException;
 
 
@@ -72,6 +73,8 @@ public class AdminService {
 		
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		Connection connection = null;
+		List<Winner> winBets = null;
+		int outcome;
 		
 		try {
 			connection = connectionPool.takeConnection();
@@ -79,10 +82,21 @@ public class AdminService {
 		
 			adminDAO.fixResult(connection, score1, score2, lineId);
 			adminDAO.defaultLose(connection, lineId);
-			if (score1 > score2) { 
-				adminDAO.checkWinBet(connection, lineId, 1);
+			
+			if (score1 > score2) {
+				outcome = 1;
+			} else if (score1 == score2) {
+				outcome = 2;
+			} else {
+				outcome = 3;
 			}
 			
+			adminDAO.checkWinBet(connection, lineId, outcome);
+			winBets = adminDAO.getWinners(connection, lineId, outcome);
+			
+			if (winBets != null) {
+				adminDAO.payout(connection, winBets);
+			}
 			connection.commit();
 		} catch (ConnectionPoolException | DAOException | SQLException e) {
 			try {

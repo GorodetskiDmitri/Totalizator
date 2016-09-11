@@ -78,7 +78,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="Controller?command=home">${home}</a></li>
-						<li><a href="Controller?command=line">${bet}</a></li>
+						<li><a href="Controller?command=show-line">${bet}</a></li>
 						<li><a href="Controller?command=registration">${registration}</a></li>
 						<li><a href="Controller?command=contacts">${contacts}</a></li>
 					</ul>
@@ -152,28 +152,28 @@
 						<div class="card">
 							<h4>France - Iceland</h4>
 							<p>EURO-2016. Quater-final</p>
-							<a href="betlist.html#euro"><img src="resources/img/photo/bet1.jpg" height="173" width="218"></a>
+							<a href="Controller?command=show-line"><img src="resources/img/photo/bet1.jpg" height="173" width="218"></a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
 							<h4>Krumkachy - BATE</h4>
 							<p>Football. Belarus. Day 21</p>
-							<a href="betlist.html#football"><img src="resources/img/photo/bet2.jpg" height="173" width="218"></a>
+							<a href="Controller?command=show-line"><img src="resources/img/photo/bet2.jpg" height="173" width="218"></a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
 							<h4>S.Halep - M.Kis</h4>
 							<p>Wimbledon. Round of 16</p>
-							<a href="betlist.html#tennis"><img src="resources/img/photo/bet3.jpg" height="173" width="218"></a>
+							<a href="Controller?command=show-line"><img src="resources/img/photo/bet3.jpg" height="173" width="218"></a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
 							<h4>Tyson Fury - Vl. Klitschko</h4>
 							<p>Box. Battle for the titul WBA/WBO </p>
-							<a href="betlist.html#box"><img src="resources/img/photo/bet4.jpg" height="173" width="218"></a>
+							<a href="Controller?command=show-line"><img src="resources/img/photo/bet4.jpg" height="173" width="218"></a>
 						</div>
 					</div>
 				</div>
