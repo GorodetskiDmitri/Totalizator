@@ -11,6 +11,7 @@ public final class RequestParameterName {
 	public static final String BET_LIST = "betList";
 	public static final String CHANGED_LANGUAGE = "changedLanguage";
 	public static final String COMMAND = "command";
+	public static final String COMPETITION = "competition";
 	public static final String CONCURENSE_LOGIN = "concurenseLogin";
 	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String CURRENT_PAGE = "currentPage";
@@ -34,6 +35,7 @@ public final class RequestParameterName {
 	public static final String SEARCH_TEXT = "searchText";
 	public static final String SCORE1 = "score1";
 	public static final String SCORE2 = "score2";
+	public static final String SPORT = "sport";
 	public static final String SUMMA = "summa";
 	public static final String TOTAL_PAGE = "totalPage";
 	public static final String UNRESOLVED_MONEY = "unresolvedMoney";

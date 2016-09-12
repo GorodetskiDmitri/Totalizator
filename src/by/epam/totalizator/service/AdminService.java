@@ -11,7 +11,9 @@ import java.util.List;
 
 import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.exception.DAOException;
+import by.epam.totalizator.entity.Competition;
 import by.epam.totalizator.entity.Line;
+import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.entity.Winner;
 import by.epam.totalizator.service.exception.ServiceException;
@@ -113,5 +115,31 @@ public class AdminService {
 			}
 		}
 		return true;
+	}
+	
+	public final static List<Sport> getSportList() throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		AdminDAO adminDAO = factory.getAdminDAO();
+		List<Sport> sportList = new ArrayList<Sport>();
+		
+		try {
+			sportList = adminDAO.getSportList();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return sportList;
+	}
+	
+	public final static List<Competition> getCompetitionList() throws ServiceException {
+		DAOFactory factory = DAOFactory.getInstance();
+		AdminDAO adminDAO = factory.getAdminDAO();
+		List<Competition> competitionList = new ArrayList<Competition>();
+		
+		try {
+			competitionList = adminDAO.getCompetitionList();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return competitionList;
 	}
 }

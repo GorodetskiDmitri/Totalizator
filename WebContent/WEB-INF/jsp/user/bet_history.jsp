@@ -36,7 +36,7 @@
 			<br/>
 			<c:if test="${betList.size() != 0}">
 				<div class="table-responsive table-wrapper">
-					<table id="betHistoryTable" class="table table-hover table-style">
+					<table id="betHistoryTable" class="table table-style">
 						<thead>
 							<tr class="table-head">
 								<th><c:out value="${betDate}" /></th>

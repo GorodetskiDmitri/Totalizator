@@ -77,7 +77,6 @@ public final class UserService {
 		try {
 			money = userDAO.getUnresolvedMoney(idUser);
 			List<Bet> betList = userDAO.getAllUserBet(2);
-			System.out.println("BET = "+betList.size());
 		} catch (DAOException e) {
 			throw new ServiceException(e); 
 		}

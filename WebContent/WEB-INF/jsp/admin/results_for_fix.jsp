@@ -52,9 +52,9 @@
 							<td id="${line.id}_competition"><c:out value="${line.competition.name}" /></td>
 							<td id="${line.id}_event"><c:out value="${line.eventName}" /></td>
 							<td>
-								<input type="text" id="${line.id}_score1" name="score1" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
+								<input type="text" id="${line.id}_score1" name="score1" class="score" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
 								 : 
-								<input type="text" id="${line.id}_score2" name="score2" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
+								<input type="text" id="${line.id}_score2" name="score2" class="score" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>
 							</td>
 							<td>
       								<button type="submit" class="btn btn-primary btn-xs" ><c:out value="Fix Result"/></button>
@@ -76,67 +76,21 @@
 		</div>
 	</div>
 	
-	<%-- 
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-		
-		<!-- Modal content-->
-    	<div class="modal-content">
-      		<div class="modal-header">
-      			<button type="button" class="close" data-dismiss="modal">&times;</button>
-        		<h4 class="modal-title"><c:out value="${userInfo}"/></h4>
-      		</div>
-      		
-      		<div class="modal-body">
-				<div>
-					<h5 class="text-center"><c:out value="${userLogin}"/>: <span id="userLogin" /></h5>
-					<h5 class="text-center"><c:out value="${userName}"/>: <span id="userName" /></h5>
-					<h5 class="text-center"><c:out value="${userSurname}"/>: <span id="userSurname" /></h5>
-					<h5 class="text-center"><c:out value="${userBalance}"/>: <span id="userBalance" /></h5>
-					<h5 class="text-center"><c:out value="${userEmail}"/>: <span id="userEmail" /></h5>
-					<h5 class="text-center"><c:out value="${userDateOfBirth}"/>: <span id="userDateOfBirth" /></h5>
-					<h5 class="text-center"><c:out value="${userPassport}"/>: <span id="userPassport" /></h5>
-					<h5 class="text-center"><c:out value="${userPhone}"/>: <span id="userPhone" /></h5>
-					<h5 class="text-center"><c:out value="${userAddress}"/>: <span id="userAddress" /></h5>
-					<h5 class="text-center"><c:out value="${userBetAllow}"/>: <span id="userBetAllow" /></h5>
-				</div>
-      		</div>
-      		
-      		<div class="modal-footer">
-			  <div>
-				<div class="float-style">
-					<form id="removeUser-form" method="POST" action="Controller" accept-charset="UTF-8">
-						<input type="hidden" name="command" value="remove-user" />
-						<input type="hidden" name="userId" id="userId" value=""/>
-						<button type="submit" class="btn btn-primary"><c:out value="${btnRemoveUser}"/></button>
-					</form>
-				</div>
-				<div class="float-style">
-					<form id="allowBet-form" method="POST" action="Controller" accept-charset="UTF-8">
-						<input type="hidden" name="command" value="allow-bet" />
-						<input type="hidden" name="userId" value=""/>
-						<input type="hidden" name="allowBet" id="allowBet" value="1"/>
-						<button type="submit" class="btn btn-success"><c:out value="${btnAllowBet}"/></button>
-					</form>
-				</div>
-				<div class="float-style">
-					<form id="forbidBet-form" method="POST" action="Controller" accept-charset="UTF-8">
-						<input type="hidden" name="command" value="allow-bet" />
-						<input type="hidden" name="userId" value=""/>
-						<input type="hidden" name="allowBet" id="allowBet" value="0"/>
-						<button type="submit" class="btn btn-danger"><c:out value="${btnForbidBet}"/></button>
-					</form>
-				</div>
-			  </div>
-			</div>
-		</div>--%>
-		
 		</div>
 	</div> 
 
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
-	
+	<!-- Подключение jQuery и JavaScript-->
+	<script type="text/javascript">
+	// Allow enter numbers only
+	$('.score').keypress(function(event) {
+		if (event.which != 8) {
+			if (event.which < 48 || event.which > 57) {
+				return false;
+			}
+		}
+	});
+	</script>
 </body>
 </html>

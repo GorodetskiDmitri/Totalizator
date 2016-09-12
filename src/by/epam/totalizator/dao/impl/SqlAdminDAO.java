@@ -31,6 +31,8 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 	private static final String CHECK_WIN_BET = "UPDATE bet SET bet_status='3' WHERE outcome=? AND id_line=?";
 	private static final String WIN_BETS_LIST = "SELECT b.id_user, Sum(b.amount), a.win_coeff FROM bet b, line a WHERE b.id_line=a.id AND b.outcome=? AND b.bet_status='3' AND b.id_line=? GROUP BY b.id_user";
 	private static final String PAYOUT = "UPDATE users SET balance = (balance + ((?)*(?))) WHERE id=?";
+	private static final String GET_SPORT_LIST = "SELECT * FROM sport ORDER BY name";
+	private static final String GET_COMPETITION_LIST = "SELECT * FROM competition ORDER BY name";
 	
 	@Override
 	public List<User> getUserList(String findCriteria) throws DAOException {
@@ -253,4 +255,57 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} 
 	}
 	
+	@Override
+	public List<Sport> getSportList() throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Sport sport = null;
+		List<Sport> sportList = new ArrayList<Sport>();
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_SPORT_LIST);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				sport = new Sport();
+				sport.setId(resultSet.getInt(1));
+				sport.setName(resultSet.getString(2));
+				sportList.add(sport);
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return sportList;
+	}
+	
+	@Override
+	public List<Competition> getCompetitionList() throws DAOException {
+		Connection connection = null;
+		PreparedStatement prepareStatement = null; 
+		ResultSet resultSet = null;
+		Competition competition = null;
+		List<Competition> competitionList = new ArrayList<Competition>();
+		try {
+			connection = connectionPool.takeConnection();
+			prepareStatement = connection.prepareStatement(GET_COMPETITION_LIST);
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+				competition = new Competition();
+				competition.setId(resultSet.getInt(1));
+				competition.setName(resultSet.getString(2));
+				competitionList.add(competition);
+			} 
+		} catch (SQLException e)  {
+			throw new DAOException("SQL query not correct", e);
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
+		} finally {
+			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+		}
+		return competitionList;
+	}
 }

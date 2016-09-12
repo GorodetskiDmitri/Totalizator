@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.util.List;
 
 import by.epam.totalizator.dao.exception.DAOException;
+import by.epam.totalizator.entity.Competition;
 import by.epam.totalizator.entity.Line;
+import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.entity.Winner;
 
@@ -18,4 +20,6 @@ public interface AdminDAO extends UserDAO {
 	void checkWinBet(Connection connection, int lineId, int winOutcome) throws DAOException;
 	List<Winner> getWinners(Connection connection, int lineId, int winOutcome) throws DAOException;
 	void payout (Connection connection, List<Winner> winners) throws DAOException;
+	List<Sport> getSportList() throws DAOException;
+	List<Competition> getCompetitionList() throws DAOException;
 }

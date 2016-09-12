@@ -35,8 +35,8 @@ public class SqlUserDAO implements UserDAO {
 			+ "INNER JOIN competition c ON a.id_competition=c.id "
 			+ "WHERE a.fixed_result='1' "
 			+ "ORDER BY DATE(a.start_date) DESC, s.name ASC, c.name ASC, a.event_name ASC";
-	private static final String GET_SPORT = "SELECT * FROM sport WHERE id=?";
-	private static final String GET_COMPETITION = "SELECT * FROM competition WHERE id=?";
+	private static final String GET_SPORT_BY_ID = "SELECT * FROM sport WHERE id=?";
+	private static final String GET_COMPETITION_BY_ID = "SELECT * FROM competition WHERE id=?";
 	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname,"
 			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
 	private static final String GET_LOGIN = "SELECT login FROM users WHERE login=?";
@@ -324,7 +324,7 @@ public class SqlUserDAO implements UserDAO {
 		Sport sport = null;
 		try {
 			connection = connectionPool.takeConnection();
-			prepareStatement = connection.prepareStatement(GET_SPORT);
+			prepareStatement = connection.prepareStatement(GET_SPORT_BY_ID);
 			prepareStatement.setInt(1, idSport);
 			resultSet = prepareStatement.executeQuery();
 			while (resultSet.next()) {
@@ -350,7 +350,7 @@ public class SqlUserDAO implements UserDAO {
 		Competition competition = null;
 		try {
 			connection = connectionPool.takeConnection();
-			prepareStatement = connection.prepareStatement(GET_COMPETITION);
+			prepareStatement = connection.prepareStatement(GET_COMPETITION_BY_ID);
 			prepareStatement.setInt(1, idCompetition);
 			resultSet = prepareStatement.executeQuery();
 			while (resultSet.next()) {
