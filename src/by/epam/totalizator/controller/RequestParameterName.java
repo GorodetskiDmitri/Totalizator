@@ -1,7 +1,5 @@
 package by.epam.totalizator.controller;
 
-import java.util.Date;
-
 public final class RequestParameterName {
 	
 	public static final String ACCESS_DENIED = "accessDenied";

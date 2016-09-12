@@ -18,25 +18,26 @@ import by.epam.totalizator.command.exception.CommandException;
 public class Controller extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String COMMAND_NAME = "command";
-	private final CommandHelper commandHelper = new CommandHelper();
+	private CommandHelper commandHelper = CommandHelper.getInstance();
 
     public Controller() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		service(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.getSession(true).setAttribute("locale", request.getParameter("locale"));
-		//request.getRequestDispatcher("index.jsp").forward(request, response);
+		service(request, response);
+	}
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String commandName;
 		Command command;
 		String page = null;
 		try {
-			commandName = request.getParameter(COMMAND_NAME);
+			commandName = request.getParameter(RequestParameterName.COMMAND);
 			command = commandHelper.getCommand(commandName);
 			System.out.println("commandName=" + commandName);
 			command.execute(request, response);
@@ -45,9 +46,7 @@ public class Controller extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			if (dispatcher != null) {
 				dispatcher.forward(request, response);
-			} else {
-				
-			}
+			} 
 		}
 	}
 

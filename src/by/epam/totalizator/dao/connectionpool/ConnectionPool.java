@@ -17,7 +17,6 @@ import java.sql.SQLXML;
 import java.sql.Savepoint;
 import java.sql.Statement;
 import java.sql.Struct;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -73,7 +72,7 @@ public final class ConnectionPool {
 	/**
 	 * The method gives ConnectionPool singleton instance.
 	 */
-	public static synchronized ConnectionPool getInstance() {
+	public static ConnectionPool getInstance() {
 		return Holder.INSTANCE;
 	}
 	

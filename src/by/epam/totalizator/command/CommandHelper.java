@@ -26,9 +26,10 @@ import by.epam.totalizator.command.impl.UnknownCommand;
 
 public class CommandHelper {
 
-	private Map<CommandName, Command> commands = new HashMap<>();
+	private static CommandHelper commandHelper = new CommandHelper();
+	private Map<CommandName, Command> commands = new HashMap<CommandName, Command>();
 	
-	public CommandHelper() {
+	private CommandHelper() {
 		commands.put(CommandName.ALLOW_BET, new AllowBetCommand());
 		commands.put(CommandName.CHANGE_LOCALE, new ChangeLocaleCommand());
 		commands.put(CommandName.CONTACTS, new ContactsCommand());
@@ -48,6 +49,10 @@ public class CommandHelper {
 		commands.put(CommandName.SHOW_RESULT, new ShowResultCommand());
 		commands.put(CommandName.SHOW_RESULT_FOR_FIX, new ShowResultForFixCommand());
 		commands.put(CommandName.SHOW_USER_LIST, new ShowUserListCommand());
+	}
+	
+	public static CommandHelper getInstance() {
+		return commandHelper;
 	}
 	
 	public Command getCommand(String commandName) {

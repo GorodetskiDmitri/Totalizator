@@ -3,7 +3,6 @@ package by.epam.totalizator.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.epam.totalizator.dao.AdminDAO;
 import by.epam.totalizator.dao.DAOFactory;
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.exception.DAOException;
@@ -14,12 +13,13 @@ import by.epam.totalizator.service.exception.ServiceException;
 
 public final class UserService {
 	
+	private static final DAOFactory factory = DAOFactory.getInstance();
+	private static final UserDAO userDAO = factory.getUserDAO();
+	
 	public final static User checkLogin(String login, String password) throws ServiceException {
 		if (!Validation.validateLogin(login, password)) {
 			throw new ServiceException("Invalid login or password");
 		}
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		User user = null;
 		try {
 			user = userDAO.getUser(login, password.hashCode());
@@ -30,8 +30,6 @@ public final class UserService {
 	}
 	
 	public final static User getUser(String login, int password) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		User user = null;
 		try {
 			user = userDAO.getUser(login, password);
@@ -45,8 +43,6 @@ public final class UserService {
 		if (!Validation.validateRegistrationData(user)) {
 			throw new ServiceException("Invalid registration param");
 		}
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		try {
 			if (!userDAO.isLoginFree(user.getLogin())){
 				return null;
@@ -60,9 +56,6 @@ public final class UserService {
 	}
 	
 	public final static boolean makeDeposit(String login, double summa) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
-		
 		try {
 			return userDAO.makeDeposit(login, summa);
 		} catch (DAOException e) {
@@ -71,12 +64,9 @@ public final class UserService {
 	}
 	
 	public final static double getUnresolvedMoney(int idUser) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		double money = 0.0;
 		try {
 			money = userDAO.getUnresolvedMoney(idUser);
-			List<Bet> betList = userDAO.getAllUserBet(2);
 		} catch (DAOException e) {
 			throw new ServiceException(e); 
 		}
@@ -84,8 +74,6 @@ public final class UserService {
 	}
 	
 	public final static List<Bet> getAllUserBet(int idUser) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		List<Bet> betList = new ArrayList<Bet>();
 		
 		try {
@@ -97,8 +85,6 @@ public final class UserService {
 	}
 	
 	public final static List<Line> getLineList() throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		List<Line> lineList = new ArrayList<Line>();
 		
 		try {
@@ -110,8 +96,6 @@ public final class UserService {
 	}
 	
 	public final static List<Line> getResultList() throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		List<Line> resultList = new ArrayList<Line>();
 		
 		try {
@@ -123,8 +107,6 @@ public final class UserService {
 	}
 	
 	public final static boolean makeBet(Bet bet) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		UserDAO userDAO = factory.getUserDAO();
 		try {
 			return userDAO.makeBet(bet);			
 		} catch (DAOException e) {

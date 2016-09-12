@@ -12,7 +12,7 @@ import by.epam.totalizator.controller.PageName;
 
 public class UnknownCommand implements Command {
 
-	public static final String CURRENT_COMMAND = "current_command";
+	private static final String CURRENT_COMMAND = "current_command";
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

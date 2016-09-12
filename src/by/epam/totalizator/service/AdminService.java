@@ -21,9 +21,10 @@ import by.epam.totalizator.service.exception.ServiceException;
 
 public class AdminService {
 	
+	private static final DAOFactory factory = DAOFactory.getInstance();
+	private static final AdminDAO adminDAO = factory.getAdminDAO(); 
+	
 	public static List<User> getUserList(String findCriteria) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
 		List<User> userList = new ArrayList<User>();
 		
 		try {
@@ -35,9 +36,6 @@ public class AdminService {
 	}
 	
 	public static boolean removeUser(int userId) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
-		
 		try {
 			return adminDAO.removeUser(userId);
 		} catch (DAOException e) {
@@ -46,9 +44,6 @@ public class AdminService {
 	}
 	
 	public static boolean allowBetForUser(int userId, String allowBet) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
-		
 		try {
 			return adminDAO.allowBetForUser(userId, allowBet);
 		} catch (DAOException e) {
@@ -57,8 +52,6 @@ public class AdminService {
 	}
 	
 	public final static List<Line> getResultListForFix() throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
 		List<Line> lineList = new ArrayList<Line>();
 		
 		try {
@@ -70,9 +63,6 @@ public class AdminService {
 	}
 	
 	public static boolean fixResult(int score1, int score2, int lineId) throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
-		
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		Connection connection = null;
 		List<Winner> winBets = null;
@@ -118,8 +108,6 @@ public class AdminService {
 	}
 	
 	public final static List<Sport> getSportList() throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
 		List<Sport> sportList = new ArrayList<Sport>();
 		
 		try {
@@ -131,8 +119,6 @@ public class AdminService {
 	}
 	
 	public final static List<Competition> getCompetitionList() throws ServiceException {
-		DAOFactory factory = DAOFactory.getInstance();
-		AdminDAO adminDAO = factory.getAdminDAO();
 		List<Competition> competitionList = new ArrayList<Competition>();
 		
 		try {

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,31 +22,16 @@ public class SqlUserDAO implements UserDAO {
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
 	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY bet_status ASC, id DESC, bet_date DESC";
-	private static final String GET_LINE = "SELECT a.*, s.name, c.name FROM line a "
-			+ "INNER JOIN sport s ON a.id_sport = s.id "
-			+ "INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
-	private static final String GET_LINE_LIST = "SELECT a.*, s.name, c.name FROM line a "
-			+ "INNER JOIN sport s ON a.id_sport = s.id "
-			+ "INNER JOIN competition c ON a.id_competition=c.id "
-			+ "WHERE fixed_result='0' ORDER BY s.name, c.name, a.start_date, a.event_name";
-	private static final String GET_RESULT_LIST = "SELECT a.*, s.name, c.name FROM line a "
-			+ "INNER JOIN sport s ON a.id_sport = s.id "
-			+ "INNER JOIN competition c ON a.id_competition=c.id "
-			+ "WHERE a.fixed_result='1' "
-			+ "ORDER BY DATE(a.start_date) DESC, s.name ASC, c.name ASC, a.event_name ASC";
+	private static final String GET_LINE = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
+	private static final String GET_LINE_LIST = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE fixed_result='0' ORDER BY s.name, c.name, a.start_date, a.event_name";
+	private static final String GET_RESULT_LIST = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.fixed_result='1' ORDER BY DATE(a.start_date) DESC, s.name ASC, c.name ASC, a.event_name ASC";
 	private static final String GET_SPORT_BY_ID = "SELECT * FROM sport WHERE id=?";
 	private static final String GET_COMPETITION_BY_ID = "SELECT * FROM competition WHERE id=?";
-	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname,"
-			+ "email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
+	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
 	private static final String GET_LOGIN = "SELECT login FROM users WHERE login=?";
-	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, "
-			+ "email, address, phone, passport, date_of_birth, bet_allow) "
-			+ "VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
-	private static final String INSERT_BET = "INSERT INTO bet(id_user, id_line, bet_date, amount, outcome, bet_status) "
-			+ "VALUES(?,?,CURDATE(),?,?,'0')";
+	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow) VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
+	private static final String INSERT_BET = "INSERT INTO bet(id_user, id_line, bet_date, amount, outcome, bet_status) VALUES(?,?,CURDATE(),?,?,'0')";
 	private static final String REDUCE_USER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE id=? AND status='client'";
-	private static final String INCREASE_USER_BALANCE = "UPDATE users SET balance=(balance + (?)) WHERE id=? AND status='client'";
-	private static final String REDUCE_BOOKMAKER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE status='bookmaker'";
 	private static final String INCREASE_BOOKMAKER_BALANCE = "UPDATE users SET balance=(balance + (?)) WHERE status='bookmaker'";
 	private static final String MAKE_DEPOSIT = "UPDATE users SET balance=? WHERE login=?";
 	private static final String SHOW_UNRESOLVED_MONEY = "SELECT SUM(amount) FROM bet WHERE id_user=? AND bet_status='0';";

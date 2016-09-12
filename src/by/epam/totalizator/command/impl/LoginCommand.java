@@ -19,8 +19,10 @@ public class LoginCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page;
+		String login = request.getParameter(RequestParameterName.LOGIN).trim();
+		String password = request.getParameter(RequestParameterName.PASSWORD).trim();
 		try {
-			User user = UserService.checkLogin(request.getParameter(RequestParameterName.LOGIN).trim(), request.getParameter(RequestParameterName.PASSWORD).trim());
+			User user = UserService.checkLogin(login, password);
 			if (user != null) {
 				request.getSession().setAttribute(RequestParameterName.USER, user);
 				
