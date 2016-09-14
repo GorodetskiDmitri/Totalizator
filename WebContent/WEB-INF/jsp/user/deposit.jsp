@@ -18,6 +18,7 @@
 	<fmt:message bundle="${user}" key="user.deposit.cardNumber" var="cardNumber" />
 	<fmt:message bundle="${user}" key="user.deposit.summa" var="summa" />
 	<fmt:message bundle="${user}" key="user.deposit.validSumma" var="validSumma" />
+	<fmt:message bundle="${user}" key="user.deposit.limitSumma" var="limitSumma" />
 	<fmt:message bundle="${user}" key="user.deposit.error.card" var="cardError" />
 	<fmt:message bundle="${user}" key="user.deposit.error.cardNumber" var="cardNumberError" />
 	<fmt:message bundle="${user}" key="user.deposit.error.summa" var="summaError" />
@@ -25,12 +26,13 @@
 	<fmt:message bundle="${user}" key="user.button.depositAction" var="btnDepositAction" />
 	<fmt:message bundle="${user}" key="user.button.cancel" var="btnCancel" />
 	
-	<title>${title}</title>
+	<title><c:out value="${title}"/></title>
 </head>
+
 <body>
 	<%@ include file="user_menu.jsp" %>
 		
-	<!-- Контент страницы -->
+	<!-- Page content -->
 	<div class="content">
 		<div class="container">
 			<div class="slogan" style="margin-bottom: 10px">
@@ -54,6 +56,7 @@
 						<td style="color: limegreen">0.00&nbsp;$</td>
 					</tr>
 				</table>
+				
 				<br/>
 				<a href="#depositModal" data-toggle="modal"><input type="button" class="btn btn-primary" value="${btnDeposit}"></button></a>
 				
@@ -71,44 +74,45 @@
       		<form id="deposit-form" method="POST" action="Controller" accept-charset="UTF-8"> 
       		<div class="modal-body">
 				<div>
-						<input type="hidden" name="command" value="make-deposit" />
-						<input type="hidden" name="login" value="${sessionScope.client.login}" />
-						<input type="hidden" name="balance" value="${sessionScope.client.balance}" />
-						<input type="hidden" id="cardLimit" value="${Math.random()*1500}"/>
+					<input type="hidden" name="command" value="make-deposit" />
+					<input type="hidden" name="login" value="${sessionScope.client.login}" />
+					<input type="hidden" name="balance" value="${sessionScope.client.balance}" />
+					<input type="hidden" id="cardLimit" value="${Math.random()*1500}"/>
 						
-						<div class="card-img">
-							<img src="resources/img/cards/webmoney.png" height="24" width="36">&nbsp;&nbsp;
-							<div><input type="radio" name="card" value="webMoney"> WEB MONEY</div>
-						</div>
-						<div class="card-img">
-							<img src="resources/img/cards/visa.png">&nbsp;&nbsp;
-							<div><input type="radio" name="card" value="visa"> VISA</div>
-						</div>
-						<div class="card-img">
-							<img src="resources/img/cards/mastercard.png">&nbsp;&nbsp;
-							<div><input type="radio" name="card" value="masterCard"> MASTER CARD</div>
-						</div>
-						<span id="span-card" class="help-inline error"><c:out value="${cardError}"/><br/></span>
-						<br/>
+					<div class="card-img">
+						<img src="resources/img/cards/webmoney.png" height="24" width="36">&nbsp;&nbsp;
+						<div><label><input type="radio" name="card" value="webMoney">&nbsp;WEB MONEY</label></div>
+					</div>
+					<div class="card-img">
+						<img src="resources/img/cards/visa.png">&nbsp;&nbsp;
+						<div><label><input type="radio" name="card" value="visa">&nbsp;VISA</label></div>
+					</div>
+					<div class="card-img">
+						<img src="resources/img/cards/mastercard.png">&nbsp;&nbsp;
+						<div><label><input type="radio" name="card" value="masterCard">&nbsp;MASTER CARD</label></div>
+					</div>
 						
-						<div id="card-control-group" class="control-group">
-							<div class="controls">
-								<c:out value="${cardNumber}"/><br/>
-								<input type="text" name="cardNumber" id="cardNumber" maxlength="12" onkeypress="delSpan()"/>
-								<span id="span-cardNumber" class="help-inline error"><c:out value="${cardNumberError}"/></span>
-							</div>
+					<span id="span-card" class="help-inline error"><c:out value="${cardError}"/><br/></span>
+					<br/>
+					
+					<div id="card-control-group" class="control-group">
+						<div class="controls">
+							<c:out value="${cardNumber}"/><br/>
+							<input type="text" name="cardNumber" id="cardNumber" class="numOnly" maxlength="12" onkeypress="delSpan()"/>
+							<span id="span-cardNumber" class="help-inline error"><c:out value="${cardNumberError}"/></span>
 						</div>
+					</div>
 						
-						<div id="summa-control-group" class="control-group">
-							<div class="controls">
-								<c:out value="${summa}"/><br/>
-								<input type="text" name="summa" id="summa" maxlength="7" onkeypress="delSpan()"/>
-								<span id="span-summa" class="help-inline error"><c:out value="${summaError}"/></span>
-								<br/>
-								<span style="color: olive"><c:out value="${validSumma}"/></span>
-							</div>
+					<div id="summa-control-group" class="control-group">
+						<div class="controls">
+							<c:out value="${summa}"/><br/>
+							<input type="text" name="summa" id="summa" class="decimalOnly" maxlength="7" onkeypress="delSpan()"/>
+							<span id="span-summa" class="help-inline error"><c:out value="${summaError}"/></span>
+							<br/>
+							<span style="color: olive"><c:out value="${validSumma}"/></span>
 						</div>
-						<span id="span-limit" class="help-inline error"><br/>Недостаточно средств на карте</span>
+					</div>
+					<span id="span-limit" class="help-inline error"><br/><c:out value="${limitSumma}"/></span>
 				</div>
       		</div>
       		
@@ -123,16 +127,16 @@
 		</div>
 		</div>
 	</div>
+	<!-- End Modal -->
 	
 			</div>
 		</div>
 	</div>
 
-	
-
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
-	<!-- Подключение jQuery и JavaScript-->
+	<!-- jQuery and JavaScript-->
+	<script src="resources/js/util.js"></script>
 	<script src="resources/js/deposit.js"></script>
 	
 </body>

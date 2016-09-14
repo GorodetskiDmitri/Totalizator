@@ -43,58 +43,34 @@
 
 	<title><c:out value="${title}"/></title>
 
-	<!-- Иконка страницы -->
-	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
-
-	<!-- Для совместимости с максимально возможной версией IE -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-	<!-- Для адаптивности с любыми устройствами -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Подключение шрифта из Google Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	
-	<!-- Подключение mini версии bootstrap -->
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-	
-	<!-- Подключение файла собственных стилей -->
-	<link rel="stylesheet" href="resources/css/style.css">
-
-	<!-- Подключение библиотеки jQuery -->
+	<!-- Link jQuery library -->
   	<script type="text/javascript" src="resources/js/jquery-1.11.1.min.js"></script>
  	
- 	<!-- Подключение скрипта moment-with-locales.min.js для работы с датами -->
+ 	<!-- Link script moment-with-locales.min.js for work with Date -->
   	<script type="text/javascript" src="resources/js/moment-with-locales.min.js"></script>
   
-  	<!-- Подключение скрипта платформы Twitter Bootstrap 3 -->
+  	<!-- Link script Twitter Bootstrap 3 -->
   	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
     
-    <!-- Подключение скрипта виджета "Bootstrap datetimepicker" -->
+    <!-- Link script widget "Bootstrap datetimepicker" -->
   	<script type="text/javascript" src="resources/js/bootstrap-datetimepicker.min.js"></script>
     
-    <!-- Подключение CSS виджета "Bootstrap datetimepicker" -->  
+    <!-- Link css widget "Bootstrap datetimepicker" -->  
   	<link rel="stylesheet" href="resources/css/bootstrap-datetimepicker.min.css" />
-
-	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body>
 
-	<jsp:include page="/WEB-INF/jsp/common-header.jsp" />
+	<%@ include file="header.jsp" %>
 	
-	<!-- Контент страницы -->
+	<!-- Page content -->
 	<div class="content">
 		<div class="container">
 			<div class="slogan">
 				<h1><span><c:out value="${slogan}"/></span></h1>
 			</div>
 			
-			<form id="registration" name="registration" method="POST" action="Controller" class="form-horizontal  label-slyle" > 
+			<form id="registration-form" name="registration-form" method="POST" action="Controller" class="form-horizontal  label-slyle" > 
 				<input type="hidden" name="command" value="register-user" />
 				<input type="hidden" id="inputValid" value="${inputValid}" />
 				<input type="hidden" id="passwordValid" value="${passwordValid}" />
@@ -187,6 +163,7 @@
 				    </div>
 				</div>
 				<br />
+				
 				<div class="form-group">
 				    <div class="col-xs-offset-3 col-xs-6">
 				      	<button type="submit" class="btn btn-primary"><c:out value="${registr}"/></button>
@@ -206,8 +183,22 @@
 		</div>
 	</footer>
 	 
-	<!-- Подключение jQuery и JavaScript-->
-	<script src="resources/js/registration.js"></script>
+	<!-- jQuery and JavaScript-->
+	<script src="resources/js/main.js"></script>
+	<script src="resources/js/validation.js"></script>
+	
+	<script type="text/javascript">
+		// Identify HTML-element, for which we want to initialize widget "Bootstrap datetimepicker"
+		$(function () {
+			$('#datetimepicker').datetimepicker({pickTime:false, language: 'ru'});
+		});
+
+		// Reset all fields on Registration form
+		$('#resetBtn').click(function() {
+			$(".form-control").val("");
+			$("#agree").attr('checked', false);
+		});
+	</script>
 
 </body>
 </html>

@@ -12,18 +12,17 @@
 	<fmt:message bundle="${user}" key="user.slogan" var="slogan" />
 	<fmt:message bundle="${user}" key="user.title.general" var="title" />
 	
-	<title>${title}</title>
+	<title><c:out value="${title}"/></title>
 </head>
+
 <body>
 	<%@ include file="user_menu.jsp" %>
 	
-	<!-- Контент страницы -->
 	<div class="content">
 		<div class="container">
 			<div class="slogan" style="margin-bottom: 120px">
-				<h1>${slogan}</h1>
+				<h1><c:out value="${slogan}"/></h1>
 			</div>
-			
 		</div>
 	</div>
 

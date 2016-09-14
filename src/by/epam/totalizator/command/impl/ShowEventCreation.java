@@ -13,6 +13,7 @@ import by.epam.totalizator.controller.ControllerUtil;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.Competition;
+import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
@@ -26,15 +27,18 @@ public class ShowEventCreation implements Command {
 		
 		List<Sport> sportList;
 		List<Competition> competitionList;
+		List<Line> lineList;
 		try {
 			sportList = AdminService.getSportList();
 			competitionList = AdminService.getCompetitionList();
+			lineList = AdminService.getLast5Lines();
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}
 		
 		request.setAttribute(RequestParameterName.SPORT, sportList);
 		request.setAttribute(RequestParameterName.COMPETITION, competitionList);
+		request.setAttribute(RequestParameterName.LINE, lineList);
 		
 		try {
 			request.getRequestDispatcher(PageName.ADD_EVENT_PAGE).forward(request, response);

@@ -20,6 +20,10 @@ public interface AdminDAO extends UserDAO {
 	void checkWinBet(Connection connection, int lineId, int winOutcome) throws DAOException;
 	List<Winner> getWinners(Connection connection, int lineId, int winOutcome) throws DAOException;
 	void payout (Connection connection, List<Winner> winners) throws DAOException;
+	void payoutBookmaker (Connection connection, List<Winner> winners) throws DAOException;
 	List<Sport> getSportList() throws DAOException;
 	List<Competition> getCompetitionList() throws DAOException;
+	boolean addEvent(Line line) throws DAOException;
+	List<Line> getLast5Lines() throws DAOException;
+	
 }

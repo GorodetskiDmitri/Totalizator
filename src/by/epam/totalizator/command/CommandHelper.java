@@ -3,6 +3,7 @@ package by.epam.totalizator.command;
 import java.util.HashMap;
 import java.util.Map;
 
+import by.epam.totalizator.command.impl.AddEventCommand;
 import by.epam.totalizator.command.impl.AllowBetCommand;
 import by.epam.totalizator.command.impl.ChangeLocaleCommand;
 import by.epam.totalizator.command.impl.ContactsCommand;
@@ -49,6 +50,7 @@ public class CommandHelper {
 		commands.put(CommandName.SHOW_RESULT, new ShowResultCommand());
 		commands.put(CommandName.SHOW_RESULT_FOR_FIX, new ShowResultForFixCommand());
 		commands.put(CommandName.SHOW_USER_LIST, new ShowUserListCommand());
+		commands.put(CommandName.ADD_EVENT, new AddEventCommand());
 	}
 	
 	public static CommandHelper getInstance() {

@@ -19,7 +19,7 @@ import by.epam.totalizator.service.exception.ServiceException;
 
 public class ShowResultCommand implements Command {
 
-	private static final int LINES_ON_PAGE = 10;
+	private static final int LINES_ON_PAGE = 6;
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {

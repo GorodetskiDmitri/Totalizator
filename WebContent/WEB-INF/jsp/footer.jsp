@@ -8,7 +8,7 @@
 		</div>
 	</footer>
 
-	<!-- Подключение jQuery и JavaScript-->
+	<!-- jQuery and JavaScript-->
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script> 
 	<script src="resources/js/main.js"></script>

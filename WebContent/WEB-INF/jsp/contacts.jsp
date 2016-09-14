@@ -16,27 +16,28 @@
 	<fmt:message bundle="${menu}" key="menu.contacts.regional-offices" var="regional" />
 	<fmt:message bundle="${menu}" key="menu.contacts.international-offices" var="international" />
 	
-	<title>${title}</title>
+	<title><c:out value="${title}"/></title>
 
 </head>
-<body >
+
+<body>
 
 	<jsp:include page="/WEB-INF/jsp/header.jsp" />
 
-	<!-- Контент страницы -->
+	<!-- Page content -->
 	<div class="content">
 		<div class="container">
 			<div class="slogan">
-				<h1>${part1} <span>${part2}</span></h1>
+				<h1><c:out value="${part1} "/><span><c:out value="${part2}"/></span></h1>
 			</div>
 			<div class="row">
 				<div class="card-row clearfix">
 					<div class="col-md-4 col-sm-6">
 						<div class="contacts">
 							<h4>${main}</h4>
-							<p>Minsk. Nezavisimosti, 133</br>
-							Tel.: +375-29-717-44-20</br>
-							Fax.: +375-29-717-44-22</br>
+							<p>Minsk. Nezavisimosti, 133<br/>
+							Tel.: +375-29-717-44-20<br/>
+							Fax.: +375-29-717-44-22<br/>
 							e-mail: t-one@gmail.com</p>
 						</div>
 					</div>
@@ -44,27 +45,27 @@
 						<div class="contacts">
 							<h4>${regional}</h4>
 							<h5>Minsk</h5>
-							<p>Minsk. Nezavisimosti, 56</br>
+							<p>Minsk. Nezavisimosti, 56<br/>
 							Tel. +375-29-717-44-26</p>
-							<p>Minsk. Kamennogorskaja, 3</br>
+							<p>Minsk. Kamennogorskaja, 3<br/>
 							Tel. +375-29-717-44-25</p>
-							<p>Minsk. Nemiga, 8</br>
+							<p>Minsk. Nemiga, 8<br/>
 							Tel. +375-29-717-44-27</p>
-							<p>Minsk. Kulman, 15</br>
+							<p>Minsk. Kulman, 15<br/>
 							Tel. +375-29-717-44-28</p>
 							<h5>Gomel</h5>
-							<p>Gomel. Sovetskaja, 32</br>
+							<p>Gomel. Sovetskaja, 32<br/>
 							Tel. +375-29-772-35-15</p>
-							<p>Gomel. Lenina, 9</br>
+							<p>Gomel. Lenina, 9<br/>
 							Tel. +375-29-772-35-16</p>
 							<h5>Grodno</h5>
-							<p>Grodno. Kruglaja pl., 1</br>
+							<p>Grodno. Kruglaja pl., 1<br/>
 							Tel. +375-29-733-16-06</p>
 							<h5>Vitebsk</h5>
-							<p>Vitebsk. Krasnoarmejskaja, 19</br>
+							<p>Vitebsk. Krasnoarmejskaja, 19<br/>
 							Tel. +375-29-704-92-12</p>
 							<h5>Pinsk</h5>
-							<p>Pinsk. Polesskaja, 7a</br>
+							<p>Pinsk. Polesskaja, 7a<br/>
 							Tel. +375-29-781-24-24</p>
 						</div>
 					</div>
@@ -72,29 +73,27 @@
 						<div class="contacts">
 							<h4>${international}</h4>
 							<h5>Russia</h5>
-							<p>Moscow. Turgeneva, 44</br>
+							<p>Moscow. Turgeneva, 44<br/>
 							Tel. +395-48-587-41-00</p>
 							<h5>Kazakhstan</h5>
-							<p>Astana. Barmalyke, 10</br>
+							<p>Astana. Barmalyke, 10<br/>
 							Tel. +345-60-811-77-40</p>
 							<h5>Ukraine</h5>
-							<p>Kiev. Solomennaja, 18</br>
+							<p>Kiev. Solomennaja, 18<br/>
 							Tel. +371-59-218-87-61</p>
 							<h5>Poland</h5>
-							<p>Krakow. Malinova, 17</br>
+							<p>Krakow. Malinova, 17<br/>
 							Tel. +323-42-114-14-18</p>
 							<h5>Slovakia</h5>
-							<p>Presov. Dubnice, 3</br>
+							<p>Presov. Dubnice, 3<br/>
 							Tel. +303-74-650-22-92</p>
 						</div>
 					</div>
 				</div>
 			</div>
-				
 		</div>
 	</div>
 
-	
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
 </body>

@@ -1,6 +1,7 @@
 package by.epam.totalizator.command;
 
 public enum CommandName {
+	ADD_EVENT,
 	ALLOW_BET,
 	CHANGE_LOCALE,
 	CONTACTS,

@@ -22,16 +22,17 @@
 	<c:set var="totalPage" value="${totalPage}" scope="request"/>
 	<c:set var="currentPage" value="${param.currentPage}"/> 
 	
-	<title>${title}</title>
+	<title><c:out value="${title}"/></title>
 </head>
+
 <body>
 	<%@ include file="user_menu.jsp" %>
 	
-	<!-- Контент страницы -->
+	<!-- Page content -->
 	<div class="content">
 		<div class="container">
 			<div class="slogan" style="margin-bottom: 10px">
-				<h1>${slogan}</h1>
+				<h1><c:out value="${slogan}" /></h1>
 			</div>
 			<br/>
 			<c:if test="${betList.size() != 0}">
@@ -78,7 +79,7 @@
 									<td><c:out value="${bet.amount}" /></td>
 									<td>
 										<c:choose>
-											<c:when test="${bet.line.score1 == -1 || bet.line.score2 == -1 || !bet.line.fixedResult.equals('1')}">
+											<c:when test="${!bet.line.fixedResult.equals('1')}">
 											</c:when>
 											<c:otherwise>
 												<c:out value="${bet.line.score1} : ${bet.line.score2}" />
@@ -89,22 +90,24 @@
 									<c:if test="${bet.line.fixedResult.equals('1')}">
 										<c:choose>
 											<c:when test="${bet.outcome.equals('1') && (bet.line.score1 > bet.line.score2) }">
-												<td style="color: DodgerBlue"><b>
-													<fmt:formatNumber type="number" pattern=".##" value="${bet.amount * bet.line.winCoeff}" />
-												</b></td>
+												<td style="color: DodgerBlue">
+													<b><fmt:formatNumber type="number" pattern=".##" value="${bet.amount * bet.line.winCoeff}" /></b>
+												</td>
 											</c:when>
 											<c:when test="${bet.outcome.equals('2') && (bet.line.score1 == bet.line.score2) }">
-												<td style="color: DodgerBlue"><b>
-													<fmt:formatNumber type="number" pattern=".##" value="${bet.amount * bet.line.drawCoeff}" />
-												</b></td>
+												<td style="color: DodgerBlue">
+													<b><fmt:formatNumber type="number" pattern=".##" value="${bet.amount * bet.line.drawCoeff}" /></b>
+												</td>
 											</c:when>
 											<c:when test="${bet.outcome.equals('3') && (bet.line.score1 < bet.line.score2) }">
-												<td style="color: DodgerBlue"><b>
-													<fmt:formatNumber type="number" pattern=".##"  value="${bet.amount * bet.line.loseCoeff}" />
-												</b></td>
+												<td style="color: DodgerBlue">
+													<b><fmt:formatNumber type="number" pattern=".##"  value="${bet.amount * bet.line.loseCoeff}" /></b>
+												</td>
 											</c:when>
 											<c:otherwise>
-												<td style="color: #d42819"><b><c:out value="0.00" /></b></td>
+												<td style="color: #d42819">
+													<b><c:out value="0.00" /></b>
+												</td>
 											</c:otherwise>
 										</c:choose>
 									</c:if>
@@ -139,14 +142,11 @@
 		<input type="hidden" name="command" value="show-bet-history"/>
 		<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}"/>
 	</form>
-		
-		</div> 
-	</div>
 
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
-	<!-- Подключение jQuery и JavaScript-->
-	<script type="text/javascript"">
+	<!-- jQuery and JavaScript-->
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#" + $("#currentPage").val() + "_li").addClass("active");
 		});

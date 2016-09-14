@@ -35,28 +35,29 @@
 	<c:set var="searchText" value="${param.searchText}"/>
 	<c:set var="currentPage" value="${param.currentPage}"/>
 	
-	<title>${title}</title>
+	<title><c:out value="${title}"/></title>
 </head>
 <body>
 	<%@ include file="admin_menu.jsp" %>
 	
-	<!-- Контент страницы -->
+	<!-- Page content -->
 	<div class="content">
 		<div class="container">
 			<div class="slogan" style="margin-bottom: 10px">
-				<h1>${slogan}</h1>
+				<h1><c:out value="${slogan}" /></h1>
 			</div>
 			<div>
 				<form method="POST" action="Controller" class="form-inline" name="searchForm" id="searchForm">
 					<input type="hidden" name="command" value="show-user-list"/>
 					<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}"/>
-					<label class="control-label" for="searchText">${search}&nbsp;</label>
+					<label class="control-label" for="searchText"><c:out value="${search}"/>&nbsp;</label>
 					<input type="text" name="searchText" value="${searchText}">
 					&nbsp;&nbsp;
       				<input type="submit" id="submitButton" class="btn btn-primary" value="${find}"/>
 				</form>
 			</div>
 			<br/>
+			
 			<c:if test="${userList.size() != 0}">
 			<div class="table-responsive table-wrapper">
 				<table id="userListTable" class="table table-hover table-style">
@@ -172,10 +173,12 @@
 		
 		</div>
 	</div>
+	<!-- End modal -->
+		
 
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	
-	<!-- Подключение jQuery и JavaScript-->
+	<!-- jQuery and JavaScript-->
 	<script src="resources/js/user-list.js"></script>
 	
 </body>

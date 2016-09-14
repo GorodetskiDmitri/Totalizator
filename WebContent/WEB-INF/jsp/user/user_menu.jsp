@@ -19,25 +19,24 @@
 	<fmt:message bundle="${user}" key="user.menu.result" var="resultList" />
 	<fmt:message bundle="${user}" key="user.logout" var="logout" />
 
-	<!-- Иконка страницы -->
+	<!-- Page icon -->
 	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
 
-	<!-- Для совместимости с максимально возможной версией IE -->
+	<!-- For compatibility with the greatest possible version IE -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<!-- Для адаптивности с любыми устройствами -->
+	<!-- For adaptability to any device -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Подключение шрифта из Google Fonts -->
+	<!-- Link font from Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	
-	<!-- Подключение mini версии bootstrap -->
+	<!-- Link bootstrap mini version -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	
-	<!-- Подключение файла собственных стилей -->
+	<!-- Link own styles -->
 	<link rel="stylesheet" href="resources/css/style.css">
 	
-	<!-- Скрипты подключатся, если пользователь будет просматривать страницу в браузере IE ранее 9 версии-->
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -45,7 +44,7 @@
 </head>
 <body>
 
-	<!-- Навигационная панель заголовка. Шаблон bootstrap -->
+	<!-- Header navigation panel. Bootstrap template -->
 	<header>
 		<nav class="navbar navbar-default menu">
 			<div class="container">
@@ -88,7 +87,7 @@
 		<input type="hidden" name="currentPage" value="1"/>
 	</form>
 	
-	<!-- Подключение jQuery и JavaScript-->
+	<!-- jQuery and JavaScript-->
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script> 
 	

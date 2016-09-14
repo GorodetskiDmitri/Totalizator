@@ -10,9 +10,17 @@ public final class RequestParameterName {
 	public static final String CHANGED_LANGUAGE = "changedLanguage";
 	public static final String COMMAND = "command";
 	public static final String COMPETITION = "competition";
+	public static final String COMPETITION_ID = "competitionId";
 	public static final String CONCURENSE_LOGIN = "concurenseLogin";
 	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String CURRENT_PAGE = "currentPage";
+	public static final String EVENT_DATE = "eventDate";
+	public static final String EVENT_DRAW_COEFF = "eventDrawCoeff";
+	public static final String EVENT_LOSE_COEFF = "eventLoseCoeff";
+	public static final String EVENT_MIN_BET = "eventMinBet";
+	public static final String EVENT_MAX_BET = "eventMaxBet";
+	public static final String EVENT_NAME = "eventName";
+	public static final String EVENT_WIN_COEFF = "eventWinCoeff";
 	public static final String LINE = "line";
 	public static final String LINE_ID = "lineId";
 	public static final String LOCALE = "locale";
@@ -34,6 +42,7 @@ public final class RequestParameterName {
 	public static final String SCORE1 = "score1";
 	public static final String SCORE2 = "score2";
 	public static final String SPORT = "sport";
+	public static final String SPORT_ID = "sportId";
 	public static final String SUMMA = "summa";
 	public static final String TOTAL_PAGE = "totalPage";
 	public static final String UNRESOLVED_MONEY = "unresolvedMoney";

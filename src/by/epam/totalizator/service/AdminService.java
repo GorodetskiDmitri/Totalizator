@@ -88,6 +88,7 @@ public class AdminService {
 			
 			if (winBets != null) {
 				adminDAO.payout(connection, winBets);
+				adminDAO.payoutBookmaker(connection, winBets);
 			}
 			connection.commit();
 		} catch (ConnectionPoolException | DAOException | SQLException e) {
@@ -127,5 +128,24 @@ public class AdminService {
 			throw new ServiceException(e);
 		}
 		return competitionList;
+	}
+	
+	public final static boolean addEvent(Line line) throws ServiceException {
+		try {
+			return adminDAO.addEvent(line);			
+		} catch (DAOException e) {
+			throw new ServiceException(e); 
+		}
+	}
+	
+	public final static List<Line> getLast5Lines() throws ServiceException {
+		List<Line> lineList = new ArrayList<Line>();
+		
+		try {
+			lineList = adminDAO.getLast5Lines();
+		} catch (DAOException e) {
+			throw new ServiceException(e);
+		}
+		return lineList;
 	}
 }
