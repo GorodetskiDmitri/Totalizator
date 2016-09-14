@@ -48,7 +48,7 @@
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
-							<h4>S.Halep - M.Kis</h4>
+							<h4>A.Radvanska - M.Kis</h4>
 							<p>US Open. Round of 16</p>
 							<a href="Controller?command=show-line&link=3"><img src="resources/img/photo/bet8.jpg" height="173" width="218"></a>
 						</div>

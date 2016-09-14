@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 public class DBResourseManager {
 
-	private static final String PATH = "db";
+	private final static String PATH = "db";
 	private ResourceBundle bundle = ResourceBundle.getBundle(PATH);
 	
 	private DBResourseManager() {

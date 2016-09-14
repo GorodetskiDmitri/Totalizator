@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -62,6 +63,10 @@
 										</c:if>
 									</td>
 									<td>
+										
+										<%-- <ctg:outcomeValue outcome="${bet.outcome.equals('1')}" value="WIN"/>
+										<ctg:outcomeValue outcome="2" value="DRAW"/>
+										<ctg:outcomeValue outcome="3" value="LOSE"/> --%>
 										<c:if test="${bet.outcome.equals('1')}">
 											<c:out value="Win 1" />
 										</c:if>
