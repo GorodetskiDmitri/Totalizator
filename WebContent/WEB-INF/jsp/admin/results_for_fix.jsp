@@ -66,8 +66,22 @@
       							<input type="hidden" name="lineId" value="${line.id}" />
       								
 							<td id="${line.id}_date"><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${line.startDate}" /></td>
-							<td id="${line.id}_sport"><c:out value="${line.sport.name.toUpperCase()}" /></td>
-							<td id="${line.id}_competition"><c:out value="${line.competition.name}" /></td>
+							<td id="${line.id}_sport">
+								<c:if test="${sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${line.sport.nameRu.toUpperCase()}"/>
+								</c:if>
+								<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${line.sport.name.toUpperCase()}"/>
+								</c:if>
+							</td>
+							<td id="${line.id}_competition">
+								<c:if test="${sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${line.competition.nameRu}"/>
+								</c:if>
+								<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${line.competition.name}"/>
+								</c:if>
+							</td>
 							<td id="${line.id}_event"><c:out value="${line.eventName}" /></td>
 							<td>
 								<input type="text" id="${line.id}_score1" name="score1" class="numOnly" value="" size="2" maxlength="3" style="background-color: Moccasin; color: black"/>

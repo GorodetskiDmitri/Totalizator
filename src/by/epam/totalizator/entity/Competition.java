@@ -8,6 +8,7 @@ private static final long serialVersionUID =  1L;
 	
 	private int id;
 	private String name;
+	private String nameRu;
 	
 	public Competition() {
 	}
@@ -28,6 +29,14 @@ private static final long serialVersionUID =  1L;
 		this.name = name;
 	}
 	
+	public String getNameRu() {
+		return nameRu;
+	}
+
+	public void setNameRu(String nameRu) {
+		this.nameRu = nameRu;
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -40,6 +49,7 @@ private static final long serialVersionUID =  1L;
 		Competition other = (Competition) obj;
 		
 		if (name != null ? !name.equals(other.name) : other.name != null) return false;
+		if (nameRu != null ? !nameRu.equals(other.nameRu) : other.nameRu != null) return false;
 		return true;
 	}
 	
@@ -47,11 +57,12 @@ private static final long serialVersionUID =  1L;
 	public int hashCode() {
 		int result = 1;
 		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (nameRu != null ? nameRu.hashCode() : 0);
 		return result;
 	}
 	
 	@Override
 	public String toString() {
-		return getClass().getName() + "@" + "id : " + id + ", name : " + name;
+		return getClass().getName() + "@" + "id : " + id + ", name : " + name + ", nameRu : " + nameRu;
 	}
 }

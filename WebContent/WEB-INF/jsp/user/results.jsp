@@ -63,8 +63,22 @@
 											</tr><tr>
 											<c:set var="dateOfEvent" value="${line.startDate}" scope="request"/>
 									</c:if>	
-									<td><c:out value="${line.sport.name.toUpperCase()}" /></td>
-									<td align="left"><c:out value="${line.competition.name}" /></td>
+									<td>
+										<c:if test="${sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.sport.nameRu.toUpperCase()}"/>
+										</c:if>
+										<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.sport.name.toUpperCase()}"/>
+										</c:if>
+									</td>
+									<td align="left">
+										<c:if test="${sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.competition.nameRu}"/>
+										</c:if>
+										<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.competition.name}"/>
+										</c:if>
+									</td>
 									<td align="left"><c:out value="${line.eventName}" /></td>
 									<td style="color:yellow"><c:out value="${line.score1} : ${line.score2}" /></td>
 									<td><c:out value="${line.winCoeff}" /></td>

@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	$("#link1").val("ooooo");
+});
+
 // Make bet modal window (view) 
 $(function() {
 	$("#span-summa1").hide();

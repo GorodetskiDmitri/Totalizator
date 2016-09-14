@@ -56,7 +56,14 @@
 					<td><c:out value="${lineSport}"/></td>
 					<td><select name="sportId" style="color: black">
 						<c:forEach items="${sport}" var="sport">
-							<option value="${sport.id}" <c:if test='${sport.name.equalsIgnoreCase("football")}'>selected</c:if> ><c:out value="${sport.name}"/></option>
+							<option value="${sport.id}" <c:if test='${sport.name.equalsIgnoreCase("football")}'>selected</c:if> >
+								<c:if test="${sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${sport.nameRu}"/>
+								</c:if>
+								<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${sport.name}"/>
+								</c:if>
+							</option>
 						</c:forEach>
 						</select>
 					</td>
@@ -64,7 +71,14 @@
 					<td><c:out value="${lineCompetition}"/></td>
 					<td><select name="competitionId" style="color: black">
 						<c:forEach items="${competition}" var="competition">
-							<option value="${competition.id}" <c:if test='${competition.name.equalsIgnoreCase("champions league")}'>selected</c:if> ><c:out value="${competition.name}"/></option>
+							<option value="${competition.id}" <c:if test='${competition.name.equalsIgnoreCase("champions league")}'>selected</c:if> >
+								<c:if test="${sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${competition.nameRu}"/>
+								</c:if>
+								<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+									<c:out value="${competition.name}"/>
+								</c:if>
+							</option>
 						</c:forEach>
 						</select>
 					</td>
@@ -131,8 +145,22 @@
 								<tr>
 									<td style="color:gold"><c:out value="${line.id}" /></td>
 									<td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${line.startDate}" /></td>
-									<td align="left"><c:out value="${line.sport.name}" /></td>
-									<td align="left"><c:out value="${line.competition.name}" /></td>
+									<td align="left">
+										<c:if test="${sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.sport.nameRu.toUpperCase()}"/>
+										</c:if>
+										<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.sport.name.toUpperCase()}"/>
+										</c:if>
+									</td>
+									<td align="left">
+										<c:if test="${sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.competition.nameRu}"/>
+										</c:if>
+										<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.competition.name}"/>
+										</c:if>
+									</td>
 									<td align="left"><c:out value="${line.eventName}" /></td>
 									<td><c:if test="${line.winCoeff > 1}">
 											<c:out value="${line.winCoeff}" />

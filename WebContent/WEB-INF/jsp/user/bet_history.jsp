@@ -53,7 +53,14 @@
 							<c:forEach items="${betList}" var="bet">
 								<tr>
 									<td><c:out value="${bet.betDate}" /></td>
-									<td align="left"><c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}" /></td>
+									<td align="left">
+										<c:if test="${sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${bet.line.sport.nameRu.toUpperCase()}. ${bet.line.competition.nameRu}. ${bet.line.eventName}"/>
+										</c:if>
+										<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${bet.line.sport.name.toUpperCase()}. ${bet.line.competition.name}. ${bet.line.eventName}"/>
+										</c:if>
+									</td>
 									<td>
 										<c:if test="${bet.outcome.equals('1')}">
 											<c:out value="Win 1" />

@@ -21,6 +21,9 @@
 	<fmt:message bundle="${user}" key="user.line.betOutcome" var="betOutcome" />
 	<fmt:message bundle="${user}" key="user.line.betCoefficient" var="betCoefficient" />
 	<fmt:message bundle="${user}" key="user.line.betBalance" var="betBalance" />
+	<fmt:message bundle="${user}" key="user.line.titleWin" var="titleWin" />
+	<fmt:message bundle="${user}" key="user.line.titleDraw" var="titleDraw" />
+	<fmt:message bundle="${user}" key="user.line.titleLose" var="titleLose" />
 	<fmt:message bundle="${user}" key="user.line.ban" var="ban" />
 	<fmt:message bundle="${user}" key="user.line.banMessage" var="banMessage" />
 	<fmt:message bundle="${user}" key="user.deposit.summa" var="betSumma" />
@@ -30,6 +33,10 @@
 	<fmt:message bundle="${user}" key="user.button.makeBet" var="makeBet" />
 	<fmt:message bundle="${user}" key="user.button.cancel" var="cancel" />
 	<c:set var="sport" value="" scope="request"/> 
+	<c:set var="link1" value="football" scope="request"/>
+	<c:set var="link2" value="hockey" scope="request"/>
+	<c:set var="link3" value="tennis" scope="request"/>
+	<c:set var="link4" value="box" scope="request"/>
 	
 	<title><c:out value="${title}"/></title>
 </head>
@@ -49,6 +56,9 @@
 				<h1><c:out value="${slogan}" /></h1>
 			</div>
 			<br/>
+			
+			<a href="#link${param.link}"><input type="hidden" id="link" /></a>
+			
 			<c:if test="${line.size() != 0}">
 				<div class="table-responsive table-wrapper">
 					<table id="lineTable" class="table table-style table-prop">
@@ -64,31 +74,73 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${line}" var="line">
-								<tr>
-									<c:if test="${!sport.equalsIgnoreCase(line.sport.name)}">
-										<td colspan="6" class="table-sport"><c:out value="${line.sport.name.toUpperCase()}" /></td>
-										</tr><tr>
-										<c:set var="sport" value="${line.sport.name}" scope="request"/>
-									</c:if>
+								<c:if test="${!sport.equalsIgnoreCase(line.sport.name)}">
+										<tr><td colspan="6" class="table-sport">
+											<c:if test="${sessionScope.locale.equals(\"ru\")}">
+												<c:out value="${line.sport.nameRu.toUpperCase()}"/>
+											</c:if>
+											<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+												<c:out value="${line.sport.name.toUpperCase()}"/>
+											</c:if>
 										
+										<c:if test="${param.link != null}">
+											<c:choose>
+												<c:when test="${param.link.equals('1')}">
+													<c:if test="${line.sport.name.indexOf(link1) >= 0 }">
+														<div><a id="link1"></a></div>
+													</c:if>
+												</c:when>
+												<c:when test="${param.link.equals('2')}">
+													<c:if test="${line.sport.name.indexOf(link2) >= 0 }">
+														<div><a id="link2"></a></div>
+													</c:if>
+												</c:when>
+												<c:when test="${param.link.equals('3')}">
+													<c:if test="${line.sport.name.indexOf(link3) >= 0 }">
+														<div><a id="link3"></a></div>
+													</c:if>
+												</c:when>
+												<c:when test="${param.link.equals('4')}">
+													<c:if test="${line.sport.name.indexOf(link4) >= 0 }">
+														<div><a id="link4"></a></div>
+													</c:if>
+												</c:when>
+												<c:otherwise>
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+										
+										</td>
+										</tr>
+										<c:set var="sport" value="${line.sport.name}" scope="request"/>
+								</c:if>
+									
+								<tr>
 									<td id="${line.id}_startDate"><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${line.startDate}" /></td>
-									<td id="${line.id}_competition" align="left"><c:out value="${line.competition.name}" /></td>
+									<td id="${line.id}_competition" align="left">
+										<c:if test="${sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.competition.nameRu}"/>
+										</c:if>
+										<c:if test="${!sessionScope.locale.equals(\"ru\")}">
+											<c:out value="${line.competition.name}"/>
+										</c:if>
+									</td>
 									<td id="${line.id}_event" align="left"><c:out value="${line.eventName}" /></td>
 									
 									<c:if test="${sessionScope.client.id == null}">
 										<td>
 											<c:if test="${line.winCoeff > 1}">
-												<a href="#myModal" class="betLink" id="${line.id}_win" data-toggle="modal"><c:out value="${line.winCoeff}" /></a>
+												<a href="#myModal" class="betLink" id="${line.id}_win" data-toggle="modal" title="${titleWin}"><c:out value="${line.winCoeff}" /></a>
 											</c:if>
 										</td>
 										<td>
 											<c:if test="${line.drawCoeff > 1}">
-												<a href="#myModal" class="betLink" id="${line.id}_draw" data-toggle="modal"><c:out value="${line.drawCoeff}" /></a>
+												<a href="#myModal" class="betLink" id="${line.id}_draw" data-toggle="modal" title="${titleDraw}"><c:out value="${line.drawCoeff}" /></a>
 											</c:if>	
 										</td>
 										<td>
 											<c:if test="${line.loseCoeff > 1}">
-												<a href="#myModal" class="betLink" id="${line.id}_lose" data-toggle="modal"><c:out value="${line.loseCoeff}" /></a>
+												<a href="#myModal" class="betLink" id="${line.id}_lose" data-toggle="modal" title="${titleLose}"><c:out value="${line.loseCoeff}" /></a>
 											</c:if>	
 										</td>
 									</c:if>
@@ -272,6 +324,14 @@
 	<!-- jQuery and JavaScript-->
 	<script src="resources/js/util.js"></script> 
 	<script src="resources/js/line.js"></script> 
+	
+	<c:if test="${param.link != null}">
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#link").click();
+			});
+		</script>
+	</c:if>
 	
 </body>
 </html>

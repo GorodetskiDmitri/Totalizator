@@ -22,18 +22,18 @@ public class SqlUserDAO implements UserDAO {
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
 	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY bet_status ASC, id DESC, bet_date DESC";
-	private static final String GET_LINE = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
-	private static final String GET_LINE_LIST = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE fixed_result='0' ORDER BY s.name, c.name, a.start_date, a.event_name";
-	private static final String GET_RESULT_LIST = "SELECT a.*, s.name, c.name FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.fixed_result='1' ORDER BY DATE(a.start_date) DESC, s.name ASC, c.name ASC, a.event_name ASC";
-	private static final String GET_SPORT_BY_ID = "SELECT * FROM sport WHERE id=?";
 	private static final String GET_COMPETITION_BY_ID = "SELECT * FROM competition WHERE id=?";
-	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
+	private static final String GET_LINE = "SELECT a.*, s.name, s.name_ru, c.name, c.name_ru FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
+	private static final String GET_LINE_LIST = "SELECT a.*, s.name, s.name_ru, c.name, c.name_ru FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE fixed_result='0' ORDER BY s.name, c.name, a.start_date, a.event_name";
 	private static final String GET_LOGIN = "SELECT login FROM users WHERE login=?";
-	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow) VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
-	private static final String INSERT_BET = "INSERT INTO bet(id_user, id_line, bet_date, amount, outcome, bet_status) VALUES(?,?,CURDATE(),?,?,'0')";
-	private static final String REDUCE_USER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE id=? AND status='client'";
+	private static final String GET_RESULT_LIST = "SELECT a.*, s.name, s.name_ru, c.name, c.name_ru FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.fixed_result='1' ORDER BY DATE(a.start_date) DESC, s.name ASC, c.name ASC, a.event_name ASC";
+	private static final String GET_SPORT_BY_ID = "SELECT * FROM sport WHERE id=?";
+	private static final String GET_USER = "SELECT id, status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow FROM users WHERE login=? AND password=?";
 	private static final String INCREASE_BOOKMAKER_BALANCE = "UPDATE users SET balance=(balance + (?)) WHERE status='bookmaker'";
+	private static final String INSERT_BET = "INSERT INTO bet(id_user, id_line, bet_date, amount, outcome, bet_status) VALUES(?,?,CURDATE(),?,?,'0')";
+	private static final String INSERT_USER = "INSERT INTO users(status, login, password, balance, name, sirname, email, address, phone, passport, date_of_birth, bet_allow) VALUES('client',?,?,?,?,?,?,?,?,?,?,'0')";
 	private static final String MAKE_DEPOSIT = "UPDATE users SET balance=? WHERE login=?";
+	private static final String REDUCE_USER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE id=? AND status='client'";
 	private static final String SHOW_UNRESOLVED_MONEY = "SELECT SUM(amount) FROM bet WHERE id_user=? AND bet_status='0';";
 	
 	
@@ -222,10 +222,12 @@ public class SqlUserDAO implements UserDAO {
 				sport = new Sport();
 				sport.setId(resultSet.getInt(2));
 				sport.setName(resultSet.getString(14));
+				sport.setNameRu(resultSet.getString(15));
 				
 				competition = new Competition();
 				competition.setId(resultSet.getInt(3));
-				competition.setName(resultSet.getString(15));
+				competition.setName(resultSet.getString(16));
+				competition.setNameRu(resultSet.getString(17));
 				
 				line = new Line();
 				line.setId(resultSet.getInt(1));
@@ -269,10 +271,12 @@ public class SqlUserDAO implements UserDAO {
 				sport = new Sport();
 				sport.setId(resultSet.getInt(2));
 				sport.setName(resultSet.getString(14));
+				sport.setNameRu(resultSet.getString(15));
 				
 				competition = new Competition();
 				competition.setId(resultSet.getInt(3));
-				competition.setName(resultSet.getString(15));
+				competition.setName(resultSet.getString(16));
+				competition.setNameRu(resultSet.getString(17));
 				
 				line = new Line();
 				line.setId(resultSet.getInt(1));
@@ -315,6 +319,7 @@ public class SqlUserDAO implements UserDAO {
 				sport = new Sport();
 				sport.setId(resultSet.getInt(1));
 				sport.setName(resultSet.getString(2));
+				sport.setNameRu(resultSet.getString(3));
 			} 
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
@@ -341,6 +346,7 @@ public class SqlUserDAO implements UserDAO {
 				competition = new Competition();
 				competition.setId(resultSet.getInt(1));
 				competition.setName(resultSet.getString(2));
+				competition.setNameRu(resultSet.getString(3));
 			} 
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
@@ -369,10 +375,12 @@ public class SqlUserDAO implements UserDAO {
 				sport = new Sport();
 				sport.setId(resultSet.getInt(2));
 				sport.setName(resultSet.getString(14));
+				sport.setNameRu(resultSet.getString(15));
 				
 				competition = new Competition();
 				competition.setId(resultSet.getInt(3));
-				competition.setName(resultSet.getString(15));
+				competition.setName(resultSet.getString(16));
+				competition.setNameRu(resultSet.getString(17));
 				
 				line = new Line();
 				line.setId(resultSet.getInt(1));
