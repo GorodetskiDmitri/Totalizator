@@ -10,22 +10,46 @@ public class OutcomeValue extends TagSupport {
 	private static final long serialVersionUID = 1L;
 	
 	private String outcome;
-	private String value;
+	private String locale;
+	private String print;
 	
 	public void setOutcome(String outcome) {
 		this.outcome = outcome;
 	}
 	
-	public void setValue(String value) {
-		this.value = value;
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 	
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			pageContext.getOut().write("<c:if test=\"${bet.outcome.equals(\"" + outcome + "\")}\">"
-										+ "<c:out value=\"" + value + "\" />"
-										+ "</c:if>");
+			switch(outcome) {
+			case "1":
+				if (locale.equalsIgnoreCase("ru")) {
+					print = "Ï1";
+				} else {
+					print = "Win 1";
+				}
+				break;
+			case "2":
+				if (locale.equalsIgnoreCase("ru")) {
+					print = "Õ";
+				} else {
+					print = "Draw";
+				}
+				break;
+			case "3":
+				if (locale.equalsIgnoreCase("ru")) {
+					print = "Ï2";
+				} else {
+					print = "Win 2";
+				}
+				break;
+			default:
+				print = "";
+			}
+			pageContext.getOut().write(print);
 		} catch (IOException e) {
 			throw new JspException(e.getMessage());
 		}

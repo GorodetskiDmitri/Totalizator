@@ -8,7 +8,7 @@
     <tag>
         <name>outcomeValue</name>
         <tag-class>by.epam.totalizator.tag.OutcomeValue</tag-class>
-        <info>This tag determine the text value that will be displayed for a given outcome</info>
+        <info>This tag determine the text value that will be displayed for a given outcome and locale</info>
         <body-content>empty</body-content>
         <attribute>
             <name>outcome</name>
@@ -16,7 +16,7 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>value</name>
+            <name>locale</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

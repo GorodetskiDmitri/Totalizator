@@ -63,19 +63,7 @@
 										</c:if>
 									</td>
 									<td>
-										
-										<%-- <ctg:outcomeValue outcome="${bet.outcome.equals('1')}" value="WIN"/>
-										<ctg:outcomeValue outcome="2" value="DRAW"/>
-										<ctg:outcomeValue outcome="3" value="LOSE"/> --%>
-										<c:if test="${bet.outcome.equals('1')}">
-											<c:out value="Win 1" />
-										</c:if>
-										<c:if test="${bet.outcome.equals('2')}">
-											<c:out value="Draw" />
-										</c:if>
-										<c:if test="${bet.outcome.equals('3')}">
-											<c:out value="Win 2" />
-										</c:if>
+										<ctg:outcomeValue outcome="${bet.outcome}" locale="${sessionScope.locale}"/>
 									</td>
 									<td>
 										<c:if test="${bet.outcome.equals('1')}">
