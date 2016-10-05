@@ -12,6 +12,7 @@ import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class AllowBetCommand implements Command {
 
@@ -20,7 +21,8 @@ public class AllowBetCommand implements Command {
 		int userId = Integer.parseInt(request.getParameter(RequestParameterName.USER_ID));
 		String allowBet = request.getParameter(RequestParameterName.ALLOW_BET);
 		try {
-			if (AdminService.allowBetForUser(userId, allowBet)) {
+			AdminService service = AdminServiceImpl.getInstance();
+			if (service.allowBetForUser(userId, allowBet)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

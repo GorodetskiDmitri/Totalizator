@@ -17,6 +17,7 @@ import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class RegisterUserCommand implements Command {
 	
@@ -46,7 +47,8 @@ public class RegisterUserCommand implements Command {
 
 		String page = null;
 		try {
-			user = UserService.registerUser(user);
+			UserService service = UserServiceImpl.getInstance();
+			user = service.registerUser(user);
 		} catch (ServiceException e) {
 			System.out.println("catch");
 			throw new CommandException(e);

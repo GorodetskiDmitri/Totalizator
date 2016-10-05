@@ -19,6 +19,7 @@ import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class AddEventCommand implements Command {
 	
@@ -75,7 +76,8 @@ public class AddEventCommand implements Command {
 				throw new CommandException("Invalid date format", e);
 			}
 			
-			if (AdminService.addEvent(line)) {
+			AdminService service = AdminServiceImpl.getInstance();
+			if (service.addEvent(line)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

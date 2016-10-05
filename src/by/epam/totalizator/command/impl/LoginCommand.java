@@ -11,8 +11,11 @@ import by.epam.totalizator.command.exception.CommandException;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
+import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class LoginCommand implements Command {
 
@@ -22,7 +25,8 @@ public class LoginCommand implements Command {
 		String login = request.getParameter(RequestParameterName.LOGIN).trim();
 		String password = request.getParameter(RequestParameterName.PASSWORD).trim();
 		try {
-			User user = UserService.checkLogin(login, password);
+			UserService service = UserServiceImpl.getInstance();
+			User user = service.checkLogin(login, password);
 			if (user != null) {
 				request.getSession().setAttribute(RequestParameterName.USER, user);
 				

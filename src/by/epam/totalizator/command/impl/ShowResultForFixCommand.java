@@ -15,6 +15,7 @@ import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class ShowResultForFixCommand implements Command {
 
@@ -26,7 +27,8 @@ public class ShowResultForFixCommand implements Command {
 		
 		List<Line> lineList;
 		try {
-			lineList = AdminService.getResultListForFix();
+			AdminService service = AdminServiceImpl.getInstance();
+			lineList = service.getResultListForFix();
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

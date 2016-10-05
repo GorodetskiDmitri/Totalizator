@@ -12,6 +12,7 @@ import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class RemoveUserCommand implements Command {
 
@@ -19,7 +20,8 @@ public class RemoveUserCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		int userId = Integer.parseInt(request.getParameter(RequestParameterName.USER_ID));
 		try {
-			if (AdminService.removeUser(userId)) {
+			AdminService service = AdminServiceImpl.getInstance();
+			if (service.removeUser(userId)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

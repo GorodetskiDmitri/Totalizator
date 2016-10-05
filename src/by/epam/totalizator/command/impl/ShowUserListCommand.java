@@ -19,6 +19,7 @@ import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 
 public class ShowUserListCommand implements Command{
@@ -36,7 +37,8 @@ public class ShowUserListCommand implements Command{
 		int currentPage = Integer.parseInt(request.getParameter(RequestParameterName.CURRENT_PAGE));
 		List<User> totalUserList;
 		try {
-			totalUserList = AdminService.getUserList(searchText);
+			AdminService service = AdminServiceImpl.getInstance();
+			totalUserList = service.getUserList(searchText);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

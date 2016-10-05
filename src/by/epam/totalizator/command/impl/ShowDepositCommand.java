@@ -21,6 +21,8 @@ import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 
 public class ShowDepositCommand implements Command{
@@ -36,8 +38,9 @@ public class ShowDepositCommand implements Command{
 		User currentUser;
 		double unresolvedMoney = 0.0;
 		try {
-			currentUser = UserService.getUser(login, password);
-			unresolvedMoney = UserService.getUnresolvedMoney(user.getId());
+			UserService service = UserServiceImpl.getInstance();
+			currentUser = service.getUser(login, password);
+			unresolvedMoney = service.getUnresolvedMoney(user.getId());
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

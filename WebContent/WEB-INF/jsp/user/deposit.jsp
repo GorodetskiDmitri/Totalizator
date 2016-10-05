@@ -61,7 +61,7 @@
 				<a href="#depositModal" data-toggle="modal"><input type="button" class="btn btn-primary" value="${btnDeposit}"></button></a>
 				
 	<!-- Modal -->
-	<div class="modal fade" id="depositModal" role="dialog">
+	<div class="modal fade modal-color" id="depositModal" role="dialog">
 		<div class="modal-dialog">
 		
 		<!-- Modal content-->
@@ -77,7 +77,7 @@
 					<input type="hidden" name="command" value="make-deposit" />
 					<input type="hidden" name="login" value="${sessionScope.client.login}" />
 					<input type="hidden" name="balance" value="${sessionScope.client.balance}" />
-					<input type="hidden" id="cardLimit" value="${Math.random()*1500}"/>
+					<input type="hidden" id="cardLimit" value="425"/>
 						
 					<div class="card-img">
 						<img src="resources/img/cards/webmoney.png" height="24" width="36">&nbsp;&nbsp;

@@ -17,6 +17,7 @@ import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class ShowEventCreation implements Command {
 
@@ -29,9 +30,10 @@ public class ShowEventCreation implements Command {
 		List<Competition> competitionList;
 		List<Line> lineList;
 		try {
-			sportList = AdminService.getSportList();
-			competitionList = AdminService.getCompetitionList();
-			lineList = AdminService.getLast5Lines();
+			AdminService service = AdminServiceImpl.getInstance();
+			sportList = service.getSportList();
+			competitionList = service.getCompetitionList();
+			lineList = service.getLast5Lines();
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

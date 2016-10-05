@@ -16,6 +16,7 @@ import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class ShowResultCommand implements Command {
 
@@ -31,7 +32,8 @@ public class ShowResultCommand implements Command {
 		
 		List<Line> resultList;
 		try {
-			resultList = UserService.getResultList();
+			UserService service = UserServiceImpl.getInstance();
+			resultList = service.getResultList();
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

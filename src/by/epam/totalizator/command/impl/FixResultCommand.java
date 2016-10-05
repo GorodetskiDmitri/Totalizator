@@ -12,6 +12,7 @@ import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.service.AdminService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class FixResultCommand implements Command {
 
@@ -22,7 +23,8 @@ public class FixResultCommand implements Command {
 		int score2 = Integer.parseInt(request.getParameter(RequestParameterName.SCORE2));
 		
 		try {
-			if (AdminService.fixResult(score1, score2, lineId)) {
+			AdminService service = AdminServiceImpl.getInstance();
+			if (service.fixResult(score1, score2, lineId)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

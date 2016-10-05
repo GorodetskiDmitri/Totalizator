@@ -12,6 +12,7 @@ import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class MakeDepositCommand implements Command {
 
@@ -23,7 +24,8 @@ public class MakeDepositCommand implements Command {
 		summa = summa + balance;
 		
 		try {
-			if (UserService.makeDeposit(login, summa)) {
+			UserService service = UserServiceImpl.getInstance();
+			if (service.makeDeposit(login, summa)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

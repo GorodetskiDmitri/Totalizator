@@ -15,6 +15,7 @@ import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class ShowLineCommand implements Command {
 
@@ -26,7 +27,8 @@ public class ShowLineCommand implements Command {
 		
 		List<Line> lineList;
 		try {
-			lineList = UserService.getLineList();
+			UserService service = UserServiceImpl.getInstance();
+			lineList = service.getLineList();
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}

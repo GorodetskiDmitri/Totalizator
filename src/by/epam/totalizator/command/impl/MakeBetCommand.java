@@ -15,6 +15,7 @@ import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class MakeBetCommand implements Command {
 
@@ -40,7 +41,8 @@ public class MakeBetCommand implements Command {
 			bet.setAmount(summa);
 			bet.setOutcome(outcome);
 			
-			if (UserService.makeBet(bet)) {
+			UserService service = UserServiceImpl.getInstance();
+			if (service.makeBet(bet)) {
 				StringBuffer currentCommand = (StringBuffer) request.getSession().getAttribute(RequestParameterName.CURRENT_COMMAND);
 				try {
 					response.sendRedirect(currentCommand.toString());

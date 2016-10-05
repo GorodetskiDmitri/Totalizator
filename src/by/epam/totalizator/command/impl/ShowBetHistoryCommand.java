@@ -17,6 +17,7 @@ import by.epam.totalizator.entity.Bet;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.service.UserService;
 import by.epam.totalizator.service.exception.ServiceException;
+import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class ShowBetHistoryCommand implements Command {
 	
@@ -32,7 +33,8 @@ public class ShowBetHistoryCommand implements Command {
 		int currentPage = Integer.parseInt(request.getParameter(RequestParameterName.CURRENT_PAGE));
 		List<Bet> totalBetList;
 		try {
-			totalBetList = UserService.getAllUserBet(idUser);
+			UserService service = UserServiceImpl.getInstance();
+			totalBetList = service.getAllUserBet(idUser);
 		} catch (ServiceException e) {
 			throw new CommandException(e);
 		}
