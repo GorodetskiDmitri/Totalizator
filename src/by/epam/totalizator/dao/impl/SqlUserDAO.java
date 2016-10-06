@@ -299,6 +299,8 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
+			if (prepareStatement == null)
+				System.out.println("NULL");
 			connectionPool.closeConnection(connection, prepareStatement, resultSet);
 		}
 		return lineList;

@@ -8,14 +8,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:setBundle basename="localization.login" var="log" />
-	<fmt:message bundle="${menu}" key="menu.home" var="home" />
-	<fmt:message bundle="${menu}" key="menu.main.title" var="title" />
-	<fmt:message bundle="${menu}" key="menu.main.slogan.part1" var="part1" />
-	<fmt:message bundle="${menu}" key="menu.main.slogan.part2" var="part2" />
-	<fmt:message bundle="${menu}" key="menu.main.slogan.part3" var="part3" />
-	<fmt:message bundle="${log}" key="login.legend" var="legend" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="menu.home" var="home" />
+	<fmt:message bundle="${loc}" key="main.title" var="title" />
+	<fmt:message bundle="${loc}" key="main.slogan.part1" var="part1" />
+	<fmt:message bundle="${loc}" key="main.slogan.part2" var="part2" />
+	<fmt:message bundle="${loc}" key="main.slogan.part3" var="part3" />
 	
 	<title><c:out value="${title}"/></title>
 </head>

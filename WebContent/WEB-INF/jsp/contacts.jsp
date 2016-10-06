@@ -8,13 +8,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:message bundle="${menu}" key="menu.contacts.title" var="title" />
-	<fmt:message bundle="${menu}" key="menu.contacts.slogan.part1" var="part1" />
-	<fmt:message bundle="${menu}" key="menu.contacts.slogan.part2" var="part2" />
-	<fmt:message bundle="${menu}" key="menu.contacts.main-office" var="main" />
-	<fmt:message bundle="${menu}" key="menu.contacts.regional-offices" var="regional" />
-	<fmt:message bundle="${menu}" key="menu.contacts.international-offices" var="international" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="contacts.title" var="title" />
+	<fmt:message bundle="${loc}" key="contacts.slogan.part1" var="part1" />
+	<fmt:message bundle="${loc}" key="contacts.slogan.part2" var="part2" />
+	<fmt:message bundle="${loc}" key="contacts.main-office" var="main" />
+	<fmt:message bundle="${loc}" key="contacts.regional-offices" var="regional" />
+	<fmt:message bundle="${loc}" key="contacts.international-offices" var="international" />
 	
 	<title><c:out value="${title}"/></title>
 

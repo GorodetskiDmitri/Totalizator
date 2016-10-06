@@ -9,17 +9,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${user}" key="user.title.betHistory" var="title" />
-	<fmt:message bundle="${user}" key="user.slogan.betHistory" var="slogan" />
-	<fmt:message bundle="${user}" key="user.betHistory.betDate" var="betDate" />
-	<fmt:message bundle="${user}" key="user.betHistory.betEvent" var="betEvent" />
-	<fmt:message bundle="${user}" key="user.betHistory.betOutcome" var="betOutcome" />
-	<fmt:message bundle="${user}" key="user.betHistory.betAmount" var="betAmount" />
-	<fmt:message bundle="${user}" key="user.betHistory.betCoefficient" var="betCoefficient" />
-	<fmt:message bundle="${user}" key="user.betHistory.betResult" var="betResult" /> 
-	<fmt:message bundle="${user}" key="user.betHistory.betCash" var="betCash" /> 
-	<fmt:message bundle="${user}" key="user.betHistory.betNotFound" var="betNotFound" /> 
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="user.title.betHistory" var="title" />
+	<fmt:message bundle="${loc}" key="user.slogan.betHistory" var="slogan" />
+	<fmt:message bundle="${loc}" key="user.betHistory.betDate" var="betDate" />
+	<fmt:message bundle="${loc}" key="user.betHistory.betEvent" var="betEvent" />
+	<fmt:message bundle="${loc}" key="user.betHistory.betOutcome" var="betOutcome" />
+	<fmt:message bundle="${loc}" key="user.betHistory.betAmount" var="betAmount" />
+	<fmt:message bundle="${loc}" key="user.betHistory.betCoefficient" var="betCoefficient" />
+	<fmt:message bundle="${loc}" key="user.betHistory.betResult" var="betResult" /> 
+	<fmt:message bundle="${loc}" key="user.betHistory.betCash" var="betCash" /> 
+	<fmt:message bundle="${loc}" key="user.betHistory.betNotFound" var="betNotFound" /> 
 	<c:set var="totalPage" value="${totalPage}" scope="request"/>
 	<c:set var="currentPage" value="${param.currentPage}"/> 
 	

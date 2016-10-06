@@ -8,16 +8,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${menu}" key="menu.usermessage" var="usermessage" />
-	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
-	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />	
-	<fmt:message bundle="${user}" key="user.menu.deposit" var="deposit" />
-	<fmt:message bundle="${user}" key="user.menu.betHistory" var="betHistory" />
-	<fmt:message bundle="${user}" key="user.menu.line" var="lineList" />
-	<fmt:message bundle="${user}" key="user.menu.result" var="resultList" />
-	<fmt:message bundle="${user}" key="user.logout" var="logout" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="menu.usermessage" var="usermessage" />
+	<fmt:message bundle="${loc}" key="menu.language.en" var="en" />
+	<fmt:message bundle="${loc}" key="menu.language.ru" var="ru" />	
+	<fmt:message bundle="${loc}" key="user.menu.deposit" var="deposit" />
+	<fmt:message bundle="${loc}" key="user.menu.betHistory" var="betHistory" />
+	<fmt:message bundle="${loc}" key="user.menu.line" var="lineList" />
+	<fmt:message bundle="${loc}" key="user.menu.result" var="resultList" />
+	<fmt:message bundle="${loc}" key="user.logout" var="logout" />
 
 	<!-- Page icon -->
 	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">

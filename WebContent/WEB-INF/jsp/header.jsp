@@ -7,22 +7,21 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:setBundle basename="localization.login" var="log" />
-	<fmt:message bundle="${menu}" key="menu.home" var="home" />
-	<fmt:message bundle="${menu}" key="menu.bet" var="bet" />
-	<fmt:message bundle="${menu}" key="menu.registration" var="registration" />
-	<fmt:message bundle="${menu}" key="menu.contacts" var="contacts" />
-	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
-	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />
-	<fmt:message bundle="${log}" key="login.legend" var="legend" />
-	<fmt:message bundle="${log}" key="login.login" var="login" />
-	<fmt:message bundle="${log}" key="login.errorLogin" var="errorLogin" />
-	<fmt:message bundle="${log}" key="login.password" var="password" />
-	<fmt:message bundle="${log}" key="login.errorPassword" var="errorPassword" />
-	<fmt:message bundle="${log}" key="login.errorAccess" var="errorAccess" />
-	<fmt:message bundle="${log}" key="login.cancel" var="cancel" />
-	<fmt:message bundle="${log}" key="login.signin" var="signin" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="menu.home" var="home" />
+	<fmt:message bundle="${loc}" key="menu.bet" var="bet" />
+	<fmt:message bundle="${loc}" key="menu.registration" var="registration" />
+	<fmt:message bundle="${loc}" key="menu.contacts" var="contacts" />
+	<fmt:message bundle="${loc}" key="menu.language.en" var="en" />
+	<fmt:message bundle="${loc}" key="menu.language.ru" var="ru" />
+	<fmt:message bundle="${loc}" key="login.legend" var="legend" />
+	<fmt:message bundle="${loc}" key="login.login" var="login" />
+	<fmt:message bundle="${loc}" key="login.errorLogin" var="errorLogin" />
+	<fmt:message bundle="${loc}" key="login.password" var="password" />
+	<fmt:message bundle="${loc}" key="login.errorPassword" var="errorPassword" />
+	<fmt:message bundle="${loc}" key="login.errorAccess" var="errorAccess" />
+	<fmt:message bundle="${loc}" key="login.cancel" var="cancel" />
+	<fmt:message bundle="${loc}" key="login.signin" var="signin" />
 	
 	<!-- Page icon -->
 	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">

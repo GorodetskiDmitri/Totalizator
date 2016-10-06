@@ -8,27 +8,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.admin" var="admin" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${admin}" key="admin.title.general" var="title" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.slogan" var="slogan" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.eventName" var="eventName" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.coefficients" var="eventCoefficients" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.betAmount" var="eventBetAmount" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.lastAddedEvents" var="lastAddedEvents" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.eventNameNotValid" var="eventNameNotValid" />
-	<fmt:message bundle="${admin}" key="admin.addEvent.dateTimeNotValid" var="dateTimeNotValid" />
-	<fmt:message bundle="${admin}" key="admin.button.addEvent" var="addEventBtn" />
-	<fmt:message bundle="${user}" key="user.line.id" var="lineId" />
-	<fmt:message bundle="${user}" key="user.line.startDate" var="lineStartDate" />
-	<fmt:message bundle="${user}" key="user.line.sport" var="lineSport" />
-	<fmt:message bundle="${user}" key="user.line.competition" var="lineCompetition" />
-	<fmt:message bundle="${user}" key="user.line.event" var="lineEvent" />
-	<fmt:message bundle="${user}" key="user.line.win" var="lineWin" />
-	<fmt:message bundle="${user}" key="user.line.draw" var="lineDraw" />
-	<fmt:message bundle="${user}" key="user.line.lose" var="lineLose" />
-	<fmt:message bundle="${user}" key="user.line.minBet" var="lineMinBet" />
-	<fmt:message bundle="${user}" key="user.line.maxBet" var="lineMaxBet" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="admin.title.general" var="title" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.slogan" var="slogan" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.eventName" var="eventName" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.coefficients" var="eventCoefficients" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.betAmount" var="eventBetAmount" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.lastAddedEvents" var="lastAddedEvents" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.eventNameNotValid" var="eventNameNotValid" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.dateTimeNotValid" var="dateTimeNotValid" />
+	<fmt:message bundle="${loc}" key="admin.button.addEvent" var="addEventBtn" />
+	<fmt:message bundle="${loc}" key="user.line.id" var="lineId" />
+	<fmt:message bundle="${loc}" key="user.line.startDate" var="lineStartDate" />
+	<fmt:message bundle="${loc}" key="user.line.sport" var="lineSport" />
+	<fmt:message bundle="${loc}" key="user.line.competition" var="lineCompetition" />
+	<fmt:message bundle="${loc}" key="user.line.event" var="lineEvent" />
+	<fmt:message bundle="${loc}" key="user.line.win" var="lineWin" />
+	<fmt:message bundle="${loc}" key="user.line.draw" var="lineDraw" />
+	<fmt:message bundle="${loc}" key="user.line.lose" var="lineLose" />
+	<fmt:message bundle="${loc}" key="user.line.minBet" var="lineMinBet" />
+	<fmt:message bundle="${loc}" key="user.line.maxBet" var="lineMaxBet" />
 	
 	<title><c:out value="${title}"/></title>
 </head>
@@ -91,7 +90,7 @@
 			<table align="left" class="simple-padding">
 				<tr>
 					<td><c:out value="${lineStartDate}"/></td>
-					<td><input type="text" id="eventDate" name="eventDate" size="14" maxLength="16" value="2016-MM-dd 18:00" style="color: black"/></td>
+					<td><input type="text" id="eventDate" name="eventDate" size="16" maxLength="16" value="2016-MM-dd 18:00" style="color: black"/></td>
 					
 					<td style="color: gold"><c:out value="${eventCoefficients}:"/></td>
 					<td><c:out value="${lineWin}"/></td>

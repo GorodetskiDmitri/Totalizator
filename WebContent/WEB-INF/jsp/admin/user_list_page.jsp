@@ -8,28 +8,28 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.admin" var="admin" />
-	<fmt:message bundle="${admin}" key="admin.userlist.slogan" var="slogan" />
-	<fmt:message bundle="${admin}" key="admin.title.general" var="title" />
-	<fmt:message bundle="${admin}" key="admin.userlist.search" var="search" />
-	<fmt:message bundle="${admin}" key="admin.userlist.find" var="find" />
-	<fmt:message bundle="${admin}" key="admin.userlist.login" var="userLogin" />
-	<fmt:message bundle="${admin}" key="admin.userlist.name" var="userName" />
-	<fmt:message bundle="${admin}" key="admin.userlist.surname" var="userSurname" />
-	<fmt:message bundle="${admin}" key="admin.userlist.dateOfBirth" var="userDateOfBirth" />
-	<fmt:message bundle="${admin}" key="admin.userlist.balance" var="userBalance" />
-	<fmt:message bundle="${admin}" key="admin.userlist.betAllow" var="userBetAllow" />
-	<fmt:message bundle="${admin}" key="admin.userlist.betAllow.yes" var="userBetAllowYes" />
-	<fmt:message bundle="${admin}" key="admin.userlist.betAllow.no" var="userBetAllowNo" />
-	<fmt:message bundle="${admin}" key="admin.userlist.email" var="userEmail" />
-	<fmt:message bundle="${admin}" key="admin.userlist.passport" var="userPassport" />
-	<fmt:message bundle="${admin}" key="admin.userlist.address" var="userAddress" />
-	<fmt:message bundle="${admin}" key="admin.userlist.phone" var="userPhone" />
-	<fmt:message bundle="${admin}" key="admin.userlist.notFound" var="userNotFound" />
-	<fmt:message bundle="${admin}" key="admin.userlist.userInfo" var="userInfo" />
-	<fmt:message bundle="${admin}" key="admin.button.removeUser" var="btnRemoveUser" />
-	<fmt:message bundle="${admin}" key="admin.button.allowBet" var="btnAllowBet" />
-	<fmt:message bundle="${admin}" key="admin.button.forbidBet" var="btnForbidBet" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="admin.userlist.slogan" var="slogan" />
+	<fmt:message bundle="${loc}" key="admin.title.general" var="title" />
+	<fmt:message bundle="${loc}" key="admin.userlist.search" var="search" />
+	<fmt:message bundle="${loc}" key="admin.userlist.find" var="find" />
+	<fmt:message bundle="${loc}" key="admin.userlist.login" var="userLogin" />
+	<fmt:message bundle="${loc}" key="admin.userlist.name" var="userName" />
+	<fmt:message bundle="${loc}" key="admin.userlist.surname" var="userSurname" />
+	<fmt:message bundle="${loc}" key="admin.userlist.dateOfBirth" var="userDateOfBirth" />
+	<fmt:message bundle="${loc}" key="admin.userlist.balance" var="userBalance" />
+	<fmt:message bundle="${loc}" key="admin.userlist.betAllow" var="userBetAllow" />
+	<fmt:message bundle="${loc}" key="admin.userlist.betAllow.yes" var="userBetAllowYes" />
+	<fmt:message bundle="${loc}" key="admin.userlist.betAllow.no" var="userBetAllowNo" />
+	<fmt:message bundle="${loc}" key="admin.userlist.email" var="userEmail" />
+	<fmt:message bundle="${loc}" key="admin.userlist.passport" var="userPassport" />
+	<fmt:message bundle="${loc}" key="admin.userlist.address" var="userAddress" />
+	<fmt:message bundle="${loc}" key="admin.userlist.phone" var="userPhone" />
+	<fmt:message bundle="${loc}" key="admin.userlist.notFound" var="userNotFound" />
+	<fmt:message bundle="${loc}" key="admin.userlist.userInfo" var="userInfo" />
+	<fmt:message bundle="${loc}" key="admin.button.removeUser" var="btnRemoveUser" />
+	<fmt:message bundle="${loc}" key="admin.button.allowBet" var="btnAllowBet" />
+	<fmt:message bundle="${loc}" key="admin.button.forbidBet" var="btnForbidBet" />
 	
 	<c:set var="totalPage" value="${totalPage}" scope="request"/>
 	<c:set var="searchText" value="${param.searchText}"/>

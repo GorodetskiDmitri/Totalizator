@@ -8,23 +8,23 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${user}" key="user.title.deposit" var="title" />
-	<fmt:message bundle="${user}" key="user.slogan.deposit" var="slogan" />
-	<fmt:message bundle="${user}" key="user.deposit.current" var="current" />
-	<fmt:message bundle="${user}" key="user.deposit.unresolved" var="unresolved" />
-	<fmt:message bundle="${user}" key="user.deposit.ordered" var="ordered" />
-	<fmt:message bundle="${user}" key="user.deposit.adjunction" var="adjunction" />
-	<fmt:message bundle="${user}" key="user.deposit.cardNumber" var="cardNumber" />
-	<fmt:message bundle="${user}" key="user.deposit.summa" var="summa" />
-	<fmt:message bundle="${user}" key="user.deposit.validSumma" var="validSumma" />
-	<fmt:message bundle="${user}" key="user.deposit.limitSumma" var="limitSumma" />
-	<fmt:message bundle="${user}" key="user.deposit.error.card" var="cardError" />
-	<fmt:message bundle="${user}" key="user.deposit.error.cardNumber" var="cardNumberError" />
-	<fmt:message bundle="${user}" key="user.deposit.error.summa" var="summaError" />
-	<fmt:message bundle="${user}" key="user.button.deposit" var="btnDeposit" />
-	<fmt:message bundle="${user}" key="user.button.depositAction" var="btnDepositAction" />
-	<fmt:message bundle="${user}" key="user.button.cancel" var="btnCancel" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="user.title.deposit" var="title" />
+	<fmt:message bundle="${loc}" key="user.slogan.deposit" var="slogan" />
+	<fmt:message bundle="${loc}" key="user.deposit.current" var="current" />
+	<fmt:message bundle="${loc}" key="user.deposit.unresolved" var="unresolved" />
+	<fmt:message bundle="${loc}" key="user.deposit.ordered" var="ordered" />
+	<fmt:message bundle="${loc}" key="user.deposit.adjunction" var="adjunction" />
+	<fmt:message bundle="${loc}" key="user.deposit.cardNumber" var="cardNumber" />
+	<fmt:message bundle="${loc}" key="user.deposit.summa" var="summa" />
+	<fmt:message bundle="${loc}" key="user.deposit.validSumma" var="validSumma" />
+	<fmt:message bundle="${loc}" key="user.deposit.limitSumma" var="limitSumma" />
+	<fmt:message bundle="${loc}" key="user.deposit.error.card" var="cardError" />
+	<fmt:message bundle="${loc}" key="user.deposit.error.cardNumber" var="cardNumberError" />
+	<fmt:message bundle="${loc}" key="user.deposit.error.summa" var="summaError" />
+	<fmt:message bundle="${loc}" key="user.button.deposit" var="btnDeposit" />
+	<fmt:message bundle="${loc}" key="user.button.depositAction" var="btnDepositAction" />
+	<fmt:message bundle="${loc}" key="user.button.cancel" var="btnCancel" />
 	
 	<title><c:out value="${title}"/></title>
 </head>

@@ -8,38 +8,37 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.registration" var="registration" />
-	<fmt:message bundle="${registration}" key="registration.title" var="title" />
-	<fmt:message bundle="${registration}" key="registration.slogan" var="slogan" />
-	<fmt:message bundle="${registration}" key="registration.name" var="regName" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.name" var="placeholder_name" />
-	<fmt:message bundle="${registration}" key="registration.surname" var="regSurname" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.surname" var="placeholder_surname" />
-	<fmt:message bundle="${registration}" key="registration.birthday" var="regBirthday" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.birthday" var="placeholder_birthday" />
-	<fmt:message bundle="${registration}" key="registration.login" var="regLogin" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.login" var="placeholder_login" />
-	<fmt:message bundle="${registration}" key="registration.password" var="regPassword" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.password" var="placeholder_password" />
-	<fmt:message bundle="${registration}" key="registration.confirm" var="regConfirmPassword" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.confirm" var="placeholder_confirm" />
-	<fmt:message bundle="${registration}" key="registration.email" var="regEmail" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.email" var="placeholder_email" />
-	<fmt:message bundle="${registration}" key="registration.passport" var="regPassport" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.passport" var="placeholder_passport" />
-	<fmt:message bundle="${registration}" key="registration.phone" var="regPhone" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.phone" var="placeholder_phone" />
-	<fmt:message bundle="${registration}" key="registration.address" var="regAddress" />
-	<fmt:message bundle="${registration}" key="registration.placeholder.address" var="placeholder_address" />
-	<fmt:message bundle="${registration}" key="registration.agree" var="agree" />
-	<fmt:message bundle="${registration}" key="registration.conditions" var="conditions" />
-	<fmt:message bundle="${registration}" key="registration.validation.input" var="inputValid" />
-	<fmt:message bundle="${registration}" key="registration.validation.password" var="passwordValid" />
-	<fmt:message bundle="${registration}" key="registration.validation.checkbox" var="checkboxValid" />
-	<fmt:message bundle="${registration}" key="registration.validation.slogan1" var="validSlogan1" />
-	<fmt:message bundle="${registration}" key="registration.validation.slogan2" var="validSlogan2" />
-	<fmt:message bundle="${registration}" key="registration" var="registr" />
-	<fmt:message bundle="${registration}" key="registration.reset" var="reset" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="registration.title" var="title" />
+	<fmt:message bundle="${loc}" key="registration.slogan" var="slogan" />
+	<fmt:message bundle="${loc}" key="registration.name" var="regName" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.name" var="placeholder_name" />
+	<fmt:message bundle="${loc}" key="registration.surname" var="regSurname" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.surname" var="placeholder_surname" />
+	<fmt:message bundle="${loc}" key="registration.birthday" var="regBirthday" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.birthday" var="placeholder_birthday" />
+	<fmt:message bundle="${loc}" key="registration.login" var="regLogin" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.login" var="placeholder_login" />
+	<fmt:message bundle="${loc}" key="registration.password" var="regPassword" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.password" var="placeholder_password" />
+	<fmt:message bundle="${loc}" key="registration.confirm" var="regConfirmPassword" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.confirm" var="placeholder_confirm" />
+	<fmt:message bundle="${loc}" key="registration.email" var="regEmail" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.email" var="placeholder_email" />
+	<fmt:message bundle="${loc}" key="registration.passport" var="regPassport" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.passport" var="placeholder_passport" />
+	<fmt:message bundle="${loc}" key="registration.phone" var="regPhone" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.phone" var="placeholder_phone" />
+	<fmt:message bundle="${loc}" key="registration.address" var="regAddress" />
+	<fmt:message bundle="${loc}" key="registration.placeholder.address" var="placeholder_address" />
+	<fmt:message bundle="${loc}" key="registration.agree" var="agree" />
+	<fmt:message bundle="${loc}" key="registration.conditions" var="conditions" />
+	<fmt:message bundle="${loc}" key="registration.validation.input" var="inputValid" />
+	<fmt:message bundle="${loc}" key="registration.validation.password" var="passwordValid" />
+	<fmt:message bundle="${loc}" key="registration.validation.checkbox" var="checkboxValid" />
+	<fmt:message bundle="${loc}" key="registration.validation.slogan1" var="validSlogan1" />
+	<fmt:message bundle="${loc}" key="registration.validation.slogan2" var="validSlogan2" />
+	<fmt:message bundle="${loc}" key="registration.reset" var="reset" />
 
 	<title><c:out value="${title}"/></title>
 
@@ -166,7 +165,7 @@
 				
 				<div class="form-group">
 				    <div class="col-xs-offset-3 col-xs-6">
-				      	<button type="submit" class="btn btn-primary"><c:out value="${registr}"/></button>
+				      	<button type="submit" class="btn btn-primary"><c:out value="${slogan}"/></button>
 				      	&nbsp;&nbsp;
 				      	<input type="button" class="btn btn-default" id="resetBtn" value="${reset}" />
 				    </div>

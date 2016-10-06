@@ -8,30 +8,30 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${user}" key="user.title.line" var="title" />
-	<fmt:message bundle="${user}" key="user.slogan.line" var="slogan" />
-	<fmt:message bundle="${user}" key="user.line.startDate" var="lineStartDate" />
-	<fmt:message bundle="${user}" key="user.line.competition" var="lineCompetition" />
-	<fmt:message bundle="${user}" key="user.line.event" var="lineEvent" />
-	<fmt:message bundle="${user}" key="user.line.win" var="lineWin" />
-	<fmt:message bundle="${user}" key="user.line.draw" var="lineDraw" />
-	<fmt:message bundle="${user}" key="user.line.lose" var="lineLose" />
-	<fmt:message bundle="${user}" key="user.line.bet" var="bet" />
-	<fmt:message bundle="${user}" key="user.line.betOutcome" var="betOutcome" />
-	<fmt:message bundle="${user}" key="user.line.betCoefficient" var="betCoefficient" />
-	<fmt:message bundle="${user}" key="user.line.betBalance" var="betBalance" />
-	<fmt:message bundle="${user}" key="user.line.titleWin" var="titleWin" />
-	<fmt:message bundle="${user}" key="user.line.titleDraw" var="titleDraw" />
-	<fmt:message bundle="${user}" key="user.line.titleLose" var="titleLose" />
-	<fmt:message bundle="${user}" key="user.line.ban" var="ban" />
-	<fmt:message bundle="${user}" key="user.line.banMessage" var="banMessage" />
-	<fmt:message bundle="${user}" key="user.deposit.summa" var="betSumma" />
-	<fmt:message bundle="${user}" key="user.deposit.error.summa" var="errorSumma1" />
-	<fmt:message bundle="${user}" key="user.line.error.summa" var="errorSumma2" />
-	<fmt:message bundle="${user}" key="user.line.lineNotFound" var="lineNotFound" />
-	<fmt:message bundle="${user}" key="user.button.makeBet" var="makeBet" />
-	<fmt:message bundle="${user}" key="user.button.cancel" var="cancel" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="user.title.line" var="title" />
+	<fmt:message bundle="${loc}" key="user.slogan.line" var="slogan" />
+	<fmt:message bundle="${loc}" key="user.line.startDate" var="lineStartDate" />
+	<fmt:message bundle="${loc}" key="user.line.competition" var="lineCompetition" />
+	<fmt:message bundle="${loc}" key="user.line.event" var="lineEvent" />
+	<fmt:message bundle="${loc}" key="user.line.win" var="lineWin" />
+	<fmt:message bundle="${loc}" key="user.line.draw" var="lineDraw" />
+	<fmt:message bundle="${loc}" key="user.line.lose" var="lineLose" />
+	<fmt:message bundle="${loc}" key="user.line.bet" var="bet" />
+	<fmt:message bundle="${loc}" key="user.line.betOutcome" var="betOutcome" />
+	<fmt:message bundle="${loc}" key="user.line.betCoefficient" var="betCoefficient" />
+	<fmt:message bundle="${loc}" key="user.line.betBalance" var="betBalance" />
+	<fmt:message bundle="${loc}" key="user.line.titleWin" var="titleWin" />
+	<fmt:message bundle="${loc}" key="user.line.titleDraw" var="titleDraw" />
+	<fmt:message bundle="${loc}" key="user.line.titleLose" var="titleLose" />
+	<fmt:message bundle="${loc}" key="user.line.ban" var="ban" />
+	<fmt:message bundle="${loc}" key="user.line.banMessage" var="banMessage" />
+	<fmt:message bundle="${loc}" key="user.deposit.summa" var="betSumma" />
+	<fmt:message bundle="${loc}" key="user.deposit.error.summa" var="errorSumma1" />
+	<fmt:message bundle="${loc}" key="user.line.error.summa" var="errorSumma2" />
+	<fmt:message bundle="${loc}" key="user.line.lineNotFound" var="lineNotFound" />
+	<fmt:message bundle="${loc}" key="user.button.makeBet" var="makeBet" />
+	<fmt:message bundle="${loc}" key="user.button.cancel" var="cancel" />
 	<c:set var="sport" value="" scope="request"/> 
 	<c:set var="link1" value="football" scope="request"/>
 	<c:set var="link2" value="hockey" scope="request"/>

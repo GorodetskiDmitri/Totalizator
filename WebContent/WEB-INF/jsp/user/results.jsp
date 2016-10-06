@@ -8,17 +8,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${user}" key="user.title.result" var="title" />
-	<fmt:message bundle="${user}" key="user.slogan.result" var="slogan" />
-	<fmt:message bundle="${user}" key="user.line.sport" var="lineSport" />
-	<fmt:message bundle="${user}" key="user.line.competition" var="lineCompetition" />
-	<fmt:message bundle="${user}" key="user.line.event" var="lineEvent" />
-	<fmt:message bundle="${user}" key="user.line.score" var="lineScore" />
-	<fmt:message bundle="${user}" key="user.line.win" var="lineWin" />
-	<fmt:message bundle="${user}" key="user.line.draw" var="lineDraw" />
-	<fmt:message bundle="${user}" key="user.line.lose" var="lineLose" />
-	<fmt:message bundle="${user}" key="user.result.resultNotFound" var="resultNotFound" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="user.title.result" var="title" />
+	<fmt:message bundle="${loc}" key="user.slogan.result" var="slogan" />
+	<fmt:message bundle="${loc}" key="user.line.sport" var="lineSport" />
+	<fmt:message bundle="${loc}" key="user.line.competition" var="lineCompetition" />
+	<fmt:message bundle="${loc}" key="user.line.event" var="lineEvent" />
+	<fmt:message bundle="${loc}" key="user.line.score" var="lineScore" />
+	<fmt:message bundle="${loc}" key="user.line.win" var="lineWin" />
+	<fmt:message bundle="${loc}" key="user.line.draw" var="lineDraw" />
+	<fmt:message bundle="${loc}" key="user.line.lose" var="lineLose" />
+	<fmt:message bundle="${loc}" key="user.result.resultNotFound" var="resultNotFound" />
 	<c:set var="totalPage" value="${totalPage}" scope="request"/>
 	<c:set var="currentPage" value="${param.currentPage}"/> 
 	<c:set var="dateOfEvent" value="" scope="request"/> 

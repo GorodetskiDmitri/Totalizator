@@ -8,9 +8,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.admin" var="admin" />
-	<fmt:message bundle="${admin}" key="admin.slogan" var="slogan" />
-	<fmt:message bundle="${admin}" key="admin.title.general" var="title" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="admin.slogan" var="slogan" />
+	<fmt:message bundle="${loc}" key="admin.title.general" var="title" />
 	
 	<title><c:out value="${title}"/></title>
 </head>

@@ -8,21 +8,20 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.admin" var="admin" />
-	<fmt:setBundle basename="localization.user" var="user" />
-	<fmt:message bundle="${admin}" key="admin.fix.slogan" var="slogan" />
-	<fmt:message bundle="${admin}" key="admin.fix.notFound" var="fixNotFound" />
-	<fmt:message bundle="${admin}" key="admin.fix.allResults" var="fixShowAllResults" />
-	<fmt:message bundle="${admin}" key="admin.fix.scoreNaN" var="scoreNaN" />
-	<fmt:message bundle="${admin}" key="admin.fix.scoreNegative" var="scoreNegative" />
-	<fmt:message bundle="${admin}" key="admin.fix.scoreEmpty" var="scoreEmpty" />
-	<fmt:message bundle="${admin}" key="admin.button.fixResult" var="fixResultBtn" />
-	<fmt:message bundle="${admin}" key="admin.title.general" var="title" />
-	<fmt:message bundle="${user}" key="user.line.startDate" var="lineDate" />
-	<fmt:message bundle="${user}" key="user.line.sport" var="lineSport" />
-	<fmt:message bundle="${user}" key="user.line.competition" var="lineCompetition" />
-	<fmt:message bundle="${user}" key="user.line.event" var="lineEvent" />
-	<fmt:message bundle="${user}" key="user.line.score" var="lineScore" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="admin.fix.slogan" var="slogan" />
+	<fmt:message bundle="${loc}" key="admin.fix.notFound" var="fixNotFound" />
+	<fmt:message bundle="${loc}" key="admin.fix.allResults" var="fixShowAllResults" />
+	<fmt:message bundle="${loc}" key="admin.fix.scoreNaN" var="scoreNaN" />
+	<fmt:message bundle="${loc}" key="admin.fix.scoreNegative" var="scoreNegative" />
+	<fmt:message bundle="${loc}" key="admin.fix.scoreEmpty" var="scoreEmpty" />
+	<fmt:message bundle="${loc}" key="admin.button.fixResult" var="fixResultBtn" />
+	<fmt:message bundle="${loc}" key="admin.title.general" var="title" />
+	<fmt:message bundle="${loc}" key="user.line.startDate" var="lineDate" />
+	<fmt:message bundle="${loc}" key="user.line.sport" var="lineSport" />
+	<fmt:message bundle="${loc}" key="user.line.competition" var="lineCompetition" />
+	<fmt:message bundle="${loc}" key="user.line.event" var="lineEvent" />
+	<fmt:message bundle="${loc}" key="user.line.score" var="lineScore" />
 	
 	<title><c:out value="${title}"/></title>
 </head>

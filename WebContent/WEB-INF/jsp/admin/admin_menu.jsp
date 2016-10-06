@@ -8,15 +8,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}" />
-	<fmt:setBundle basename="localization.menu" var="menu" />
-	<fmt:setBundle basename="localization.admin" var="admin" />
-	<fmt:message bundle="${menu}" key="menu.usermessage" var="usermessage" />
-	<fmt:message bundle="${menu}" key="menu.language.en" var="en" />
-	<fmt:message bundle="${menu}" key="menu.language.ru" var="ru" />	
-	<fmt:message bundle="${admin}" key="admin.menu.showUsers" var="showUsers" />
-	<fmt:message bundle="${admin}" key="admin.menu.fixResults" var="fixResults" />
-	<fmt:message bundle="${admin}" key="admin.menu.addEvent" var="addEvent" />
-	<fmt:message bundle="${admin}" key="admin.logout" var="logout" />
+	<fmt:setBundle basename="localization.locale" var="loc" />
+	<fmt:message bundle="${loc}" key="menu.usermessage" var="usermessage" />
+	<fmt:message bundle="${loc}" key="menu.language.en" var="en" />
+	<fmt:message bundle="${loc}" key="menu.language.ru" var="ru" />	
+	<fmt:message bundle="${loc}" key="admin.menu.showUsers" var="showUsers" />
+	<fmt:message bundle="${loc}" key="admin.menu.fixResults" var="fixResults" />
+	<fmt:message bundle="${loc}" key="admin.menu.addEvent" var="addEvent" />
+	<fmt:message bundle="${loc}" key="admin.logout" var="logout" />
 
 	<!-- Page icon -->
 	<link type="image/x-icon" href="resources/img/logo.ico" rel="shortcut icon">
