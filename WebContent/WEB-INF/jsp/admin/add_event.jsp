@@ -17,6 +17,7 @@
 	<fmt:message bundle="${loc}" key="admin.addEvent.lastAddedEvents" var="lastAddedEvents" />
 	<fmt:message bundle="${loc}" key="admin.addEvent.eventNameNotValid" var="eventNameNotValid" />
 	<fmt:message bundle="${loc}" key="admin.addEvent.dateTimeNotValid" var="dateTimeNotValid" />
+	<fmt:message bundle="${loc}" key="admin.addEvent.coefficientNotValid" var="coefficientNotValid" />
 	<fmt:message bundle="${loc}" key="admin.button.addEvent" var="addEventBtn" />
 	<fmt:message bundle="${loc}" key="user.line.id" var="lineId" />
 	<fmt:message bundle="${loc}" key="user.line.startDate" var="lineStartDate" />
@@ -48,6 +49,7 @@
 				<input type="hidden" name="command" value="add-event" />
 				<input type="hidden" id="eventNameNotValid" value="${eventNameNotValid}" />
 				<input type="hidden" id="dateTimeNotValid" value="${dateTimeNotValid}" />
+				<input type="hidden" id="coefficientNotValid" value="${coefficientNotValid}" />
 			
 			<div class="table-responsive table-wrapper">
 			<table class="simple-padding">

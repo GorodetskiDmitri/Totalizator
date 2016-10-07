@@ -1,6 +1,7 @@
 package by.epam.totalizator.controller;
 
 import java.util.Enumeration;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 

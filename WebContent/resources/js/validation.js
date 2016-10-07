@@ -7,7 +7,13 @@ $("#add-event-form").submit(function() {
 	if ($("#eventDate").val().indexOf("M") >= 0 || $("#eventDate").val().indexOf("d") >= 0 || $("#eventDate").val().length != 16) {
 		alert($("#dateTimeNotValid").val());
 		return false;
-	}	
+	}
+	if ($("#eventWinCoeff").val() != "" && $("#eventWinCoeff").val() <= 1 ||
+			$("#eventDrawCoeff").val() != "" && $("#eventDrawCoeff").val() <= 1 ||
+			$("#eventLoseCoeff").val() != "" && $("#eventLoseCoeff").val() <= 1) {
+		alert($("#coefficientNotValid").val());
+		return false;
+	}
 });
 
 // Simple form validation for registration.jsp

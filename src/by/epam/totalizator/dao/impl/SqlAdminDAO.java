@@ -347,9 +347,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		PreparedStatement prepareStatement = null;
 		try {
 			connection = connectionPool.takeConnection();
-			System.out.println("1");
 			prepareStatement = connection.prepareStatement(INSERT_LINE);
-			System.out.println("2");
 			prepareStatement.setInt(1, line.getSport().getId());
 			prepareStatement.setInt(2, line.getCompetition().getId());
 			prepareStatement.setString(3, line.getEventName());
@@ -359,9 +357,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.setDouble(7, line.getLoseCoeff());
 			prepareStatement.setDouble(8, line.getMinBet());
 			prepareStatement.setDouble(9, line.getMaxBet());
-			System.out.println("3");
 			prepareStatement.executeUpdate();
-			System.out.println("4");
 			prepareStatement.close();
 		} catch (SQLException e)  {
 			throw new DAOException("SQL query not correct", e);
