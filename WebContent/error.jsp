@@ -22,6 +22,7 @@
 		<div class="container">
 			<div class="slogan" style="margin-bottom: 120px">
 				<h1><c:out value="${slogan}"/></h1>
+				<h4><c:out value="Reason: ${requestScope.errorMessage}"/></h4>
 			</div>
 		</div>
 	</div>

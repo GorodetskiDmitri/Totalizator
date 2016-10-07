@@ -14,6 +14,7 @@ public final class RequestParameterName {
 	public static final String CONCURENSE_LOGIN = "concurenseLogin";
 	public static final String CURRENT_COMMAND = "currentCommand";
 	public static final String CURRENT_PAGE = "currentPage";
+	public static final String ERROR_MESSAGE = "errorMessage";
 	public static final String EVENT_DATE = "eventDate";
 	public static final String EVENT_DRAW_COEFF = "eventDrawCoeff";
 	public static final String EVENT_LOSE_COEFF = "eventLoseCoeff";
