@@ -154,7 +154,7 @@
 				        	<c:if test="${sessionScope.locale.equalsIgnoreCase(\"ru\")}" >
 				        		<a href="resources/html/conditions_ru.html" onclick="javascript:newWindow(this.href); return false;">
 				        	</c:if>
-				        	<c:if test="${sessionScope.locale.equalsIgnoreCase(\"en\")}" >
+				        	<c:if test="${!sessionScope.locale.equalsIgnoreCase(\"ru\")}" >
 				        		<a href="resources/html/conditions_en.html" onclick="javascript:newWindow(this.href); return false;">
 				        	</c:if>
 				        	<c:out value="${conditions}"/></a>.

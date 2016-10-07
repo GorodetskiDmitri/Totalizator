@@ -76,7 +76,7 @@
 											<c:out value="${bet.line.loseCoeff}" />
 										</c:if>
 									</td>
-									<td><c:out value="${bet.amount}" /></td>
+									<td style="color: PaleGreen"><c:out value="${bet.amount}" /></td>
 									<td>
 										<c:choose>
 											<c:when test="${!bet.line.fixedResult.equals('1')}">
