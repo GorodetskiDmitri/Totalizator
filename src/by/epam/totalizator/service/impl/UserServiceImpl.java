@@ -34,7 +34,7 @@ public final class UserServiceImpl implements UserService {
 		try {
 			user = userDAO.getUser(login, password.hashCode());
 		} catch (DAOException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage(), e);
 		}
 		return user;
 	}

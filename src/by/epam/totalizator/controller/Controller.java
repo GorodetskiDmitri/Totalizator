@@ -42,7 +42,8 @@ public class Controller extends HttpServlet {
 			System.out.println("commandName=" + commandName);
 			command.execute(request, response);
 		} catch (CommandException e) {
-			request.setAttribute(RequestParameterName.ERROR_MESSAGE, e.getMessage());
+			request.getSession().setAttribute(RequestParameterName.ERROR_MESSAGE, e.getMessage());
+			request.getSession().removeAttribute(RequestParameterName.CURRENT_COMMAND);
 			page = PageName.ERROR_PAGE;
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			if (dispatcher != null) {
