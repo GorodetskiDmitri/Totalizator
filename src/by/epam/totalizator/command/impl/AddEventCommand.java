@@ -10,8 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.Competition;
@@ -23,6 +26,7 @@ import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class AddEventCommand implements Command {
 	
+	private static final Logger logger = Logger.getLogger(AddEventCommand.class);
 	private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 	
 	@Override
@@ -73,7 +77,8 @@ public class AddEventCommand implements Command {
 				Date startDate = dateFormat.parse(startDateStr);
 				line.setStartDate(startDate);
 			} catch (ParseException e) {
-				throw new CommandException("Invalid date format", e);
+				logger.info(ExceptionMessage.DATE_FORMAT);
+				throw new CommandException(ExceptionMessage.DATE_FORMAT, e);
 			}
 			
 			AdminService service = AdminServiceImpl.getInstance();
@@ -82,17 +87,18 @@ public class AddEventCommand implements Command {
 				try {
 					response.sendRedirect(currentCommand.toString());
 				} catch (IOException e) {
-					throw new CommandException("Could not sent redirect", e);
+					throw new CommandException(ExceptionMessage.SEND_REDIRECT, e);
 				}
 			} else {
 				try {
 					request.getRequestDispatcher(PageName.ERROR_PAGE).forward(request, response);
 				} catch (ServletException | IOException e) {
-					throw new CommandException("Could not forward to the page", e);
+					throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 				}
 			}
 		} catch (ServiceException e) {
-			throw new CommandException(e);
+			logger.error(e.getMessage());
+			throw new CommandException(e.getMessage(), e);
 		}
 	}
 }
