@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 
@@ -23,7 +24,7 @@ public class LogoutCommand implements Command {
 		try {
 			request.getRequestDispatcher(PageName.INDEX_PAGE).forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException("Could not forward to the page", e);
+			throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 		}
 	}
 

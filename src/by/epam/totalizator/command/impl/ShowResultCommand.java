@@ -8,8 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.ControllerUtil;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
@@ -20,12 +23,12 @@ import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class ShowResultCommand implements Command {
 
+	private static final Logger logger = Logger.getLogger(ShowResultCommand.class);
 	private static final int LINES_ON_PAGE = 6;
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		StringBuffer url = ControllerUtil.getCurrentCommandUrl(request);
-		Line line = (Line) request.getSession().getAttribute(RequestParameterName.LINE);
 		request.getSession().setAttribute(RequestParameterName.CURRENT_COMMAND, url);
 		
 		int currentPage = Integer.parseInt(request.getParameter(RequestParameterName.CURRENT_PAGE));
@@ -35,7 +38,8 @@ public class ShowResultCommand implements Command {
 			UserService service = UserServiceImpl.getInstance();
 			resultList = service.getResultList();
 		} catch (ServiceException e) {
-			throw new CommandException(e);
+			logger.error(e.getMessage());
+			throw new CommandException(e.getMessage(), e);
 		}
 		
 		int totalPage = resultList.size() / LINES_ON_PAGE;
@@ -56,18 +60,18 @@ public class ShowResultCommand implements Command {
 		try {
 			request.getRequestDispatcher(PageName.RESULT_PAGE).forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException("Couldn't forward to the page");
+			throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 		}
 	}
 	
-	private static List<Line> getResListInPage(List<Line> totalResList,int currentPage, int linesInPage){
+	private static List<Line> getResListInPage(List<Line> totalResList,int currentPage, int linesInPage) {
 		List<Line> resList = new ArrayList<Line>();
 		int i = 1;
 		for (Line line : totalResList) {
-			if (i > (currentPage-1)*linesInPage && i<=(currentPage)*linesInPage) {
+			if (i > (currentPage-1)*linesInPage && i <= (currentPage)*linesInPage) {
 				resList.add(line);
 			}
-			if(i>(currentPage+1)*linesInPage){
+			if (i > (currentPage+1)*linesInPage) {
 				break;
 			}
 			i++;

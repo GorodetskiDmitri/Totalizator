@@ -10,8 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
@@ -21,7 +24,8 @@ import by.epam.totalizator.service.impl.UserServiceImpl;
 
 public class RegisterUserCommand implements Command {
 	
-	private static final String DATE_FORMAT_DAY_MONTH_YEAR = "dd.MM.yyyy";
+	private static final Logger logger = Logger.getLogger(RegisterUserCommand.class);
+	private static final String DATE_FORMAT = "dd.MM.yyyy";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -37,12 +41,12 @@ public class RegisterUserCommand implements Command {
 		user.setPhone(request.getParameter(RequestParameterName.REG_PHONE).trim());
 		user.setPassport(request.getParameter(RequestParameterName.REG_PASSPORT).trim());
 		String dateOfBirthStr = request.getParameter(RequestParameterName.REG_DATE_OF_BIRTH).trim(); 
-		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_DAY_MONTH_YEAR);
+		DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 		try {
 			Date dateOfBirth = dateFormat.parse(dateOfBirthStr);
 			user.setDateOfBirth(dateOfBirth);
 		} catch (ParseException e) {
-			throw new CommandException("Invalid date format", e);
+			throw new CommandException(ExceptionMessage.DATE_FORMAT, e);
 		}
 
 		String page = null;
@@ -50,8 +54,8 @@ public class RegisterUserCommand implements Command {
 			UserService service = UserServiceImpl.getInstance();
 			user = service.registerUser(user);
 		} catch (ServiceException e) {
-			System.out.println("catch");
-			throw new CommandException(e);
+			logger.error(e.getMessage());
+			throw new CommandException(e.getMessage(), e);
 		}
 		
 		if (user != null) {
@@ -64,7 +68,7 @@ public class RegisterUserCommand implements Command {
 		try {
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException("Could not forward to the page",e);
+			throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 		}
 	}
 }

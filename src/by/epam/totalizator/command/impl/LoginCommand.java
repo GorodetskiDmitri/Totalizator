@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
 import by.epam.totalizator.entity.User;
@@ -20,6 +21,7 @@ import by.epam.totalizator.service.impl.UserServiceImpl;
 public class LoginCommand implements Command {
 
 	private static final Logger logger = Logger.getLogger(LoginCommand.class);
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String page;
@@ -48,7 +50,7 @@ public class LoginCommand implements Command {
 		try {
 			request.getRequestDispatcher(page).forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException("Could not forward to the page", e);
+			throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 		}
 	}
 

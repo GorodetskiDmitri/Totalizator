@@ -11,8 +11,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.ControllerUtil;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
@@ -24,6 +27,7 @@ import by.epam.totalizator.service.impl.AdminServiceImpl;
 
 public class ShowUserListCommand implements Command{
 	
+	private static final Logger logger = Logger.getLogger(ShowUserListCommand.class);
 	private static final int LINES_ON_PAGE = 7;
 
 	@Override
@@ -40,7 +44,8 @@ public class ShowUserListCommand implements Command{
 			AdminService service = AdminServiceImpl.getInstance();
 			totalUserList = service.getUserList(searchText);
 		} catch (ServiceException e) {
-			throw new CommandException(e);
+			logger.error(e.getMessage());
+			throw new CommandException(e.getMessage(), e);
 		}
 		int totalPage = totalUserList.size() / LINES_ON_PAGE;
 		if ((totalUserList.size() % LINES_ON_PAGE) > 0) {
@@ -59,18 +64,18 @@ public class ShowUserListCommand implements Command{
 		try {
 			request.getRequestDispatcher(PageName.USER_LIST_PAGE).forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException("Couldn't forward to the page");
+			throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 		}
 	}
 	
-	private static List<User> getUserListInPage(List<User> totalUserList,int currentPage, int linesInPage){
+	private static List<User> getUserListInPage(List<User> totalUserList,int currentPage, int linesInPage) {
 		List<User> userList = new ArrayList<User>();
 		int i = 1;
 		for (User user : totalUserList) {
-			if(i > (currentPage-1)*linesInPage && i<=(currentPage)*linesInPage){
+			if (i > (currentPage-1)*linesInPage && i <= (currentPage)*linesInPage){
 				userList.add(user);
 			}
-			if(i>(currentPage+1)*linesInPage){
+			if (i > (currentPage+1)*linesInPage) {
 				break;
 			}
 			i++;
