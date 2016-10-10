@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.totalizator.command.Command;
 import by.epam.totalizator.command.exception.CommandException;
+import by.epam.totalizator.command.exception.ExceptionMessage;
 import by.epam.totalizator.controller.ControllerUtil;
 import by.epam.totalizator.controller.PageName;
 import by.epam.totalizator.controller.RequestParameterName;
@@ -22,7 +23,7 @@ public class ContactsCommand implements Command {
 		try {
 			request.getRequestDispatcher(PageName.CONTACTS_PAGE).forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException("Could not forward to the page");
+			throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 		}
 	}
 

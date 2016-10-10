@@ -96,7 +96,7 @@ public class AddEventCommand implements Command {
 					throw new CommandException(ExceptionMessage.FORWARD_TO_PAGE, e);
 				}
 			}
-		} catch (ServiceException e) {
+		} catch (ServiceException | NumberFormatException e) {
 			logger.error(e.getMessage());
 			throw new CommandException(e.getMessage(), e);
 		}
