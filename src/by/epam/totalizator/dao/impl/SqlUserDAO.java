@@ -21,7 +21,7 @@ public class SqlUserDAO implements UserDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
-	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY bet_status ASC, id DESC, bet_date DESC";
+	private static final String GET_ALL_USER_BET = "SELECT * FROM bet WHERE id_user=? ORDER BY id DESC, bet_date DESC";
 	private static final String GET_COMPETITION_BY_ID = "SELECT * FROM competition WHERE id=?";
 	private static final String GET_LINE = "SELECT a.*, s.name, s.name_ru, c.name, c.name_ru FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE a.id=?";
 	private static final String GET_LINE_LIST = "SELECT a.*, s.name, s.name_ru, c.name, c.name_ru FROM line a INNER JOIN sport s ON a.id_sport = s.id INNER JOIN competition c ON a.id_competition=c.id WHERE fixed_result='0' AND a.start_date >= NOW() ORDER BY s.name, c.name, a.start_date, a.event_name";

@@ -32,22 +32,22 @@
 				<div class="card-row clearfix">
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
-							<h4>Krumkachy - BATE</h4>
-							<p>Football. Belarus. Day 23</p>
+							<h4>Naftan - Krumkachy</h4>
+							<p>Football. Belarus. Day 25</p>
 							<a href="Controller?command=show-line&link=1"><img src="resources/img/photo/bet2.jpg" height="173" width="218"></a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
-							<h4>Dinamo Mn - Amur</h4>
+							<h4>CSKA - Dinamo Mnr</h4>
 							<p>KHL. Regular season</p>
 							<a href="Controller?command=show-line&link=2"><img src="resources/img/photo/bet7.jpg" height="173" width="218"></a>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
-							<h4>A.Radvanska - M.Kis</h4>
-							<p>US Open. Round of 16</p>
+							<h4>S.Williams - S.Halep</h4>
+							<p>US Open. Quater-finals</p>
 							<a href="Controller?command=show-line&link=3"><img src="resources/img/photo/bet8.jpg" height="173" width="218"></a>
 						</div>
 					</div>
