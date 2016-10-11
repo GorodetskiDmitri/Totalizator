@@ -78,7 +78,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 				userList.add(user);
 			}
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -97,7 +97,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			preparedStatement.setInt(1, userId);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -117,7 +117,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			preparedStatement.setInt(2, userId);
 			preparedStatement.executeUpdate();			
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -167,7 +167,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 				lineList.add(line);
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -188,7 +188,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} 
 	}
 	
@@ -202,7 +202,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} 
 	}
 	
@@ -217,7 +217,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} 
 	}
 	
@@ -243,7 +243,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.close();
 			resultSet.close();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} 
 		return winnersList;
 	}
@@ -263,7 +263,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.close();
 			
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} 
 	}
 	
@@ -281,7 +281,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.close();
 			
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} 
 	}
 	
@@ -304,7 +304,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 				sportList.add(sport);
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -332,7 +332,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 				competitionList.add(competition);
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -360,7 +360,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -410,7 +410,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 				lineList.add(line);
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {

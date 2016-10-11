@@ -36,6 +36,7 @@ public class SqlUserDAO implements UserDAO {
 	private static final String REDUCE_USER_BALANCE = "UPDATE users SET balance=(balance - (?)) WHERE id=? AND status='client'";
 	private static final String SHOW_UNRESOLVED_MONEY = "SELECT SUM(amount) FROM bet WHERE id_user=? AND bet_status='0';";
 	
+	protected static final String EXCEPTION_MESSAGE_SQL = "SQL query not correct";
 	
 	@Override
 	public User getUser(String login, int password) throws DAOException {
@@ -66,7 +67,7 @@ public class SqlUserDAO implements UserDAO {
 				user.setBetAllow(resultSet.getString(13));
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -95,7 +96,7 @@ public class SqlUserDAO implements UserDAO {
 			prepareStatement.executeUpdate();
 			prepareStatement.close();
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -119,7 +120,7 @@ public class SqlUserDAO implements UserDAO {
 			}
 			return true;
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -139,7 +140,7 @@ public class SqlUserDAO implements UserDAO {
 			prepareStatement.executeUpdate();
 			return true;
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -162,7 +163,7 @@ public class SqlUserDAO implements UserDAO {
 				money = resultSet.getDouble(1);
 			}
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -196,7 +197,7 @@ public class SqlUserDAO implements UserDAO {
 				betList.add(bet);
 			}
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -245,7 +246,7 @@ public class SqlUserDAO implements UserDAO {
 				line.setScore2(resultSet.getInt(13));
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -295,7 +296,7 @@ public class SqlUserDAO implements UserDAO {
 				lineList.add(line);
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -324,7 +325,7 @@ public class SqlUserDAO implements UserDAO {
 				sport.setNameRu(resultSet.getString(3));
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -351,7 +352,7 @@ public class SqlUserDAO implements UserDAO {
 				competition.setNameRu(resultSet.getString(3));
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
@@ -401,7 +402,7 @@ public class SqlUserDAO implements UserDAO {
 				resultList.add(line);
 			} 
 		} catch (SQLException e)  {
-			throw new DAOException("SQL query not correct", e);
+			throw new DAOException(EXCEPTION_MESSAGE_SQL, e);
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
