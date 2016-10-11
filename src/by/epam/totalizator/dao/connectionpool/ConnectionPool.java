@@ -33,7 +33,7 @@ import by.epam.totalizator.dao.connectionpool.exception.ConnectionPoolException;
  */
 public final class ConnectionPool {
 	
-	private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
+	private static final Logger logger = Logger.getLogger(ConnectionPool.class);
 
 	private BlockingQueue<Connection> connectionQueue;
 	private BlockingQueue<Connection> givenAwayConQueue;
@@ -57,7 +57,7 @@ public final class ConnectionPool {
 			this.poolSize = Integer.parseInt(dbResourseManager.getValue(DBParameter.DB_POOL_SIZE));
 		} catch (NumberFormatException e) {
 			poolSize = 10;
-			LOGGER.info("Invalid pool size number format", e);
+			logger.info("Invalid pool size number format", e);
 		}
 	}
 	
@@ -112,7 +112,7 @@ public final class ConnectionPool {
 			closeConnectionsQueue(connectionQueue);
 			closeConnectionsQueue(givenAwayConQueue);
 		} catch (SQLException e) {
-			LOGGER.error("Error closing the connection.", e);
+			logger.error("Error closing the connection.", e);
 		}
 	}
 		
@@ -145,19 +145,19 @@ public final class ConnectionPool {
 			if (resultSet != null)
 				resultSet.close();
 		} catch (SQLException e) {
-			LOGGER.error("ResultSet isn't closed.", e);
+			logger.error("ResultSet isn't closed.", e);
 		}
 		try {
 			if (statement != null)
 				statement.close();
 		} catch (SQLException e) {
-			LOGGER.error("Statement isn't closed.", e);
+			logger.error("Statement isn't closed.", e);
 		}
 		try {
 			if (connection != null)
 				connection.close();
 		} catch (SQLException e) {
-			LOGGER.error("Connection isn't return to the pool.", e);
+			logger.error("Connection isn't return to the pool.", e);
 		}
 	}
 	
@@ -172,12 +172,12 @@ public final class ConnectionPool {
 		try {
 			statement.close();
 		} catch (SQLException e) {
-			LOGGER.error("Statement isn't closed.", e);
+			logger.error("Statement isn't closed.", e);
 		}
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			LOGGER.error("Connection isn't return to the pool.", e);
+			logger.error("Connection isn't return to the pool.", e);
 		}
 	}
 	
