@@ -39,7 +39,7 @@
 					</div>
 					<div class="col-md-3 col-sm-6">
 						<div class="card">
-							<h4>CSKA - Dinamo Mnr</h4>
+							<h4>CSKA - Dinamo Mn</h4>
 							<p>KHL. Regular season</p>
 							<a href="Controller?command=show-line&link=2"><img src="resources/img/photo/bet7.jpg" height="173" width="218"></a>
 						</div>
