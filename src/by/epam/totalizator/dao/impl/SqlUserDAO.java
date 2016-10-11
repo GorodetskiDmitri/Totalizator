@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import by.epam.totalizator.dao.UserDAO;
 import by.epam.totalizator.dao.connectionpool.ConnectionPool;
@@ -71,7 +74,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return user;
 	}
@@ -100,7 +103,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
+			CloseConnection.close(connection, prepareStatement);
 		}
 		return true;
 	}
@@ -124,7 +127,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 	}
 
@@ -144,7 +147,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
+			CloseConnection.close(connection, prepareStatement);
 		}
 	}
 	
@@ -167,7 +170,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return money;
 	}
@@ -201,7 +204,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return betList;
 	}
@@ -250,7 +253,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return line;
 	}
@@ -300,9 +303,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			if (prepareStatement == null)
-				System.out.println("NULL");
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return lineList;
 	}
@@ -329,7 +330,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return sport;
 	}
@@ -356,7 +357,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return competition;
 	}
@@ -406,7 +407,7 @@ public class SqlUserDAO implements UserDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return resultList;
 	}
@@ -448,8 +449,72 @@ public class SqlUserDAO implements UserDAO {
 			}
 			throw new DAOException("Invalid sql query",e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
+			CloseConnection.close(connection, prepareStatement);
 		}
 		return true;
+	}
+	
+	
+	static class CloseConnection {
+		
+		private static final Logger logger = Logger.getLogger(CloseConnection.class);
+		
+		/**
+		 * The method closes the connection, statement and resultSet.
+		 * 
+		 * @param Connection connection
+		 * @param Statement statement
+		 * @param ResultSet resultSet
+		 * @exception SQLException
+		 */
+		public static void close(Connection connection, Statement statement, ResultSet resultSet) {
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					logger.error("ResultSet isn't closed.", e);
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					logger.error("Statement isn't closed.", e);
+				}
+			}
+			if (connection != null) {
+				try {
+					if (connection != null)
+						connection.close();
+				} catch (SQLException e) {
+					logger.error("Connection isn't return to the pool.", e);
+				}
+			}
+		}
+		
+		/**
+		 * The method closes the connection and statement.
+		 * 
+		 * @param Connection connection
+		 * @param Statement statement
+		 * @exception SQLException
+		 */
+		public static void close(Connection connection, Statement statement){
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					logger.error("Statement isn't closed.", e);
+				}
+			}
+			if (connection != null) {
+				try {
+					if (connection != null)
+						connection.close();
+				} catch (SQLException e) {
+					logger.error("Connection isn't return to the pool.", e);
+				}
+			}
+		}
 	}
 }

@@ -82,7 +82,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, statement, resultSet);
+			CloseConnection.close(connection, statement, resultSet);
 		}
 		return userList;
 	}
@@ -101,7 +101,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, preparedStatement);
+			CloseConnection.close(connection, preparedStatement);
 		}
 		return true;
 	}
@@ -121,7 +121,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, preparedStatement);
+			CloseConnection.close(connection, preparedStatement);
 		}
 		return true;
 	}
@@ -171,7 +171,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return lineList;
 	}
@@ -308,7 +308,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return sportList;
 	}
@@ -336,7 +336,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return competitionList;
 	}
@@ -364,7 +364,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement);
+			CloseConnection.close(connection, prepareStatement);
 		}
 		return true;
 	}
@@ -414,7 +414,7 @@ public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
 		} finally {
-			connectionPool.closeConnection(connection, prepareStatement, resultSet);
+			CloseConnection.close(connection, prepareStatement, resultSet);
 		}
 		return lineList;
 	}
