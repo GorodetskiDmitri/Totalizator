@@ -5,7 +5,6 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
 
-import by.epam.totalizator.command.impl.ShowBetHistoryCommand;
 import by.epam.totalizator.dao.connectionpool.ConnectionPool;
 import by.epam.totalizator.dao.connectionpool.exception.ConnectionPoolException;
 
