@@ -133,55 +133,6 @@ public final class ConnectionPool {
 	}
 	
 	/**
-	 * The method closes the connection, statement and resultSet.
-	 * 
-	 * @param Connection connection
-	 * @param Statement statement
-	 * @param ResultSet resultSet
-	 * @exception SQLException
-	 */
-	public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
-		try {
-			if (resultSet != null)
-				resultSet.close();
-		} catch (SQLException e) {
-			logger.error("ResultSet isn't closed.", e);
-		}
-		try {
-			if (statement != null)
-				statement.close();
-		} catch (SQLException e) {
-			logger.error("Statement isn't closed.", e);
-		}
-		try {
-			if (connection != null)
-				connection.close();
-		} catch (SQLException e) {
-			logger.error("Connection isn't return to the pool.", e);
-		}
-	}
-	
-	/**
-	 * The method closes the connection and statement.
-	 * 
-	 * @param Connection connection
-	 * @param Statement statement
-	 * @exception SQLException
-	 */
-	public void closeConnection(Connection connection, Statement statement){
-		try {
-			statement.close();
-		} catch (SQLException e) {
-			logger.error("Statement isn't closed.", e);
-		}
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			logger.error("Connection isn't return to the pool.", e);
-		}
-	}
-	
-	/**
 	 * The method closes the connections in BlockingQueue.
 	 * 
 	 * @param BlockingQueue<Connection> queue
