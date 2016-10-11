@@ -18,7 +18,7 @@ import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
 import by.epam.totalizator.entity.Winner;
 
-public class SqlAdminDAO extends SqlUserDAO implements AdminDAO {
+public class MySqlAdminDAO extends MySqlUserDAO implements AdminDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	

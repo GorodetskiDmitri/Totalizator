@@ -1,12 +1,12 @@
 package by.epam.totalizator.dao;
 
-import by.epam.totalizator.dao.impl.SqlAdminDAO;
-import by.epam.totalizator.dao.impl.SqlUserDAO;
+import by.epam.totalizator.dao.impl.MySqlAdminDAO;
+import by.epam.totalizator.dao.impl.MySqlUserDAO;
 
 public class DAOFactory {
 
-	private AdminDAO adminDAO = new SqlAdminDAO();
-	private UserDAO userDAO = new SqlUserDAO();
+	private AdminDAO adminDAO = new MySqlAdminDAO();
+	private UserDAO userDAO = new MySqlUserDAO();
 	
 	private DAOFactory() {
 		

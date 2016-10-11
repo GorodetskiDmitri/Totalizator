@@ -20,7 +20,7 @@ import by.epam.totalizator.entity.Line;
 import by.epam.totalizator.entity.Sport;
 import by.epam.totalizator.entity.User;
 
-public class SqlUserDAO implements UserDAO {
+public class MySqlUserDAO implements UserDAO {
 
 	private static ConnectionPool connectionPool = ConnectionPool.getInstance();
 	
